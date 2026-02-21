@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cloud.compagno</groupId>
+    <artifactId>Java</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <!--
+   <modules>
+       <module>designpatterns/creazionali/singleton</module>
+   </modules>
+    -->
+
+    <properties>
+       <!-- Informazioni base -->
+        <nome.cognome.sviluppatore>Giuseppe Compagno</nome.cognome.sviluppatore>
+        <email.sviluippatore>info@compagno.cloud</email.sviluippatore>
+        <sito.web>https://www.compagno.cloud</sito.web>
+        <sit.email>info@compagno.cloud</sit.email>
+        <project.year>2026</project.year>
+        <nome.applicazione>Java</nome.applicazione>
+        <nome.societa>Compagno</nome.societa>
+        <licenza.applicazione.nome>MIT License</licenza.applicazione.nome>
+        <licenza.applicazione.url>https://mit-license.org</licenza.applicazione.url>
+        <!-- -->
+
+        <!-- Schema carattere di coding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- -->
+
+        <!-- Versione Java per la compilazione -->
+        <java.release.source>25</java.release.source>
+        <java.release.target>25</java.release.target>
+        <java.version>1.${java.release.target}</java.version>
+        <!-- -->
+
+        <!-- Plugin -->
+        <junit-jupiter-api.versione>6.0.2</junit-jupiter-api.versione>
+        <maven-compiler-plugin.versione>3.15.0</maven-compiler-plugin.versione>
+        <maven-assembly-plugin.versione>3.8.0</maven-assembly-plugin.versione>
+        <maven-site-plugin.versione>3.21.0</maven-site-plugin.versione>
+        <!-- -->
+
+        <!-- Variabili si sistema -->
+        <singleton.versione>1.0.0</singleton.versione>
+        <singleton.mainClass>cloud.compagno.designpatterns.creazionali.singleton.SingletonMain</singleton.mainClass>
+        <!-- -->
+    </properties>
+
+    <description>${nome.applicazione}</description>
+    <url>${sito.web}</url>
+    <inceptionYear>${project.year}</inceptionYear>
+
+    <organization>
+        <name>${nome.societa}</name>
+        <url>${sito.web}</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>${licenza.applicazione.nome}</name>
+            <url>${licenza.applicazione.url}</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>giucom</id>
+            <name>${nome.cognome.sviluppatore}</name>
+            <email>${email.sviluippatore</email>
+            <organization>${nome.societa}</organization>
+            <organizationUrl>${sito.web}</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>git@github.com:GiuCom/Java.git</connection>
+        <developerConnection>git@github.com:GiuCom/Java.git</developerConnection>
+        <url>https://github.com/GiuCom/Java</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter-api.versione}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- File encoding -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.versione}</version>
+                <configuration>
+                    <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
+                </configuration>
+            </plugin>
+
+            <!-- Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.versione}</version>
+                <configuration>
+                    <source>${java.release.source}</source>
+                    <target>${java.release.target}</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
