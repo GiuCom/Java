@@ -97,7 +97,7 @@ Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce es
 
 <div style="text-align: center;">  
 
-<img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 50%; height: 50%;">
+<img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 65%; height: 65%;">
 
 </div>
 
