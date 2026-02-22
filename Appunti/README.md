@@ -1,8 +1,13 @@
 # Java
+
+<div style="text-align: center;"> 
+
 ![Java_Logo_256px.png](img/Java_Logo_256px.png)
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
+
+</div>
 <br/>
 
 ## 📚 Storia
@@ -10,13 +15,21 @@
 Nel 1991 presso la Sun Microsystems, James Gosling, Patrick Naughton e Mike Sheridan guidarono un gruppo di lavoro noto come Green Team con l’obiettivo di sviluppare un linguaggio di programmazione ad alto livello destinato al controllo di dispositivi elettronici come elettrodomestici, smart card, robot e sistemi embedded.
 Le richieste principali erano ambiziose: il linguaggio doveva essere portabile, cioè eseguibile su architetture hardware differenti, robusto, per ridurre al minimo gli errori a runtime, e semplice da compilare, poiché i produttori dei dispositivi non erano disposti a investire in strumenti di sviluppo complessi.</div>
 
+<div style="text-align: center;"> 
+
 ![Java_Green_Team.jpg](img/Java_Green_Team.jpg)
+
+</div>
 
 <div class="text-justify">Nel 1992 nasce il linguaggio Oak (in italiano "quercia"), successivamente cambiato con il nome Java per problemi di diritto d’autore (il linguaggio di programmazione Oak esisteva già). Il progetto iniziale non ottenne grande successo commerciale.
 Tuttavia, nel 1994, con la rapida diffusione di Internet, James Gosling, assieme a Patrick Naughton e Jonathan Payne colsero una nuova opportunità: utilizzare Java per creare applicazioni capaci di essere distribuite e avviate direttamente attraverso la rete.
 Il 23 maggio 1995, durante la conferenza SunWorld, venne presentato il browser HotJava, in grado di scaricare ed eseguire piccoli programmi chiamati Applet, dimostrando per la prima volta il potenziale di Java come linguaggio portabile e orientato alla rete.</div>
 
+<div style="text-align: center;"> 
+
 ![Java_Sun_World_95.gif](img/Java_Sun_World_95.gif)
+
+</div>
 
 Le altre importanti tappe furono:
 
@@ -82,7 +95,11 @@ L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strat
 La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
 Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
 
-![JVM - Architettura.png](img/JVM%20-%20Architettura.png)
+<div style="text-align: center;">  
+
+<img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 50%; height: 50%;">
+
+</div>
 
 ## 👥 Authors
 
