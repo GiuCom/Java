@@ -4,13 +4,14 @@
 Appunti di Java
 =======
 ## Appunti
-![logo-java-256.png](Appunti/img/logo-java-256.png)
+![Java_Logo_256px.png](Appunti/img/Java_Logo_256px.png)
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
 <br/>
 
 ## 🚀 Introduzione
+
 
 I Design Pattern sono una metodologia di progettazione del software che mostra possibili soluzioni ai problemi comuni nell’ambito dell’object-oriented design.<br/>
 I patterns descritti sono stati sviluppati da programmatori e architetti esperti della comunità open source.<br/>
