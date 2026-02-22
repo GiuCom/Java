@@ -82,7 +82,7 @@ L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strat
 La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
 Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
 
-
+![JVM - Architettura.png](img/JVM%20-%20Architettura.png)
 
 ## 👥 Authors
 
