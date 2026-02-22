@@ -1,6 +1,6 @@
 # Java
 
-<div style="text-align: center;"> 
+<div style="text-align: center; display: block; margin: auto;"> 
 
 ![Java_Logo_256px.png](img/Java_Logo_256px.png)
 
