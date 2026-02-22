@@ -1,5 +1,5 @@
 <h1 style="text-align: center;">Design Patterns</h1>
-<b>Creazionali</b>
+<h2 style="text-align: center;">Creazionali</h2>
 <hr>
 ### Singleton
 
