@@ -8,12 +8,9 @@
     <artifactId>Java</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-
-    <!--
-   <modules>
-       <module>designpatterns/creazionali/singleton</module>
-   </modules>
-    -->
+    <modules>
+        <module>designpatterns</module>
+    </modules>
 
     <properties>
        <!-- Informazioni base -->
@@ -48,7 +45,7 @@
 
         <!-- Variabili si sistema -->
         <singleton.versione>1.0.0</singleton.versione>
-        <singleton.mainClass>cloud.compagno.designpatterns.creazionali.singleton.SingletonMain</singleton.mainClass>
+        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonMain</singleton.mainClass>
         <!-- -->
     </properties>
 
