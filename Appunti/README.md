@@ -1,12 +1,4 @@
-<style>
-img {
-display: block;
-float: none;
-margin-left: auto;
-margin-right: auto;
-width: 50%;
-}
-</style>
+<link rel="stylesheet" href="css/base.css">
 
 # Java
 
