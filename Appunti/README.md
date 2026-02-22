@@ -3,10 +3,9 @@
 # Java
 
 <div style="text-align: center;">
-<img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" class="center" ><br/>
-<img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
-<img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" >
-<br/>
+  <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
+  <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
+  <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
 </div>
 
 ## 📚 Storia
@@ -46,7 +45,7 @@ Le altre importanti tappe furono:
 - 2025 - Java 24 & 25 portano innovazioni come i Compact Object Headers (per ridurre l'uso della memoria) e potenziamenti specifici per applicazioni basate su Microservizi e AI.
 
 ## 🧑‍💻 Modalità di traduzione del codice
-I linguaggi di programmazione compilati, come ad esempio C++, Rust, GO, utilizzano un compilatore per tradurre il codice sorgente in codice macchina, specifico per una piattaforma su cui si esegue la compilazione, ed eseguibile direttamente dal processore. Questo processo avviene prima dell'esecuzione del programma, rendendo il codice veloce e efficiente. Gli svantaggio sono:
+I linguaggi di programmazione compilati, come ad esempio C++, Rust, GO, utilizzano un compilatore per tradurre il codice sorgente in codice macchina, specifico per una piattaforma su cui si esegue la compilazione, ed eseguibile direttamente dal processore. Questo processo avviene prima dell'esecuzione del programma, rendendo il codice veloce ed efficiente. Gli svantaggio sono:
 
 - Tempo di compilazione: Ogni modifica al codice richiede un processo di ricompilazione dell'intero programma (o di parti di esso) prima di poterlo testare.
 - Mancanza di portabilità immediata: Il compilatore genera un file eseguibile specifico per un determinato processore e sistema operativo. Per eseguire lo stesso programma su una piattaforma differente (ad esempio, passare da Windows a Linux o da Intel ad ARM), è necessario ricompilare il codice sorgente per quel target specifico.
@@ -56,7 +55,7 @@ I linguaggi di programmazione, come ad esempio JavaScript, PHP, Ruby, Perl offro
 Interpretati. Il codice sorgente può essere eseguito, senza doverlo compilare, su qualsiasi sistema operativo (Windows, macOS, Linux) senza modifiche, a patto che sia installato l'interprete corretto per quella piattaforma. Inoltre, non essendoci una fase di compilazione separata, su può scrivere il codice ed eseguirlo istantaneamente testando velocemente l'eventuali modifiche.
 Gli svantaggio sono:
 
-- Minore velocità di esecuzione: Tradurre il codice in linguaggio macchina "al volo" durante l'esecuzione introduce  un sovraccarico (overhead) che rende questi programmi più lenti rispetto a quelli pre-compilati.
+- Minore velocità di esecuzione: Tradurre il codice in linguaggio macchina "al volo" durante l'esecuzione introduce un sovraccarico (overhead) che rende questi programmi più lenti rispetto a quelli pre-compilati.
 - Dipendenza dall'interprete: Per far girare il software, l'utente finale deve avere l'interprete (come Python o Node.js) installato sul proprio computer; non basta un semplice file eseguibile autonomo.
 - Mancanza di riservatezza del codice: Poiché viene distribuito il codice sorgente (o un formato molto simile), è molto più difficile proteggere la proprietà intellettuale o nascondere segreti industriali rispetto a un file binario compilato
 
@@ -114,7 +113,7 @@ Lista di chi ha contribuito:<br/>
 
 Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
 Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
-Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
+Rudolf Pecinovský, "***OOP – Learn Object-Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
 
 
 ## ⚖️ Licenza
