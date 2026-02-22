@@ -1,10 +1,8 @@
 # Java
 
-<div style="text-align: center;"> 
-  <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
-  <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
-  <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" >
-</div>
+<img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" style="display: block; margin: 0 auto" ><br/>
+<img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" style="display: block; margin: 0 auto" >
+<img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" style="display: block; margin: 0 auto" >
 <br/>
 
 ## 📚 Storia
@@ -78,10 +76,9 @@ La Java Virtual Machine (JVM), componente fondamentale del Java Runtime Environm
 </br>
 
 Per comprendere la JVM facciamo un piccolo passo indietro e descriviamo cos'è una Virtual Machine (VM).
-Una VM è un "computer dentro un altro computer". Più precisamente è un ambiente software che emula il comportamento di un computer fisico, creando CPU, memoria RAM, disco rigido  e scheda di rete virtuali. L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali
+Una VM è un "computer dentro un altro computer". Più precisamente è un ambiente software che emula il comportamento di un computer fisico, creando CPU, memoria RAM, disco rigido e scheda di rete virtuali. L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali
 Le risorse hardware virtuali vengono "estrapolate" dalle risorse hardware fisiche del computer che ospita le VM.
 Il computer che ospita il software è detto Host, mentre la macchina virtuale è definita Guest.
-L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali.
 
 <div style="text-align: center;">
   <img title="Hypervisor" alt="Hypervisor" src="img/Hypervisor.png" ><br/>
