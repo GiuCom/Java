@@ -1,6 +1,6 @@
-# Design Patterns
-## Creazionali
----
+<h1 style="text-align: center;">Design Patterns</h1><br/>
+<b>Creazionali</b>
+<hr>
 ### Singleton
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
