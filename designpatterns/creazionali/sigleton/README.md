@@ -1,5 +1,6 @@
 # Design Patterns
 ## Creazionali
+---
 ### Singleton
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
