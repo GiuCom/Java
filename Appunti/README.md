@@ -10,8 +10,9 @@ width: 50%;
 
 # Java
 
-<img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" style="display: block; margin: 0 auto" ><br/>
-<img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" style="display: block; margin: 0 auto" ><img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" style="display: block; margin: 0 auto" >
+<img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
+<img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
+<img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" >
 <br/>
 
 
