@@ -69,7 +69,8 @@ Il **JRE** agisce come strato di astrazione tra l'applicazione e il sistema oper
 
 ## 🧑‍💻 JVM
 La Java Virtual Machine (JVM), componente fondamentale del Java Runtime Environment (JRE), funge da traduttore universale, consente ai programmi scritti in linguaggio Java di essere eseguiti su qualsiasi piattaforma senza modifiche del codice sorgente, in quanto perché esiste una JVM specifica per ogni OS (Windows, Linux o Mac) che "capisce" quel codice.
-#### - Virtual Machine
+</br>
+
 Per comprendere la JVM facciamo un piccolo passo indietro e descriviamo cos'è una Virtual Machine (VM).
 Una VM è un "computer dentro un altro computer". Più precisamente è un ambiente software che emula il comportamento di un computer fisico, creando CPU, memoria RAM, disco rigido  e scheda di rete virtuali. L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali
 Le risorse hardware virtuali vengono "estrapolate" dalle risorse hardware fisiche del computer che ospita le VM.
@@ -77,6 +78,11 @@ Il computer che ospita il software è detto Host, mentre la macchina virtuale è
 L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali.
 
 ![Hypervisor.png](img/Hypervisor.png)
+
+La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
+Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
+
+
 
 ## 👥 Authors
 
