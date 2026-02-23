@@ -2,11 +2,11 @@
 
 # Java
 
-<div style="text-align: center;">
+<p style="text-align: center;">
   <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
   <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
   <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
-</div>
+</p>
 
 ## 📚 Storia
 <div class="text-justify">Java nasce all’inizio degli anni ’90 in un contesto di rapida evoluzione tecnologica, caratterizzato dalla diffusione di dispositivi elettronici sempre più complessi e dalla necessità di renderli programmabili in modo semplice, sicuro e indipendente dall’hardware.
