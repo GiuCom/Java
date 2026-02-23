@@ -1,6 +1,6 @@
 # Guida ai Contributi
 
-Grazie per il tuo interesse a contribuire! Questo progetto raccoglie **implementazioni in Java di Design Patterns** (GoF e oltre) con esempi didattici, test e documentazione.
+Grazie per il tuo interesse a contribuire! Questo progetto raccoglie **codice scritto in Java riguardante vari argomenti (Design Patterns, Crittografia, Clean Code, etc..)** con esempi didattici, test e documentazione.
 
 Questa guida spiega **come proporre modifiche**, **aprire issue**, **scrivere codice**, **aggiungere test** e **mantenere coerenza** nello stile e nella struttura del repository.
 
@@ -49,8 +49,8 @@ Se noti comportamenti inappropriati, apri una issue con il tag `conduct` oppure 
 ### 1) Clona e prepara
 ```bash
 # fork sul tuo account, poi:
-git clone https://github.com/<tuo-utente>/<nome-repo>.git
-cd <nome-repo>
+git clone https://github.com/GiuCom/Java.git
+cd Java
 ```
 
 ### 2) Importa nel tuo IDE
@@ -77,23 +77,22 @@ Se falliscono i check di stile/qualità, vedi la sezione successiva.
 Esempio (indicativo):
 ```
 /.
-├── patterns/
-│   ├── creational/
+├── designpatterns/
+│   ├── creazionali/
 │   │   └── singleton/
+│   │       ├── doc/...            # guide, UML, note
+│   │       ├── build/             # JAR
 │   │       ├── src/main/java/...  # implementazione
 │   │       ├── src/test/java/...  # test JUnit
-│   │       └── README.md           # spiegazione del pattern
-│   ├── structural/
+│   │       └── README.md          # spiegazione del pattern
+│   ├── strutturali/
 │   └── behavioral/
-├── docs/                           # guide, UML, note
-├── build/                          # configurazioni comuni (Checkstyle, SpotBugs)
+├── Appunti/                        # Appunti dedicati a Java
 ├── .editorconfig
 ├── pom.xml | build.gradle
 ├── CONTRIBUTING.md
 └── CODE_OF_CONDUCT.md
 ```
-
-> Ogni pattern vive in un **modulo/cartella dedicata**, con **README.md** e **test**.
 
 ---
 
@@ -125,7 +124,7 @@ Esempio (indicativo):
 ## Linee guida specifiche per i Design Pattern
 
 1. **Naming**
-   - Pacchetti: `it.<org>.<repo>.patterns.<categoria>.<pattern>` (es. `it.example.dp.patterns.creational.singleton`).
+   - Pacchetti: `cloud.compagno.designpatterns.<categoria>.<pattern>` (es. `cloud.compagno.designpatterns.creazionali.singleton`).
    - Classi principali con nomi canonici (es. `Singleton`, `AbstractFactory`, `Observer`).
 
 2. **Struttura**
