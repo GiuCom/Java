@@ -150,12 +150,12 @@ Riassumendo:
 Il **Linking** è la seconda fase del ciclo di vita di una classe nella JVM (subito dopo il Loading). È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
 Si divide in tre sotto-fasi fondamentali:
 
-- Verify è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
+- **Verify** è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
   * Controlla che non ci siano tentativi di accedere a zone di memoria vietate.
   * Verifica che i tipi di dati siano coerenti (es. non sommare un intero a un oggetto).
   * Assicura che il codice non causi l'overflow dello stack.
-- Prepare in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
-- Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
+- **Prepare** in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
+- **Resolve** questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
   Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto a essa.
 
 L'**Initialization** (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
