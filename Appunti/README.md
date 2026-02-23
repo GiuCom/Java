@@ -158,7 +158,7 @@ Si divide in tre sotto-fasi fondamentali:
 - Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
   Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto a essa.
 
-L'**Initialization* (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
+L'**Initialization** (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
 Mentre nella fase precedente (Preparation) la JVM aveva solo preparato lo spazio in memoria riempiendolo con zeri o null, qui avvengono i veri assegnamenti.
 La JVM genera internamente un metodo speciale chiamato <clinit> (Class Initialization). Questo metodo raccoglie:
 - Tutti gli assegnamenti delle variabili statiche (es: static int x = 50;).
