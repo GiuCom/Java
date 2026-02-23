@@ -119,7 +119,7 @@ Con il comando
 javac Saluto.java
 ```
 
-viene compilato il file sorgente Saluto.java e viene generato il file Bytecode Saluto.class
+Viene compilato il file sorgente Saluto.java e viene generato il file Bytecode Saluto.class
 Il Bytecode non è codice macchina nativo (non può girare direttamente sul processore), ma è il formato universale che JVM è in grado di eseguire.
 Con il comando ***java*** si inizializza la JVM che carica il bytecode della classe specificata e carica in memoria il metodo main() per eseguire l'applicazione.
 
@@ -128,6 +128,10 @@ java Saluto
 ```
 
 La prima attività che effettua la JVM è l'utilizzo delle Class Loader:
+
+<p align="center">
+  <img title="JVM Architettura CLASS LOADER" alt="JVM Architettura CLASS LOADER" src="img/JVM_Architettura_LOADER.png" ><br/>
+</p>
 
 - **Bootstrap Class Loader** (conosciuto anche come Primordial Class Loader) è il componente più fondamentale della JVM ed è il punto di partenza dell'intero processo di caricamento delle classi in Java. Non è una classe Java. È un pezzo di codice nativo integrato direttamente nel nucleo della JVM. Il suo compito è caricare le librerie software fondamentali necessarie al funzionamento stesso dell'ambiente Java (java.lang, java.net, java.util, java.io, etc..)<br/>
 - **Platform Class Loader** (Extension Class Loader fino alla versione Java 8) Carica i moduli Java "di piattaforma" che non sono strettamente necessari per l'avvio del cuore della JVM (caricato dal Bootstrap), ma che fanno comunque parte delle specifiche Java SE (come java.sql, java.xml o java.desktop).
@@ -183,6 +187,99 @@ Riassumendo (con esempio una Biblioteca):
       e crea l'indice che collega i capitoli tra loro (Resolution). 
     - L'Initialization "Apre la biblioteca" prepara l'ambiente per eseguire il codice 
       statico partendo dal metodo main().
+
+<p align="center">
+  <img title="JVM Architettura RUNTIME DATA AREA" alt="JVM Architettura RUNTIME DATA AREA" src="img/JVM_Architettura_RUNTIME.png" ><br/>
+</p>
+
+La **Runtime Data Area** è l'intera memoria allocata dalla JVM sul sistema operativo per permettere l'esecuzione del programma. Si divide in cinque aree principali, classificate in base alla loro visibilità (condivise da tutti i thread o private del singolo thread).
+Possiamo dividerle in due grandi categorie:
+
+1. **Aree condivise - Shared Data Areas (Tutti i thread vedono questi dati)**
+   Queste aree nascono all'avvio della JVM e muoiono quando si chiude.
+   * **Method Area**: Qui la JVM conserva le informazioni (la struttura / metadati) delle classi caricate. Include il bytecode dei metodi, i nomi dei campi, le variabili statiche e la Runtime Constant Pool (tabella delle costanti e dei riferimenti simbolici). Nelle versioni moderne (Java 8+) risiede nel Metaspace (memoria nativa).
+   * **Heap**: È l'area più grande e importante. Qui finiscono tutti gli oggetti (istanze di classe) e gli array creati creati con la parola chiave new. È il "parco giochi" del Garbage Collector, che libera la memoria degli oggetti non più referenziati.
+
+2. **Aree private - Per-Thread Data Areas (Ogni Thread ha la sua)**
+   Queste aree servono a gestire l'esecuzione parallela; ogni thread ha il suo spazio isolato.
+  * **JVM Stack**: Ogni volta che chiami un metodo, viene creato, nello stack, un Frame (un blocco di memoria) che contiene:
+    - Variabili locali: I parametri del metodo e le variabili dichiarate al suo interno.
+    - Operand Stack: Uno spazio temporaneo per i calcoli intermedi (es. 2 + 3).
+    - Frame Data: Riferimenti alla Constant Pool per la risoluzione dei simboli e la gestione delle eccezioni. Quando il metodo finisce, il frame viene rimosso.
+    - PC Register (Program Counter): È un piccolo puntatore che tiene traccia di quale riga di istruzione sta eseguendo il thread in quel preciso momento.
+  - **Native Method Stack**: Funziona come lo JVM Stack, ma serve per gestire i metodi scritti in altri linguaggi (come C o C++) chiamati tramite JNI (Java Native Interface).
+
+Riassumendo (con esempio una Ristorante):
+
+    - La Method Area è il ricettario (le classi).
+	- L'Heap è il magazzino degli ingredienti (oggetti).
+    - Lo Stack è il piano di lavoro del singolo cuoco (il thread) dove tiene gli 
+      strumenti per il piatto che sta cucinando in quel momento.
+
+<p align="center">
+  <img title="JVM Architettura EXECUTION ENGINE" alt="JVM Architettura EXECUTION ENGINE" src="img/JVM_Architettura_EXECUTION.png" ><br/>
+</p>
+
+L'**Execution Engine** è il "motore" vero e proprio della JVM. Mentre la Runtime Data Area si occupa di dove memorizzare i dati, l'Execution Engine si occupa di come eseguire il bytecode caricato in memoria, trasformandolo in istruzioni comprensibili dal processore (codice macchina).
+Si compone di tre moduli principali che lavorano in sinergia:
+
+1. **Interpreter (Interprete)**
+   È il primo componente a entrare in azione. Legge il bytecode riga per riga e lo esegue immediatamente.
+  - Vantaggio: Avvio rapidissimo dell'applicazione.
+  - Svantaggio: È relativamente lento nell'esecuzione ripetuta, poiché deve reinterpretare la stessa istruzione ogni volta che incontra un ciclo (loop).
+
+2. **JIT Compiler (Just-In-Time Compiler)**
+   Per rimediare alla lentezza dell'interprete, interviene il JIT. Il suo compito è compilare intere sezioni di bytecode in codice macchina nativo durante l'esecuzione.
+  - Profilazione (Hotspots): Il JIT monitora quali parti del codice vengono eseguite più spesso (i cosiddetti "punti caldi").
+  - Compilazione nativa: Una volta identificato un metodo frequente, il JIT lo compila e lo salva in una cache (Code Cache). La volta successiva, la JVM eseguirà direttamente il codice nativo saltando l'interpretazione.
+  - Ottimizzazione: Include tecniche avanzate come l' Inlining (sostituzione della chiamata a un metodo con il suo corpo) e la rimozione di codice morto.
+
+3. **Garbage Collector (GC)**
+   Anche se spesso visto come un'entità a sé, il GC fa parte dell'Execution Engine poiché gestisce attivamente le risorse durante l'esecuzione.
+  - Automazione: Identifica gli oggetti nell'Heap che non hanno più riferimenti attivi e libera la memoria.
+  - Algoritmi: Utilizza diverse strategie (come Mark-and-Sweep) per minimizzare le pause del programma (Stop-the-world).
+
+Riassumendo:
+
+    - Execution Engine è un sistema dinamico.
+    - Interprete garantisce la partenza immediata.
+    - JIT accelera il programma man mano che gira.
+    - Garbage Collector mantiene pulita la memoria.
+
+La **Java Native Interface (JNI)** è il "ponte di comunicazione" ufficiale che permette al codice Java, in esecuzione nella JVM, di interagire con applicazioni e librerie scritte in altri linguaggi (come C, C++ o Assembly).
+Poiché Java gira in una "bolla" isolata (la sandbox), ha bisogno della JNI per "uscire" e toccare direttamente l'hardware o il sistema operativo.
+Esistono tre motivi principali per cui uno sviluppatore decide di usarla:
+- Prestazioni critiche: Per algoritmi matematici o grafici estremamente complessi che beneficiano dell'ottimizzazione manuale del C++.
+- Accesso all'Hardware: Per gestire driver di periferiche (stampanti, sensori, GPU) che non hanno API Java native.
+- Codice Legacy: Per riutilizzare vecchie librerie aziendali scritte decenni fa in C senza doverle riscrivere interamente in Java.
+
+Per far comunicare i due mondi, si segue un iter preciso:
+1. Dichiarazione Java: Crei un metodo usando la parola chiave native.  Esempio: public native void salutaNativo();
+2. Generazione Header: Usi il comando javac -h per generare un file di intestazione C (.h) che contiene la firma del metodo "tradotta".
+3. Implementazione C/C++: Scrivi il codice reale nel linguaggio nativo importando l'header generato.
+4. Compilazione Libreria: Trasformi il codice C in una libreria dinamica (.dll su Windows, .so su Linux).
+5. Caricamento: In Java, carichi la libreria all'avvio con System.loadLibrary("nome");
+
+Usare la JNI rompe alcune delle promesse fondamentali di Java:
+- Perdita di Portabilità: Se scrivi una libreria in C per Windows, il tuo programma Java non girerà più su Linux finché non ricompilerai la parte nativa per quel sistema.
+- Sicurezza e Crash: Un errore nel codice C (come un puntatore errato) può far crashare l'intera JVM, non solo il tuo programma. Il Garbage Collector non può gestire la memoria allocata dal lato nativo.
+- Overhead: Passare dati tra Java e C non è gratis; c'è un piccolo rallentamento dovuto alla conversione dei dati tra i due formati.
+
+Riassumendo:
+
+    - Java Native Interface è l'interprete bilingue della JVM: permette a Java di parlare con il mondo 
+      esterno, ma richiede molta attenzione perché espone il programma ai pericoli dei 
+      linguaggi di basso livello.
+
+Il **Native Method Library** è un insieme di librerie scritte in linguaggi di "basso livello" (solitamente C o C++) che vengono caricate dalla JVM per eseguire operazioni che il linguaggio Java, da solo, non può compiere direttamente sull'hardware o sul sistema operativo
+Quando Java incontra un metodo dichiarato con la parola chiave native (es. public native void calcola();), non cerca il bytecode, ma cerca l'implementazione corrispondente all'interno di queste librerie esterne (file .dll su Windows o .so su Linux)
+Per gestire queste chiamate, la JVM riserva un'area di memoria specifica chiamata Native Method Stack. Ogni volta che il thread passa dal codice Java a un metodo nativo, lo "stack Java" si ferma e i dati vengono gestiti in questo stack separato dedicato al codice C/C++.
+
+Riassumendo:
+
+    - Native Method Library è il "ponte" fisico che permette a Java di toccare l'hardware, usando librerie 
+      pre-compilate esterne per compiti che richiedono massima velocità o accesso diretto alle risorse di sistema
+
 
 ## 👥 Authors
 
