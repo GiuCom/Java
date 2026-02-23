@@ -1,12 +1,9 @@
 # Java
-## Appunti
+
 <p align="center">
-
-![Java_Logo_256px.png](Appunti/img/Java_Logo_256px.png)
-
-[![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
-[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
-<br/>
+  <img title="Logo Java" alt="Logo Java" src="Appunti/img/Java_Logo_256px.png" ><br/>
+  <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
+  <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
 </p>
 
 ## 🚀 Introduzione
