@@ -19,9 +19,9 @@ Argomenti trattati:
 
 - Design Patterns
   - Descrizione - [link](designpatterns)
-  - Comportamentali - [link](designpatterns/creazionali)
+  - Creazionali - [link](designpatterns/creazionali)
   - Strutturali
-  - xxxx
+  - Comportamentali
 
 
 ## 👥 Authors
