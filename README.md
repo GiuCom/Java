@@ -12,7 +12,7 @@ Dedicato a chi vuole approcciarsi al mondo Java e visionare materiale per appren
 
 ## 👥 Authors
 
-- **Giuseppe Compagno** - [link](https://www.compagno.cloud)<br/>
+- **Giuseppe Compagno** - [mail](https://www.compagno.cloud)<br/>
 
 
 ## 🤝 Contributi
@@ -34,7 +34,7 @@ Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming**
 
 ## ⚖️ Licenza
 
-Questo progetto è coperto da **licenza MIT** - [link](LICENSE)<br/>
+Questo progetto è coperto da **licenza MIT** - [LICENSE](LICENSE)<br/>
 
 
 ## 📞 Contact
