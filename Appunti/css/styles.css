@@ -10,3 +10,14 @@
 .vertical-center-content {
     margin: 0 auto; /* Horizontally centers too! */
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+}
