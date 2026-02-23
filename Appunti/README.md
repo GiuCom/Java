@@ -2,9 +2,8 @@
 
 # Java
 
-<div style="display: flex; justify-content: center; 
-            height: 100vh; border: 1px solid #ccc;">
-  <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" style="max-width: 100%; height: auto;"><br/>
+<div style="text-align: center;">
+  <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
   <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
   <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
 </div>
