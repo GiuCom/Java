@@ -158,20 +158,30 @@ Si divide in tre sotto-fasi fondamentali:
 - Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
   Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto a essa.
 
-Se il Loading porta il libro (la classe) in biblioteca, il Linking controlla che le pagine siano scritte correttamente (Verification), prepara lo scaffale dove appoggiarlo (Preparation) e crea l'indice che collega i capitoli tra loro (Resolution).
+L'**Initialization* (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
+Mentre nella fase precedente (Preparation) la JVM aveva solo preparato lo spazio in memoria riempiendolo con zeri o null, qui avvengono i veri assegnamenti.
+La JVM genera internamente un metodo speciale chiamato <clinit> (Class Initialization). Questo metodo raccoglie:
+- Tutti gli assegnamenti delle variabili statiche (es: static int x = 50;).
+- Tutti i blocchi statici definiti con static { ... }
+In questa fase:
+- Le variabili static ricevono i valori definiti nel codice (il nostro x passa da 0 a 50).
+- Vengono eseguiti i blocchi di codice all'interno dei blocchi static.
+- Viene garantita l'esecuzione in ordine di apparizione nel file sorgente.
+Prima di inizializzare una classe, la JVM si assicura che la sua Superclasse (la classe madre) sia già stata inizializzata. È un processo ricorsivo che risale fino a Object.
+L'inizializzazione non avviene appena il programma parte, ma solo al primo utilizzo attivo della classe, ovvero quando:
+- Viene creata un'istanza della classe (new Saluto()).
+- Viene chiamato un metodo statico.
+- Viene assegnata o usata una variabile statica (non final costante).
+- Viene avviata la classe come punto di ingresso (main).
 
-Il Linking è la seconda fase del ciclo di vita di una classe nella JVM (subito dopo il Loading). È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
-Si divide in tre sotto-fasi fondamentali:
+Riassumendo (con esempio una Biblioteca):
 
-- Verify è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
-  * Controlla che non ci siano tentativi di accedere a zone di memoria vietate.
-  * Verifica che i tipi di dati siano coerenti (es. non sommare un intero a un oggetto).
-  * Assicura che il codice non causi l'overflow dello stack.
-- Prepare in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
-- Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
-  Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto ad essa.
-
-Se il Loading porta il libro (la classe) in biblioteca, il Linking controlla che le pagine siano scritte correttamente (Verification), prepara lo scaffale dove appoggiarlo (Preparation) e crea l'indice che collega i capitoli tra loro (Resolution).
+	- Il Loading porta il libro (la classe) in biblioteca, 
+    - Il Linking controlla che le pagine siano scritte correttamente (Verification), 
+      prepara lo scaffale dove appoggiarlo (Preparation) 
+      e crea l'indice che collega i capitoli tra loro (Resolution). 
+    - L'Initialization "Apre la biblioteca" prepara l'ambiente per eseguire il codice 
+      statico partendo dal metodo main().
 
 ## 👥 Authors
 
