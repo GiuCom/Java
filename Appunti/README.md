@@ -87,12 +87,91 @@ Il computer che ospita il software è detto Host, mentre la macchina virtuale è
   <img title="Hypervisor" alt="Hypervisor" src="img/Hypervisor.png" ><br/>
 </div>
 
+Agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica
+Esistono due categorie fondamentali di hypervisor, distinte dal modo in cui interagiscono con l'hardware:
+- Tipo 1 (Bare Metal): Viene installato direttamente sull'hardware fisico del computer (senza un sistema operativo sottostante). È il tipo più efficiente e sicuro, ideale per i data center aziendali. 
+  - Esempi: VMware ESXi, Microsoft Hyper-V, KVM, Xen
+- Tipo 2 (Hosted): Viene installato come un'applicazione sopra un sistema operativo esistente (come Windows, macOS o Linux). È perfetto per usi individuali o di test sul proprio PC.
+  - Esempi: Oracle VM VirtualBox, VMware Workstation, Parallels Desktop
+
 La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
 Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
 
 <div style="text-align: center;">
   <img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 65%; height: 65%;"><br/>
 </div>
+
+Un file sorgente .java viene compilato mediante l'uso del comando javac che lo traduce in formato Bytecode creando un file .class
+
+Saluto.java
+```java
+class Saluto { 
+    static void main(String[] args) {
+      String nome = "Giuseppe";
+      System.out.println("Ciao " + nome + "!!");
+  }
+}
+```
+Con il comando
+
+```console
+javac Saluto.java
+```
+
+viene compilato il file sorgente Saluto.java e viene generato il file Bytecode Saluto.class
+Il Bytecode non è codice macchina nativo (non può girare direttamente sul processore), ma è il formato universale che JVM è in grado di eseguire.
+Con il comando ***java*** si inizializza la JVM che carica il bytecode della classe specificata e carica in memoria il metodo main() per eseguire l'applicazione.
+
+```console
+java Saluto  
+```
+
+La prima attività che effettua la JVM è l'utilizzo delle Class Loader:
+
+- **Bootstrap Class Loader** (conosciuto anche come Primordial Class Loader) è il componente più fondamentale della JVM ed è il punto di partenza dell'intero processo di caricamento delle classi in Java. Non è una classe Java. È un pezzo di codice nativo integrato direttamente nel nucleo della JVM. Il suo compito è caricare le librerie software fondamentali necessarie al funzionamento stesso dell'ambiente Java (java.lang, java.net, java.util, java.io, etc..)<br/>
+- **Platform Class Loader** (Extension Class Loader fino alla versione Java 8) Carica i moduli Java "di piattaforma" che non sono strettamente necessari per l'avvio del cuore della JVM (caricato dal Bootstrap), ma che fanno comunque parte delle specifiche Java SE (come java.sql, java.xml o java.desktop).
+  Il Platform Class Loader segue rigorosamente il Delegation Model:
+  1. Quando riceve una richiesta per caricare una classe, interroga prima il suo genitore: il Bootstrap Class Loader.
+  2. Se il Bootstrap non trova la classe, il Platform Class Loader prova a caricarla dai propri moduli.
+  3. Se fallisce anche lui, passa la palla al figlio: l'Application Class Loader.
+  
+  A differenza del Bootstrap loader (che restituisce null), il Platform Class Loader è un oggetto Java.<br/>
+- **Application Class Loader** (conosciuto anche come System Class Loader) è l'ultimo anello della catena ed è quello con cui interagirai di più come sviluppatore. E' responsabile del caricamento delle classi scritte da te e delle librerie di terze parti (come file JAR esterni) incluse nel progetto.<br/>
+
+  Seguendo il modello Delegation:
+  L'Application Class Loader riceve la richiesta di caricare una classe (ad esempio, la tua classe Saluto). Chiede al Platform Class Loader di caricarla. Se nessuno dei genitori (Bootstrap o Platform) la trova, allora l'Application Class Loader tenta di caricarla dai percorsi del tuo progetto. Se non la trova nemmeno lui, viene lanciata la famosa eccezione ClassNotFoundException o NoClassDefFoundError.
+
+Riassumendo:
+
+	- Bootstrap: Cuore di Java (java.base).
+	- Platform: Moduli opzionali di sistema (java.sql, java.xml).
+	- Application: Il tuo codice e le tue dipendenze (Maven, Gradle, JAR esterni).
+
+Il **Linking** è la seconda fase del ciclo di vita di una classe nella JVM (subito dopo il Loading). È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
+Si divide in tre sotto-fasi fondamentali:
+
+- Verify è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
+  * Controlla che non ci siano tentativi di accedere a zone di memoria vietate.
+  * Verifica che i tipi di dati siano coerenti (es. non sommare un intero a un oggetto).
+  * Assicura che il codice non causi l'overflow dello stack.
+- Prepare in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
+- Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
+  Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto a essa.
+
+Se il Loading porta il libro (la classe) in biblioteca, il Linking controlla che le pagine siano scritte correttamente (Verification), prepara lo scaffale dove appoggiarlo (Preparation) e crea l'indice che collega i capitoli tra loro (Resolution).
+
+Il Linking è la seconda fase del ciclo di vita di una classe nella JVM (subito dopo il Loading). È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
+Si divide in tre sotto-fasi fondamentali:
+
+- Verify è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
+  * Controlla che non ci siano tentativi di accedere a zone di memoria vietate.
+  * Verifica che i tipi di dati siano coerenti (es. non sommare un intero a un oggetto).
+  * Assicura che il codice non causi l'overflow dello stack.
+- Prepare in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
+- Resolve questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
+  Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto ad essa.
+
+Se il Loading porta il libro (la classe) in biblioteca, il Linking controlla che le pagine siano scritte correttamente (Verification), prepara lo scaffale dove appoggiarlo (Preparation) e crea l'indice che collega i capitoli tra loro (Resolution).
 
 ## 👥 Authors
 
