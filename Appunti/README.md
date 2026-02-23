@@ -87,8 +87,9 @@ Il computer che ospita il software è detto Host, mentre la macchina virtuale è
   <img title="Hypervisor" alt="Hypervisor" src="img/Hypervisor.png" ><br/>
 </p>
 <br/>
-Agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica
+Agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica.
 Esistono due categorie fondamentali di hypervisor, distinte dal modo in cui interagiscono con l'hardware:
+
 - Tipo 1 (Bare Metal): Viene installato direttamente sull'hardware fisico del computer (senza un sistema operativo sottostante). È il tipo più efficiente e sicuro, ideale per i data center aziendali. 
   - Esempi: VMware ESXi, Microsoft Hyper-V, KVM, Xen
 - Tipo 2 (Hosted): Viene installato come un'applicazione sopra un sistema operativo esistente (come Windows, macOS o Linux). È perfetto per usi individuali o di test sul proprio PC.
