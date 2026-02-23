@@ -4,13 +4,13 @@ Descrivi in modo chiaro cosa fa questa Pull Request.
 
 ## Tipo di cambiamento
 - [ ] Bug fix
-- [ ] Nuova implementazione di Design Pattern
+- [ ] Nuova implementazione
 - [ ] Miglioramento / refactor
 - [ ] Documentazione
 - [ ] Altro (specificare):
 
 ## Pattern coinvolto
-- Categoria: (creational / structural / behavioral)
+- Categoria: (creazionale / strutturale / comportamentale)
 - Nome pattern:
 
 ## Motivazione

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/styles.css">
 
-# Java
+# Appunti di Java
 
 <p align="center">
   <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>

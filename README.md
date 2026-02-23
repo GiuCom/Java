@@ -9,6 +9,20 @@
 ## 🚀 Introduzione
 
 Dedicato a chi vuole approcciarsi al mondo Java e visionare materiale per apprendere o cogliere spunto per eventuali lezione su questo linguaggio di programmazione.
+Argomenti trattati:
+
+- Appunti di Java - [link](Appunti)
+  - Storia di Java
+  - Modalità di traduzione del codice
+  - Java Runtime Environment & Java Development Kit
+  - Java Virtual Machine
+
+- Design Patterns
+  - Descrizione - [link](designpatterns)
+  - Creazionali - [link](designpatterns/creazionali)
+  - Strutturali
+  - Comportamentali
+
 
 ## 👥 Authors
 
