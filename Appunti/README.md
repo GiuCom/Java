@@ -2,7 +2,7 @@
 
 # Java
 
-<p align="center">
+<p style="text-align: center; margin: auto;">
   <img title="Logo Java" alt="Logo Java" src="img/Java_Logo_256px.png" ><br/>
   <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
   <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
@@ -13,17 +13,17 @@
 Nel 1991 presso la Sun Microsystems, James Gosling, Patrick Naughton e Mike Sheridan guidarono un gruppo di lavoro noto come Green Team con l’obiettivo di sviluppare un linguaggio di programmazione ad alto livello destinato al controllo di dispositivi elettronici come elettrodomestici, smart card, robot e sistemi embedded.
 Le richieste principali erano ambiziose: il linguaggio doveva essere portabile, cioè eseguibile su architetture hardware differenti, robusto, per ridurre al minimo gli errori a runtime, e semplice da compilare, poiché i produttori dei dispositivi non erano disposti a investire in strumenti di sviluppo complessi.</div>
 
-<div style="text-align: center;">
+<p style="text-align: center; margin: auto;">
   <img title="Java Green Team" alt="Java Green Team" src="img/Java_Green_Team.jpg" ><br/>
-</div>
+</p>
 
 <div class="text-justify">Nel 1992 nasce il linguaggio Oak (in italiano "quercia"), successivamente cambiato con il nome Java per problemi di diritto d’autore (il linguaggio di programmazione Oak esisteva già). Il progetto iniziale non ottenne grande successo commerciale.
 Tuttavia, nel 1994, con la rapida diffusione di Internet, James Gosling, assieme a Patrick Naughton e Jonathan Payne colsero una nuova opportunità: utilizzare Java per creare applicazioni capaci di essere distribuite e avviate direttamente attraverso la rete.
 Il 23 maggio 1995, durante la conferenza SunWorld, venne presentato il browser HotJava, in grado di scaricare ed eseguire piccoli programmi chiamati Applet, dimostrando per la prima volta il potenziale di Java come linguaggio portabile e orientato alla rete.</div>
 
-<div style="text-align: center;">
+<p style="text-align: center; margin: auto;">
   <img title="Sun World 1995" alt="Sun World 1995" src="img/Java_Sun_World_95.gif" ><br/>
-</div>
+</p>
 
 Le altre importanti tappe furono:
 
@@ -83,9 +83,9 @@ Una VM è un "computer dentro un altro computer". Più precisamente è un ambien
 Le risorse hardware virtuali vengono "estrapolate" dalle risorse hardware fisiche del computer che ospita le VM.
 Il computer che ospita il software è detto Host, mentre la macchina virtuale è definita Guest.
 
-<div style="text-align: center;">
+<p style="text-align: center; margin: auto;">
   <img title="Hypervisor" alt="Hypervisor" src="img/Hypervisor.png" ><br/>
-</div>
+</p>
 
 Agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica
 Esistono due categorie fondamentali di hypervisor, distinte dal modo in cui interagiscono con l'hardware:
@@ -97,9 +97,9 @@ Esistono due categorie fondamentali di hypervisor, distinte dal modo in cui inte
 La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
 Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
 
-<div style="text-align: center;">
+<p style="text-align: center; margin: auto;">
   <img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 65%; height: 65%;"><br/>
-</div>
+</p>
 
 Un file sorgente .java viene compilato mediante l'uso del comando javac che lo traduce in formato Bytecode creando un file .class
 
