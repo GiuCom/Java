@@ -5,17 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cloud.compagno</groupId>
-        <artifactId>Java</artifactId>
+        <artifactId>designpatterns</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>designpatterns</artifactId>
+    <groupId>cloud.compagno.designpatterns</groupId>
+    <artifactId>comportamentali</artifactId>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>creazionali</module>
-        <module>strutturali</module>
-        <module>comportamentali</module>
-    </modules>
 
- </project>
+</project>

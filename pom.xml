@@ -37,15 +37,16 @@
         <!-- -->
 
         <!-- Plugin -->
-        <junit-jupiter-api.versione>6.0.2</junit-jupiter-api.versione>
+        <junit-jupiter.versione>6.0.3</junit-jupiter.versione>
         <maven-compiler-plugin.versione>3.15.0</maven-compiler-plugin.versione>
         <maven-assembly-plugin.versione>3.8.0</maven-assembly-plugin.versione>
         <maven-site-plugin.versione>3.21.0</maven-site-plugin.versione>
+        <maven-surefire-plugin.versione>3.5.5</maven-surefire-plugin.versione>
         <!-- -->
 
         <!-- Variabili si sistema -->
         <singleton.versione>1.0.0</singleton.versione>
-        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonMain</singleton.mainClass>
+        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonBillPugh</singleton.mainClass>
         <!-- -->
     </properties>
 
@@ -88,8 +89,8 @@
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit-jupiter-api.versione}</version>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.versione}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -115,6 +116,13 @@
                     <source>${java.release.source}</source>
                     <target>${java.release.target}</target>
                 </configuration>
+            </plugin>
+
+            <!-- Per eseguire i test durante il build -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.versione}</version>
             </plugin>
 
         </plugins>
