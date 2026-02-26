@@ -80,25 +80,3 @@ I design pattern hanno una serie di utilizzi e utilità all’interno dello svil
 8. **Migliori Pratiche:** I design pattern incorporano best practice nell’ambito del design e dello sviluppo del software. Questo aiuta i programmatori a evitare errori comuni e a creare codice di alta qualità.
 
 I design pattern non sono codice completo da copiare e incollare, ma piuttosto linee guida e concetti che possono essere adattati alle esigenze specifiche di un progetto. L’uso dei design pattern può migliorare l’organizzazione del codice, promuovere la riusabilità e semplificare la manutenzione nel lungo termine
-
-
-
-```python
-def hello_world(): print("Hello, World!")
-```
-
-Esempio
-| Intestazione 1 | Intestazione 2 |
-|----------------|----------------|
-| Cellula 1      | Cellula 2      |
-| Cellula 3      | Cellula 4      |
-
-Esempio
-- [x] Compito completato
-- [ ] Compito incompleto
-
-H~2~O è l'acqua.
-E = mc^2
-
-
-
