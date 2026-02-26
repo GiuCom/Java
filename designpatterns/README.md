@@ -12,7 +12,7 @@
 Il termine **design pattern** non ha origine nel settore informatico, Fu inizialmente introdotto in architettura dal celebre saggio “A Pattern Language: Towns, Buildings, Construction” di Christopher Alexander, Sara Ishikawa e Murray Silverstein del Center for Environmental Structure di Berkeley California, pubblicato nel 1977.
 </p>
 
-<p style="text-align: center;">
+<p align="center">
   <img title="Libro di Christopher Alexander - 1977" alt="Libro di Christopher Alexander - 1977" src="../Appunti/img/DesignPatterns_Libro_Christopher_Alexander.png" style="width: 50%; height: 50%;"><br/>
 </p>
 
@@ -26,14 +26,18 @@ Negli anni 80, dopo un lungo periodo di ricerca condotta da un team di informati
   <img title="Team - Smalltalk 80" alt="Team - Smalltalk 80" src="../Appunti/img/DesignPatterns_Team_Smalltalk_80.png" style="width: 60%; height: 60%;"><br/>
 </p>
 
+<p style="text-align: justify;">
 Nel mondo dell’informatica la prima traccia dell’uso dei pattern risale al **1987** quando **Kent Beck** di Apple Computer, Inc. e **Ward Cunningham** di Tektronix, Inc, nella seconda edizione della conferenza OOPSLA presentano “Using Pattern Languages for Object-Oriented Programs”, lavoro in cui identificano cinque pattern che utilizzano in Smalltalk per la progettazione di interfacce grafiche.
+</p>
 
 <p align="center">
   <img title="Foto di Kent Beck e Ward Cunningham" alt="Foto di Kent Beck e Ward Cunningham" src="../Appunti/img/DesignPatterns_Foto_Kent_Beck_e_Ward_Cunningham.png" style="width: 60%; height: 60%;"><br/>
 </p>
 
+<p style="text-align: justify;">
 Ma solo nel **1994** grazie al saggio “Design Patterns: Elements of Reusable Object-Oriented Software” di **Erich Gamma, Richard Helm, Ralph Johnson**, e **John Vlissides** (detti **Gang of Four**) i pattern ricevono maggiore attenzione tanto da iniziare a dare vita anche a correnti filosofiche basati su questa nuova metodologia di progettazione dei software.
 I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi comuni nell’ambito dell’object-oriented design e della programmazione. Questi pattern sono stati catalogati, analizzati e documentati in modo che i programmatori potessero capirli, implementarli e applicarli alle loro attività di sviluppo.
+</p>
 
 <p align="center">
   <img title="Foto Team GoF" alt="Foto Team GoF" src="../Appunti/img/DesignPatterns_Foto_Team_GoF.png" style="width: 60%; height: 60%;"><br/>
@@ -65,15 +69,16 @@ I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi com
 | | **Template Method** | Definisce lo scheletro di un algoritmo in un'operazione, lasciando alcuni passi alle sottoclassi. |
 | | **Visitor** | Permette di definire una nuova operazione su una struttura di oggetti senza cambiare le classi degli oggetti stessi. |
 
+<p style="text-align: justify;">
 In generale, i design pattern sono strumenti potenti per migliorare la qualità, la manutenibilità e la riusabilità del codice. Tuttavia, è importante utilizzarli con discernimento e adattarli alle esigenze specifiche di ogni progetto, evitando l’eccessiva complessità o la sovrapplicazione di pattern.
 I design pattern sono spesso presentati come modelli di comunicazione tra i membri di un team di sviluppo. Essi possono aiutare a comunicare idee complesse in modo più chiaro e consentire a un team di adottare un approccio comune alla risoluzione dei problemi.
 Esistono molti tipi diversi di design pattern, che possono essere raggruppati in diverse categorie. Ecco alcune categorie di design pattern comuni:
 
-1. Creational Patterns (Pattern Creazionali): Questi pattern si concentrano sul processo di creazione delle istanze degli oggetti. Esempi includono Singleton, Factory Method, Abstract Factory, Builder e Prototype.
-2. Structural Patterns (Pattern Strutturali): Questi pattern riguardano la composizione delle classi e degli oggetti in strutture più grandi. Esempi includono Adapter, Bridge, Composite, Decorator, Facade e Proxy.
-3. Behavioral Patterns (Pattern Comportamentali): Questi pattern gestiscono le interazioni tra oggetti e il flusso di controllo. Esempi includono Observer, Strategy, Command, State, Template Method e Visitor.
-4. Concurrency Patterns (Pattern di Concorrenza): Questi pattern affrontano problemi legati alla gestione della concorrenza e della parallelizzazione nel software. Esempi includono Mutex, Semaphore, Reader-Writer Lock, e altri pattern legati alla programmazione concorrente.
-5. Architectural Patterns (Pattern Architetturali): Questi pattern riguardano l’organizzazione generale di un’applicazione e delle sue componenti. Esempi includono MVC (Model-View-Controller), MVVM (Model-View-ViewModel), e altri pattern architetturali.
+* **Creational Patterns (Pattern Creazionali):** Questi pattern si concentrano sul processo di creazione delle istanze degli oggetti. Esempi includono Singleton, Factory Method, Abstract Factory, Builder e Prototype. 
+* **Structural Patterns (Pattern Strutturali):** Questi pattern riguardano la composizione delle classi e degli oggetti in strutture più grandi. Esempi includono Adapter, Bridge, Composite, Decorator, Facade e Proxy. 
+* **Behavioral Patterns (Pattern Comportamentali):** Questi pattern gestiscono le interazioni tra oggetti e il flusso di controllo. Esempi includono Observer, Strategy, Command, State, Template Method e Visitor. 
+* **Concurrency Patterns (Pattern di Concorrenza):** Questi pattern affrontano problemi legati alla gestione della concorrenza e della parallelizzazione nel software. Esempi includono Mutex, Semaphore, Reader-Writer Lock, e altri pattern legati alla programmazione concorrente. 
+* **Architectural Patterns (Pattern Architetturali):** Questi pattern riguardano l’organizzazione generale di un’applicazione e delle sue componenti. Esempi includono MVC (Model-View-Controller), MVVM (Model-View-ViewModel), e altri pattern architetturali.
 
 Il tema dei pattern viene oggi considerato una delle linee principali di sviluppo dell'ingegneria del software. Esso trova applicazioni in tutta una serie di contesti di grande interesse per l'industria del software, dallo sviluppo di software basato su componenti, ai sistemi aperti, ai framework e così via. La maggior parte dei linguaggi di programmazione moderni e delle tecnologie correlate, sono stati progettati (o modificati) tenendo conto anche dell'obiettivo di essere coerenti con questo approccio emergente allo sviluppo del software.
 I design pattern hanno una serie di utilizzi e utilità all’interno dello sviluppo software:
@@ -87,4 +92,5 @@ I design pattern hanno una serie di utilizzi e utilità all’interno dello svil
 7. **Sviluppo Collaborativo:** L’adozione di design pattern promuove un approccio collaborativo allo sviluppo. I membri del team possono contribuire in modo coerente e costruttivo, poiché seguono uno schema ben definito.
 8. **Migliori Pratiche:** I design pattern incorporano best practice nell’ambito del design e dello sviluppo del software. Questo aiuta i programmatori a evitare errori comuni e a creare codice di alta qualità.
 
-I design pattern non sono codice completo da copiare e incollare, ma piuttosto linee guida e concetti che possono essere adattati alle esigenze specifiche di un progetto. L’uso dei design pattern può migliorare l’organizzazione del codice, promuovere la riusabilità e semplificare la manutenzione nel lungo termine
+I design pattern non sono codice completo da copiare e incollare, ma piuttosto linee guida e concetti che possono essere adattati alle esigenze specifiche di un progetto. L’uso dei design pattern può migliorare l’organizzazione del codice, promuovere la riusabilità e semplificare la manutenzione nel lungo termine.
+</p>
