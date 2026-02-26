@@ -6,13 +6,19 @@
 <br/>
 
 ## 📚 Storia
+<p style="text-align: justify;">
 Il termine **design pattern** non ha origine nel settore informatico, Fu inizialmente introdotto in architettura dal celebre saggio “A Pattern Language: Towns, Buildings, Construction” di Christopher Alexander, Sara Ishikawa e Murray Silverstein del Center for Environmental Structure di Berkeley California, pubblicato nel 1977.
-<p align="center">
+</p>
+
+<p style="text-align: center;">
   <img title="Libro di Christopher Alexander - 1977" alt="Libro di Christopher Alexander - 1977" src="../Appunti/img/DesignPatterns_Libro_Christopher_Alexander.png" style="width: 50%; height: 50%;"><br/>
 </p>
+
+<p style="text-align: justify;">
 In questo libro si descrive un “linguaggio” per la progettazione di un centro urbano. Le unità di questo linguaggio vengono definite patterns (o modelli). Quest’ultimi possono descrivere quanto dovrebbero essere alte le finestre, quanti piani una costruzione dovrebbe avere, quanto debbono essere ampie le aree verdi nelle vicinanze. Come citato nel libro (con riferimento a edifici e città): “Un pattern descrive un problema che ricorre nell’ambiente e l’essenza della soluzione del problema, in modo tale che si possa riusare questa soluzione milioni di volte senza mai ripeterla in maniera identica due volte”. Lo studio fu realizzato analizzando diverse città medioevali europee e ricercando gli elementi comuni che avessero lo stesso concetto di soluzione ricorrente ad un problema altrettanto ricorrente. Pertanto, furono illustrati 253 pattern che permettono di codificare e standardizzare una possibile soluzione, lasciando, a chiunque, ampi margini di personalizzazione per realizzare la propria costruzione. Ciò rende potente l’uso di questo nuovo approccio nell’architettura. Un’altro vantaggio è la modularità in quanto essendo, i pattern, specifici su alcuni problemi e generici su altri rende possibile combinare due o più per realizzare un unico progetto.
 
 Negli anni 80, dopo un lungo periodo di ricerca condotta da un team di informatici tra cui spiccano **Adele Goldberg, Alan Kay, Dan Ingalls** e **Ted Kaehler**, venne sviluppato il sistema **Smalltalk-80**, il quale può senz’altro essere riconosciuto, insieme al linguaggio Simula, il capostipite dei linguaggi orientati agli oggetti e dell'ambiente grafico interattivo (GUI), influenzando profondamente le moderne interfacce utente.
+</p>
 
 <p align="center">
   <img title="Team - Smalltalk 80" alt="Team - Smalltalk 80" src="../Appunti/img/DesignPatterns_Team_Smalltalk_80.png" style="width: 60%; height: 60%;"><br/>
