@@ -46,7 +46,7 @@
 
         <!-- Variabili si sistema -->
         <singleton.versione>1.0.0</singleton.versione>
-        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonBillPugh</singleton.mainClass>
+        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonMain</singleton.mainClass>
         <!-- -->
     </properties>
 
@@ -81,10 +81,18 @@
     </developers>
 
     <scm>
-        <connection>git@github.com:GiuCom/Java.git</connection>
-        <developerConnection>git@github.com:GiuCom/Java.git</developerConnection>
+        <connection>scm:svn:https://github.com/GiuCom/Java.git</connection>
+        <developerConnection>scm:svn:https://github.com/GiuCom/Java.git</developerConnection>
         <url>https://github.com/GiuCom/Java</url>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/GiuCom/Java</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>

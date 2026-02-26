@@ -41,6 +41,21 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Configure maven-jar-plugin to set Main-Class in manifest
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${singleton.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            -->
         </plugins>
     </build>
 
