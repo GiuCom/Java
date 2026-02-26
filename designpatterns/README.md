@@ -43,31 +43,31 @@ I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi com
   <img title="Foto Team GoF" alt="Foto Team GoF" src="../Appunti/img/DesignPatterns_Foto_Team_GoF.png" style="width: 60%; height: 60%;"><br/>
 </p>
 
-| Categoria | Design Pattern | Descrizione |
-| :--- | :--- | :--- |
-| **Creazionali** | **Abstract Factory** | Fornisce un'interfaccia per creare famiglie di oggetti correlati senza specificarne le classi concrete. |
-| | **Builder** | Separa la costruzione di un oggetto complesso dalla sua rappresentazione. |
-| | **Factory Method** | Definisce un'interfaccia per creare un oggetto, lasciando alle sottoclassi la scelta della classe da istanziare. |
-| | **Prototype** | Crea nuovi oggetti copiando un'istanza esistente (prototipo). |
-| | **Singleton** | Garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa. |
-| **Strutturali** | **Adapter** | Converte l'interfaccia di una classe in un'altra interfaccia attesa dai client. |
-| | **Bridge** | Disaccoppia un'astrazione dalla sua implementazione in modo che le due possano variare indipendentemente. |
-| | **Composite** | Struttura gli oggetti in composizioni a albero per rappresentare gerarchie parte-tutto. |
-| | **Decorator** | Aggiunge dinamicamente responsabilità aggiuntive a un oggetto. |
-| | **Facade** | Fornisce un'interfaccia unificata e semplificata per un insieme di interfacce in un sottosistema. |
-| | **Flyweight** | Utilizza la condivisione per supportare grandi quantità di oggetti a grana fine in modo efficiente. |
-| | **Proxy** | Fornisce un surrogato o segnaposto di un altro oggetto per controllarne l'accesso. |
-| **Comportamentali** | **Chain of Responsibility** | Disaccoppia il mittente di una richiesta dal destinatario, dando a più oggetti la possibilità di gestirla. |
-| | **Command** | Incapsula una richiesta come un oggetto, permettendo di parametrizzare i client con code o log. |
-| | **Interpreter** | Definisce una rappresentazione della grammatica per un linguaggio e un interprete per le frasi del linguaggio. |
-| | **Iterator** | Fornisce un modo per accedere sequenzialmente agli elementi di un aggregato senza esporne la struttura. |
-| | **Mediator** | Definisce un oggetto che incapsula come un insieme di oggetti interagiscono tra loro. |
-| | **Memento** | Cattura e rende esterno lo stato interno di un oggetto per ripristinarlo in seguito senza violare l'incapsulamento. |
-| | **Observer** | Definisce una dipendenza uno-a-molti tra oggetti: se uno cambia stato, gli altri vengono notificati. |
-| | **State** | Permette a un oggetto di cambiare il suo comportamento quando il suo stato interno cambia. |
-| | **Strategy** | Definisce una famiglia di algoritmi, li incapsula e li rende intercambiabili a runtime. |
-| | **Template Method** | Definisce lo scheletro di un algoritmo in un'operazione, lasciando alcuni passi alle sottoclassi. |
-| | **Visitor** | Permette di definire una nuova operazione su una struttura di oggetti senza cambiare le classi degli oggetti stessi. |
+| Categoria          | Design Pattern              | Descrizione                                                                                                          |
+|:-------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| **Creazionali**    | **Abstract Factory**        | Fornisce un'interfaccia per creare famiglie di oggetti correlati senza specificarne le classi concrete.              |
+|                    | **Builder**                 | Separa la costruzione di un oggetto complesso dalla sua rappresentazione.                                            |
+|                    | **Factory Method**          | Definisce un'interfaccia per creare un oggetto, lasciando alle sottoclassi la scelta della classe da istanziare.     |
+|                    | **Prototype**               | Crea nuovi oggetti copiando un'istanza esistente (prototipo).                                                        |
+|                    | **Singleton**               | Garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa.                     |
+| **Strutturali**    | **Adapter**                 | Converte l'interfaccia di una classe in un'altra interfaccia attesa dai client.                                      |
+|                    | **Bridge**                  | Disaccoppia un'astrazione dalla sua implementazione in modo che le due possano variare indipendentemente.            |
+|                    | **Composite**               | Struttura gli oggetti in composizioni a albero per rappresentare gerarchie parte-tutto.                              |
+|                    | **Decorator**               | Aggiunge dinamicamente responsabilità aggiuntive a un oggetto.                                                       |
+|                    | **Facade**                  | Fornisce un'interfaccia unificata e semplificata per un insieme di interfacce in un sottosistema.                    |
+|                    | **Flyweight**               | Utilizza la condivisione per supportare grandi quantità di oggetti a grana fine in modo efficiente.                  |
+|                    | **Proxy**                   | Fornisce un surrogato o segnaposto di un altro oggetto per controllarne l'accesso.                                   |
+| **Comportamentali**| **Chain of Responsibility** | Disaccoppia il mittente di una richiesta dal destinatario, dando a più oggetti la possibilità di gestirla.           |
+|                    | **Command**                 | Incapsula una richiesta come un oggetto, permettendo di parametrizzare i client con code o log.                      |
+|                    | **Interpreter**             | Definisce una rappresentazione della grammatica per un linguaggio e un interprete per le frasi del linguaggio.       |
+|                    | **Iterator**                | Fornisce un modo per accedere sequenzialmente agli elementi di un aggregato senza esporne la struttura.              |
+|                    | **Mediator**                | Definisce un oggetto che incapsula come un insieme di oggetti interagiscono tra loro.                                |
+|                    | **Memento**                 | Cattura e rende esterno lo stato interno di un oggetto per ripristinarlo in seguito senza violare l'incapsulamento.  |
+|                    | **Observer**                | Definisce una dipendenza uno-a-molti tra oggetti: se uno cambia stato, gli altri vengono notificati.                 |
+|                    | **State**                   | Permette a un oggetto di cambiare il suo comportamento quando il suo stato interno cambia.                           |
+|                    | **Strategy**                | Definisce una famiglia di algoritmi, li incapsula e li rende intercambiabili a runtime.                              |
+|                    | **Template Method**         | Definisce lo scheletro di un algoritmo in un'operazione, lasciando alcuni passi alle sottoclassi.                    |
+|                    | **Visitor**                 | Permette di definire una nuova operazione su una struttura di oggetti senza cambiare le classi degli oggetti stessi. |
 
 <p style="text-align: justify;">
 In generale, i design pattern sono strumenti potenti per migliorare la qualità, la manutenibilità e la riusabilità del codice. Tuttavia, è importante utilizzarli con discernimento e adattarli alle esigenze specifiche di ogni progetto, evitando l’eccessiva complessità o la sovrapplicazione di pattern.

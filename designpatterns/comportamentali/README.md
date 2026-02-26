@@ -22,14 +22,19 @@ Essi hanno come obbiettivo:
 * **Gestione dello Stato:** Reagire in modo diverso in base allo stato interno dell'oggetto.
 </p>
 
-| **Pattern**                 | **Focus Principale**             | **Differenza Chiave**                                                              |
-|:----------------------------|:---------------------------------|:-----------------------------------------------------------------------------------|
-| **Strategy**                | Algoritmi intercambiabili        | Il client sceglie attivamente quale "strategia" usare.                             |
-| **State**                   | Comportamento basato sullo stato | Il comportamento cambia automaticamente al variare dello stato interno.            |
-| **Observer**                | Notifica di eventi               | Gestisce la sincronizzazione tra un soggetto e molti dipendenti.                   |
-| **Command**                 | Richiesta come oggetto           | Trasforma un'azione in un dato che può essere memorizzato o trasferito.            |
-| **Template Method**         | Struttura dell'algoritmo         | Definisce i passi fissi in una superclasse, delegando i dettagli alle sottoclassi. |
-| **Chain of Responsibility** | Delega della gestione            | Non c'è la garanzia che la richiesta venga gestita (passa lungo la catena).        |
+| **Pattern**                 | **Focus Principale**             | **Differenza Chiave**                                                                     |
+|:----------------------------|:---------------------------------|:------------------------------------------------------------------------------------------|
+| **Chain of Responsibility** | Disaccoppiamento                 | La richiesta scorre in una catena; chi invia non sa chi (e se) risponderà.                |
+| **Command**                 | Richiesta come oggetto           | Trasforma un'azione in un dato che può essere memorizzato o trasferito.                   |
+| **Interpreter**             | Grammatica e linguaggi           | Definisce come interpretare e valutare espressioni di un linguaggio specifico.            |
+| **Iterator**                | Navigazione collezioni           | Astrae il modo in cui si scorre una lista o un albero senza esporne la struttura.         |
+| **Mediator**                | Centralizzazione                 | Riduce le connessioni dirette (molti-a-molti) facendole passare da un unico punto.        |
+| **Memento**                 | Ripristino stato                 | Salva lo stato interno di un oggetto per tornare indietro senza violare i dati privati.   |
+| **Observer**                | Notifica di eventi               | Gestisce la sincronizzazione tra un soggetto e molti dipendenti.                          |
+| **State**                   | Comportamento basato sullo stato | Il comportamento cambia automaticamente al variare dello stato interno.                   |
+| **Strategy**                | Algoritmi intercambiabili        | Il client sceglie attivamente quale "strategia" usare.                                    |
+| **Template Method**         | Struttura dell'algoritmo         | Definisce i passi fissi in una superclasse, delegando i dettagli alle sottoclassi.        |
+| **Visitor**                 | Operazioni esterne               | Aggiunge nuove funzioni a una struttura di oggetti senza dover modificare le loro classi. |
 
 <p style="text-align: justify;">
 I pattern comportamentali sono essenziali per gestire la logica di business in modo dinamico. Mentre i pattern strutturali "disegnano" l'architettura, quelli comportamentali "animano" il software, rendendolo reattivo e facile da estendere senza dover riscrivere il flusso di controllo principale.
