@@ -5,9 +5,14 @@ package cloud.compagno.designpatterns.crazionali.singleton;
 // Utilizza una inner static helper class
 
 public class SingletonBillPugh {
+
+    /* Dichiarazione di una variabile stringa */
+    private String stringaConnection = "";
+
     // Costruttore privato per impedire istanziazioni esterne
     private SingletonBillPugh() {
         System.out.println("Inizializzazione Singleton...");
+        stringaConnection = "jdbc:postgresql://localhost:5432/mydb";
     }
 
     // Classe interna statica che carica l'istanza solo alla prima chiamata
@@ -19,7 +24,7 @@ public class SingletonBillPugh {
         return SingletonHolder.INSTANCE;
     }
 
-    public String getConnectionString() {
-        return "jdbc:postgresql://localhost:5432/mydb";
+    public String getStringaConnection() {
+        return stringaConnection;
     }
 }

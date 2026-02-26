@@ -21,7 +21,7 @@ public class SingletonBillPughTest {
     @Test
     @DisplayName("Dovrebbe restituire la stringa di connessione corretta")
     void testGetConnectionString() {
-        String conn = SingletonBillPugh.getInstance().getConnectionString();
+        String conn = SingletonBillPugh.getInstance().getStringaConnection();
         assertNotNull(conn);
         assertTrue(conn.contains("localhost"));
     }
