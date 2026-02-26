@@ -9,7 +9,7 @@
 
 ## 📚 Storia
 <p style="text-align: justify;">
-Il termine **design pattern** non ha origine nel settore informatico, Fu inizialmente introdotto in architettura dal celebre saggio “A Pattern Language: Towns, Buildings, Construction” di Christopher Alexander, Sara Ishikawa e Murray Silverstein del Center for Environmental Structure di Berkeley California, pubblicato nel 1977.
+Il termine <b>design pattern</b> non ha origine nel settore informatico, Fu inizialmente introdotto in architettura dal celebre saggio “A Pattern Language: Towns, Buildings, Construction” di Christopher Alexander, Sara Ishikawa e Murray Silverstein del Center for Environmental Structure di Berkeley California, pubblicato nel 1977.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@ Negli anni 80, dopo un lungo periodo di ricerca condotta da un team di informati
 </p>
 
 <p style="text-align: justify;">
-Nel mondo dell’informatica la prima traccia dell’uso dei pattern risale al **1987** quando **Kent Beck** di Apple Computer, Inc. e **Ward Cunningham** di Tektronix, Inc, nella seconda edizione della conferenza OOPSLA presentano “Using Pattern Languages for Object-Oriented Programs”, lavoro in cui identificano cinque pattern che utilizzano in Smalltalk per la progettazione di interfacce grafiche.
+Nel mondo dell’informatica la prima traccia dell’uso dei pattern risale al <b>1987</b> quando <b>Kent Beck</b> di Apple Computer, Inc. e <b>Ward Cunningham</b> di Tektronix, Inc, nella seconda edizione della conferenza OOPSLA presentano “Using Pattern Languages for Object-Oriented Programs”, lavoro in cui identificano cinque pattern che utilizzano in Smalltalk per la progettazione di interfacce grafiche.
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@ Nel mondo dell’informatica la prima traccia dell’uso dei pattern risale al *
 </p>
 
 <p style="text-align: justify;">
-Ma solo nel **1994** grazie al saggio “Design Patterns: Elements of Reusable Object-Oriented Software” di **Erich Gamma, Richard Helm, Ralph Johnson**, e **John Vlissides** (detti **Gang of Four**) i pattern ricevono maggiore attenzione tanto da iniziare a dare vita anche a correnti filosofiche basati su questa nuova metodologia di progettazione dei software.
+Ma solo nel <b>1994</b> grazie al saggio “Design Patterns: Elements of Reusable Object-Oriented Software” di <b>Erich Gamma, Richard Helm, Ralph Johnson</b>, e <b>John Vlissides</b> (detti <b>Gang of Four</b>) i pattern ricevono maggiore attenzione tanto da iniziare a dare vita anche a correnti filosofiche basati su questa nuova metodologia di progettazione dei software.
 I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi comuni nell’ambito dell’object-oriented design e della programmazione. Questi pattern sono stati catalogati, analizzati e documentati in modo che i programmatori potessero capirli, implementarli e applicarli alle loro attività di sviluppo.
 </p>
 
