@@ -22,13 +22,13 @@ Essi hanno come obbiettivo:
 * **Controllo delle istanze:** Gestire quante istanze vengono create (es. Singleton).
 </p>
 
-| **Pattern**          | **Focus Principale**        | **Differenza Chiave**                                                              |
-|:---------------------|:----------------------------|:-----------------------------------------------------------------------------------|
-| **Singleton**        | Istanza univoca             | Non si occupa di "come" creare, ma di "quante" istanze possono esistere (una sola).|
-| **Factory Method**   | Metodo singolo              | La creazione avviene tramite ereditarietà.                                         |
-| **Abstract Factory** | Famiglie di oggetti         | La creazione avviene tramite composizione di oggetti.                              |
-| **Builder**          | Processo di costruzione     | Si focalizza sulla complessità della creazione dell'oggetto.                       |
-| **Prototype**        | Clonazione                  | Evita del tutto l'inizializzazione standard.                                       |
+| **Pattern**          | **Focus Principale**     | **Differenza Chiave**                                                              |
+|:---------------------|:-------------------------|:-----------------------------------------------------------------------------------|
+| **Abstract Factory** | Famiglie di oggetti      | La creazione avviene tramite composizione di oggetti.                              |
+| **Builder**          | Processo di costruzione  | Si focalizza sulla complessità della creazione dell'oggetto.                       |
+| **Factory Method**   | Metodo singolo           | La creazione avviene tramite ereditarietà.                                         |
+| **Prototype**        | Clonazione               | Evita del tutto l'inizializzazione standard.                                       |
+| **Singleton**        | Istanza univoca          | Non si occupa di "come" creare, ma di "quante" istanze possono esistere (una sola).|
 
 <p style="text-align: justify;">
 L'adozione dei pattern creazionali è fondamentale per garantire la scalabilità e la manutenibilità del software. Sebbene introducano una maggiore astrazione e, inizialmente, una maggiore quantità di classi, il ritorno sull'investimento si manifesta nella facilità con cui il sistema può evolvere e integrare nuovi requisiti senza richiedere refactoring massivi del codice esistente.
