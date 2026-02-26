@@ -16,7 +16,7 @@ Al momento forniamo aggiornamenti di sicurezza per le seguenti versioni:
 La sicurezza del codice è una priorità. Se ritieni di aver trovato una vulnerabilità, ti preghiamo di **non** aprire una Issue pubblica.
 
 ### Procedura di invio
-Invia una segnalazione dettagliata a: **security@tuodominio.it**
+Invia una segnalazione dettagliata a: **info@compagno.cloud**
 
 Includi nel messaggio:
 - Una descrizione del rischio.
