@@ -1,7 +1,10 @@
 ---
-name: 🐞 Bug Report
-description: Segnala un malfunzionamento o comportamento inatteso
-labels: [bug]
+name: "\U0001F41E Bug Report"
+about: Descrizione del bug
+title: ''
+labels: bug, enhancement
+assignees: ''
+
 ---
 
 ## Descrizione del bug

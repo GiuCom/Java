@@ -1,7 +1,10 @@
 ---
-name: ✨ Proposta di Pattern / Miglioramento
-description: Proponi un nuovo design pattern o una variante
-labels: [enhancement]
+name: "✨ Proposta di Pattern / Miglioramento"
+about: Tipo di proposta
+title: ''
+labels: enhancement
+assignees: ''
+
 ---
 
 ## Tipo di proposta
