@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../Appunti/css/styles.css">
+
 <h1 style="text-align: center;">Design Patterns</h1>
 <hr>
 
