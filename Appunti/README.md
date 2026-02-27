@@ -56,27 +56,29 @@ Gli svantaggio sono:
 - <b>Dipendenza dall'interprete:</b> Per far girare il software, l'utente finale deve avere l'interprete (come ad esempio un browser) installato sul proprio computer; non basta un semplice file eseguibile autonomo.
 - <b>Mancanza di riservatezza del codice:</b> Poiché viene distribuito il codice sorgente (o un formato simile), è molto più difficile proteggere la proprietà intellettuale o nascondere segreti industriali rispetto a un file binario compilato
 
-<b>Java</b> è considerato un linguaggio ibrido, poiché combina i processi di compilazione e interpretazione per bilanciare portabilità e prestazioni. Il codice sorgente Java viene prima compilato in bytecode, mediante il comando javac, per generare un file .class, che viene poi interpretato dalla Java Virtual Machine traducendolo in istruzioni specifiche per il processore su cui sta girando.
-Per non essere lento come i linguaggi interpretati, Java utilizza un componente chiamato JIT (Just-In-Time) Compiler all'interno della JVM. In particolare:
+<b>Java</b> è considerato un <b>linguaggio ibrido</b>, poiché combina i processi di compilazione e interpretazione per bilanciare portabilità e prestazioni. Il codice sorgente Java (file con estensione .java) viene compilato in un linguaggio intermedio, chiamato <b>bytecode</b>, mediante il comando _javac_. Esso genera un file con estensione .class che, mediante il comando _java (nome file .class)_, viene interpretato dalla <b>Java Virtual Machine (JVM)</b> traducendolo in istruzioni specifiche per il processore su cui è stata eseguito la JVM.
+Per velocizzare l'esecuzione dell'applicativo, Java utilizza un componente chiamato <b>Just-In-Time Compiler(JIT)</b> all'interno della JVM. Esso effettua:
 
-- Il JIT analizza il codice durante l'esecuzione,
+- L'analisi del codice durante l'esecuzione,
 - Individua le parti di codice eseguite più frequentemente (i cosiddetti "hotspot").
 - Compila queste parti direttamente in codice macchina nativo, rendendole veloci quanto un programma scritto in C++.
 
-In breve, Java viene compilato per diventare portabile e interpretato/compilato al volo per essere eseguito velocemente su qualsiasi dispositivo.
-La JVM mediante un processo automatico eseguito in background, Garbage Collector (GC), gestisce la memoria dell'applicazione, liberando lo sviluppatore dal compito manuale (e rischioso) di deallocare gli oggetti non più necessari.
-Il GC non elimina gli oggetti in base a un timer, ma in base alla loro utilità. Un oggetto viene considerato "spazzatura" quando non è più raggiungibile da nessuna parte attiva del programma (i cosiddetti GC Roots, come variabili locali nello stack o variabili statiche).
+In breve, un applicativo scritto in linguaggio Java viene compilato per diventare portabile e interpretato/eseguito velocemente su qualsiasi dispositivo con installato un JVM.
 
 ## 🧑‍💻 JRE & JDK
-Il **JDK** (Java Development Kit) rappresenta l'ambiente di sviluppo integrale necessario per il ciclo di vita completo di un'applicazione Java. Esso fornisce il compilatore (javac), i tool di documentazione (javadoc), strumenti di archiviazione (jar) e utility di debugging e monitoraggio. Al suo interno, il JDK include il JRE (Java Runtime Environment), che costituisce l'ecosistema di esecuzione lato client.</br> 
-Il **JRE** agisce come strato di astrazione tra l'applicazione e il sistema operativo, integrando le librerie di classi standard (Java Class Libraries) e la JVM (Java Virtual Machine).
+Il successo globale di Java, fin dal suo debutto nel 1995, è strettamente legato al superamento di uno dei limiti storici dell'informatica: la dipendenza del software dall'hardware sottostante.
+Per aggevolare gli svilippatori o gli utenti che utilizzano un applicativo scritto in linguaggio Java è stata introdotta un'architettura stratificata che separa lo sviluppo dall'esecuzione attraverso tre componenti fondamentali: JDK, JRE e JVM. 
+
+Il **Java Development Kit (JDK)** rappresenta l'ambiente di sviluppo integrale necessario per il ciclo di vita completo di un'applicazione Java. Esso fornisce il compilatore (javac), i tool di documentazione (javadoc), strumenti di archiviazione (jar) e utility di debugging e monitoraggio. Al suo interno, il JDK include il JRE (Java Runtime Environment), che costituisce l'ecosistema di esecuzione lato client.</br> 
+
+Il **Java Runtime Environment (JRE)** agisce come strato di astrazione tra l'applicazione e il sistema operativo, integrando le librerie di classi standard (Java Class Libraries) e la JVM (Java Virtual Machine) necessari affinché il codice possa prendere vita su qualsiasi dispositivo, garantendo portabilità, sicurezza e gestione efficiente delle risorse
 
 ## 🧑‍💻 JVM
-La Java Virtual Machine (JVM), componente fondamentale del Java Runtime Environment (JRE), funge da traduttore universale, consente ai programmi scritti in linguaggio Java di essere eseguiti su qualsiasi piattaforma senza modifiche del codice sorgente, in quanto perché esiste una JVM specifica per ogni OS (Windows, Linux o Mac) che "capisce" quel codice.
+La **Java Virtual Machine (JVM)**, componente fondamentale del Java Runtime Environment (JRE), funge da traduttore universale, consente ai programmi scritti in linguaggio Java di essere eseguiti su qualsiasi piattaforma senza modifiche del codice sorgente, in quanto esiste una JVM specifica per ogni Sistema Operativo (Windows, Linux o Mac) che "capisce" quel codice.
 </br>
 
 Per comprendere la JVM facciamo un piccolo passo indietro e descriviamo cos'è una Virtual Machine (VM).
-Una VM è un "computer dentro un altro computer". Più precisamente è un ambiente software che emula il comportamento di un computer fisico, creando CPU, memoria RAM, disco rigido e scheda di rete virtuali. L'elemento centrale è l'Hypervisor (o VMM - Virtual Machine Monitor), uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali
+Una VM è un "computer dentro un altro computer". Più precisamente è un ambiente software che emula il comportamento di un computer fisico, creando CPU, memoria RAM, disco rigido e scheda di rete virtuali. L'elemento centrale è l'**Hypervisor (o VMM - Virtual Machine Monitor)**, uno strato software che astrae le risorse hardware fisiche e le distribuisce in modo isolato alle diverse macchine virtuali. 
 Le risorse hardware virtuali vengono "estrapolate" dalle risorse hardware fisiche del computer che ospita le VM.
 Il computer che ospita il software è detto Host, mentre la macchina virtuale è definita Guest.
 <br/>
@@ -84,24 +86,24 @@ Il computer che ospita il software è detto Host, mentre la macchina virtuale è
   <img title="Hypervisor" alt="Hypervisor" src="img/Hypervisor.png" ><br/>
 </p>
 <br/>
-Agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica.
+L'Hypervisor agisce come un "vigile urbano" delle risorse informatiche, distribuendo potenza di calcolo (CPU), memoria (RAM) e archiviazione tra più sistemi operativi indipendenti che girano contemporaneamente sulla stessa macchina fisica.
 Esistono due categorie fondamentali di hypervisor, distinte dal modo in cui interagiscono con l'hardware:
 
-- Tipo 1 (Bare Metal): Viene installato direttamente sull'hardware fisico del computer (senza un sistema operativo sottostante). È il tipo più efficiente e sicuro, ideale per i data center aziendali. 
+- **Tipo 1 (Bare Metal):** Viene installato direttamente sull'hardware fisico del computer (senza un sistema operativo sottostante). È il tipo più efficiente e sicuro, ideale per i data center aziendali. 
   - Esempi: VMware ESXi, Microsoft Hyper-V, KVM, Xen
-- Tipo 2 (Hosted): Viene installato come un'applicazione sopra un sistema operativo esistente (come Windows, macOS o Linux). È perfetto per usi individuali o di test sul proprio PC.
+- **Tipo 2 (Hosted):** Viene installato come un'applicazione sopra un sistema operativo esistente (esempio Windows, MacOS o Linux). È perfetto per usi individuali o di test sul proprio PC.
   - Esempi: Oracle VM VirtualBox, VMware Workstation, Parallels Desktop
 
-La JVM è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
-Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del Bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
+La **JVM** è una "macchina virtuale di processo" o "applicativa", progettata specificamente per eseguire un singolo programma.
+Non emula un intero computer, ma fornisce un ambiente di runtime che gestisce esclusivamente l'esecuzione del bytecode Java. Gestisce autonomamente memoria (Garbage Collection) e thread garantendo la portabilità del codice.
 <br/>
 <p align="center">
   <img title="JVM Architettura" alt="JVM Architettura" src="img/JVM_Architettura.png" style="width: 65%; height: 65%;"><br/>
 </p>
 <br/>
-Un file sorgente .java viene compilato mediante l'uso del comando javac che lo traduce in formato Bytecode creando un file .class
+Se creiamo un file sorgente .java e lo compiliamo verrà tradotto in formato bytecode in un nuovo file .class
 
-Saluto.java
+Esempio: Saluto.java
 ```java
 class Saluto { 
     static void main(String[] args) {
@@ -110,15 +112,15 @@ class Saluto {
   }
 }
 ```
-Con il comando
+con il comando
 
 ```console
 javac Saluto.java
 ```
 
-Viene compilato il file sorgente Saluto.java e viene generato il file Bytecode Saluto.class
-Il Bytecode non è codice macchina nativo (non può girare direttamente sul processore), ma è il formato universale che JVM è in grado di eseguire.
-Con il comando ***java*** si inizializza la JVM che carica il bytecode della classe specificata e carica in memoria il metodo main() per eseguire l'applicazione.
+Il file sorgente _Saluto.java_ viene compilato e generato il file bytecode _Saluto.class_
+Il file in bytecode non contiene il codice macchina nativo per il sistema hardware dove è stato compilato, ma è un formato universale che JVM è in grado di eseguire.
+Con il comando _java_ si inizializza la JVM che carica il bytecode della classe specificata e carica in memoria il metodo main() per eseguire l'applicazione.
 
 ```console
 java Saluto  
@@ -130,35 +132,36 @@ La prima attività che effettua la JVM è l'utilizzo delle Class Loader:
   <img title="JVM Architettura CLASS LOADER" alt="JVM Architettura CLASS LOADER" src="img/JVM_Architettura_LOADER.png" ><br/>
 </p>
 
-- **Bootstrap Class Loader** (conosciuto anche come Primordial Class Loader) è il componente più fondamentale della JVM ed è il punto di partenza dell'intero processo di caricamento delle classi in Java. Non è una classe Java. È un pezzo di codice nativo integrato direttamente nel nucleo della JVM. Il suo compito è caricare le librerie software fondamentali necessarie al funzionamento stesso dell'ambiente Java (java.lang, java.net, java.util, java.io, etc..)<br/>
-- **Platform Class Loader** (Extension Class Loader fino alla versione Java 8) Carica i moduli Java "di piattaforma" che non sono strettamente necessari per l'avvio del cuore della JVM (caricato dal Bootstrap), ma che fanno comunque parte delle specifiche Java SE (come java.sql, java.xml o java.desktop).
-  Il Platform Class Loader segue rigorosamente il Delegation Model:
-  1. Quando riceve una richiesta per caricare una classe, interroga prima il suo genitore: il Bootstrap Class Loader.
+- **Bootstrap Class Loader** (conosciuto anche come **Primordial Class Loader**) è il componente fondamentale della JVM ed è il punto di partenza dell'intero processo di caricamento delle classi in Java. Non è una classe Java, é codice nativo integrato nel nucleo della JVM. Il suo compito è caricare le librerie software fondamentali necessarie al funzionamento stesso dell'ambiente Java (java.lang, java.net, java.util, java.io, etc..)<br/>
+- **Platform Class Loader** (Extension Class Loader fino alla versione Java 8) carica i moduli Java "di piattaforma" che non sono strettamente necessari per l'avvio del cuore della JVM (caricato dal Bootstrap), ma che fanno comunque parte delle specifiche Java SE (come java.sql, java.xml o java.desktop). Il Platform Class Loader segue rigorosamente il **Delegation Model**:
+  1. Quando riceve una richiesta per caricare una classe, interroga prima il Bootstrap Class Loader.
   2. Se il Bootstrap non trova la classe, il Platform Class Loader prova a caricarla dai propri moduli.
-  3. Se fallisce anche lui, passa la palla al figlio: l'Application Class Loader.
-  
+  3. Se fallisce anche lui, passa la palla all'Application Class Loader.
+
   A differenza del Bootstrap loader (che restituisce null), il Platform Class Loader è un oggetto Java.<br/>
-- **Application Class Loader** (conosciuto anche come System Class Loader) è l'ultimo anello della catena ed è quello con cui interagirai di più come sviluppatore. E' responsabile del caricamento delle classi scritte da te e delle librerie di terze parti (come file JAR esterni) incluse nel progetto.<br/>
+- **Application Class Loader** (conosciuto anche come **System Class Loader**) è l'ultimo anello della catena ed è quello con cui interagisce di più lo sviluppatore. E' responsabile del caricamento delle classi scritte e delle librerie di terze parti (come file JAR esterni) incluse nel progetto.<br/>
 
   Seguendo il modello Delegation:
-  L'Application Class Loader riceve la richiesta di caricare una classe (ad esempio, la tua classe Saluto). Chiede al Platform Class Loader di caricarla. Se nessuno dei genitori (Bootstrap o Platform) la trova, allora l'Application Class Loader tenta di caricarla dai percorsi del tuo progetto. Se non la trova nemmeno lui, viene lanciata la famosa eccezione ClassNotFoundException o NoClassDefFoundError.
+  1. L'Application Class Loader riceve la richiesta di caricare una classe (ad esempio, la tua classe Saluto). 
+  2. Chiede al Platform Class Loader di caricarla. 
+  3. Se nessuno dei genitori (Bootstrap o Platform) la trova, allora l'Application Class Loader tenta di caricarla dai percorsi del tuo progetto. Se non la trova, viene lanciata la famosa eccezione ClassNotFoundException o NoClassDefFoundError.
 
 Riassumendo:
 
 	- Bootstrap: Cuore di Java (java.base).
 	- Platform: Moduli opzionali di sistema (java.sql, java.xml).
-	- Application: Il tuo codice e le tue dipendenze (Maven, Gradle, JAR esterni).
+	- Application: Il codice creato dallo sviluppatore e l'eventuali dipendenze.
 
-Il **Linking** è la seconda fase del ciclo di vita di una classe nella JVM (subito dopo il Loading). È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
+Il **Linking** è la seconda fase del ciclo di vita di una classe nella JVM. È il processo che prende il bytecode appena caricato e lo rende "pronto all'uso", integrandolo nell'ambiente di runtime.
 Si divide in tre sotto-fasi fondamentali:
 
-- **Verify** è la fase più importante per la sicurezza. La JVM controlla che il bytecode nel file .class sia valido e non violi le regole del linguaggio:
+- **Verify** è la fase più importante per la sicurezza. La JVM controlla che il bytecode sia valido e non violi le regole del linguaggio:
   * Controlla che non ci siano tentativi di accedere a zone di memoria vietate.
   * Verifica che i tipi di dati siano coerenti (es. non sommare un intero a un oggetto).
   * Assicura che il codice non causi l'overflow dello stack.
-- **Prepare** in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili static) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per gli int, false per i boolean, null per gli oggetti).
+- **Prepare** in questa fase, la JVM alloca la memoria necessaria per i campi statici (le variabili _static_) della classe. Qui le variabili non vengono impostate ai valori indicati nel file sorgente, ma ai loro valori predefiniti (es. 0 per il tipo _int_, false per il tipo _boolean_, null per gli oggetti).
 - **Resolve** questa è la fase "di collegamento" vera e propria. La JVM sostituisce i riferimenti simbolici nel file con riferimenti diretti (indirizzi di memoria reali).
-  Se la classe usa una variabile di un'altra classe chiamata Persona, nel bytecode c'è solo il nome "Persona". Durante la risoluzione, la JVM trova dove si trova effettivamente la classe Persona in memoria e crea un puntatore diretto a essa.
+  Se la classe usa una variabile di un'altra classe chiamata _Persona_, JVM cerca la classe _Persona_ in memoria e crea un puntatore diretto a essa.
 
 L'**Initialization** (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
 Mentre nella fase precedente (Preparation) la JVM aveva solo preparato lo spazio in memoria riempiendolo con zeri o null, qui avvengono i veri assegnamenti.
