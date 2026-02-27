@@ -188,22 +188,21 @@ Riassumendo (con esempio una Biblioteca):
   <img title="JVM Architettura RUNTIME DATA AREA" alt="JVM Architettura RUNTIME DATA AREA" src="img/JVM_Architettura_RUNTIME.png" ><br/>
 </p>
 
-La **Runtime Data Area** è l'intera memoria allocata dalla JVM sul sistema operativo per permettere l'esecuzione del programma. Si divide in cinque aree principali, classificate in base alla loro visibilità (condivise da tutti i thread o private del singolo thread).
-Possiamo dividerle in due grandi categorie:
+La **Runtime Data Area** è l'intera memoria allocata dalla JVM sul sistema operativo per permettere l'esecuzione del programma. Si divide in cinque aree, classificate in base alla loro visibilità (condivise da tutti i thread o private del singolo thread).
 
 1. **Aree condivise - Shared Data Areas (Tutti i thread vedono questi dati)**
    Queste aree nascono all'avvio della JVM e muoiono quando si chiude.
-   * **Method Area**: Qui la JVM conserva le informazioni (la struttura / metadati) delle classi caricate. Include il bytecode dei metodi, i nomi dei campi, le variabili statiche e la Runtime Constant Pool (tabella delle costanti e dei riferimenti simbolici). Nelle versioni moderne (Java 8+) risiede nel Metaspace (memoria nativa).
-   * **Heap**: È l'area più grande e importante. Qui finiscono tutti gli oggetti (istanze di classe) e gli array creati creati con la parola chiave new. È il "parco giochi" del Garbage Collector, che libera la memoria degli oggetti non più referenziati.
+   * **Method Area**: Qui la JVM conserva le informazioni (la struttura / metadati) delle classi caricate. Include il bytecode dei metodi, i nomi dei campi, le variabili statiche e la **Runtime Constant Pool** (tabella delle costanti e dei riferimenti simbolici). Nelle versioni moderne (Java 8+) risiede nel Metaspace (memoria nativa).
+   * **Heap**: È l'area più grande e importante. Qui finiscono tutti gli oggetti (istanze di classe) e gli array creati con la parola chiave _new_. È l'area di memoria dove il **Garbage Collector** libera spazio cancellando gli oggetti non più referenziati.
 
 2. **Aree private - Per-Thread Data Areas (Ogni Thread ha la sua)**
    Queste aree servono a gestire l'esecuzione parallela; ogni thread ha il suo spazio isolato.
-  * **JVM Stack**: Ogni volta che chiami un metodo, viene creato, nello stack, un Frame (un blocco di memoria) che contiene:
-    - Variabili locali: I parametri del metodo e le variabili dichiarate al suo interno.
-    - Operand Stack: Uno spazio temporaneo per i calcoli intermedi (es. 2 + 3).
-    - Frame Data: Riferimenti alla Constant Pool per la risoluzione dei simboli e la gestione delle eccezioni. Quando il metodo finisce, il frame viene rimosso.
-    - PC Register (Program Counter): È un piccolo puntatore che tiene traccia di quale riga di istruzione sta eseguendo il thread in quel preciso momento.
-  - **Native Method Stack**: Funziona come lo JVM Stack, ma serve per gestire i metodi scritti in altri linguaggi (come C o C++) chiamati tramite JNI (Java Native Interface).
+  * **JVM Stack**: Ogni volta che chiami un metodo, viene creato, nello stack, un **Frame** (un blocco di memoria) che contiene:
+    - **Variabili locali:** I parametri del metodo e le variabili dichiarate al suo interno.
+    - **Operand Stack:** Uno spazio temporaneo per i calcoli intermedi.
+    - **Frame Data:** Riferimenti alla **Constant Pool** per la risoluzione dei simboli e la gestione delle eccezioni. Quando il metodo finisce, il frame viene rimosso.
+    - **PC Register (Program Counter):** È un piccolo puntatore che tiene traccia di quale riga di istruzione sta eseguendo il thread in quel preciso momento.
+  - **Native Method Stack**: Funziona come lo **JVM Stack**, ma serve per gestire i metodi scritti in altri linguaggi (come C o C++) chiamati tramite **Java Native Interface (JNI)**.
 
 Riassumendo (con esempio una Ristorante):
 
