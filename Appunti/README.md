@@ -164,15 +164,11 @@ Si divide in tre sotto-fasi fondamentali:
   Se la classe usa una variabile di un'altra classe chiamata _Persona_, JVM cerca la classe _Persona_ in memoria e crea un puntatore diretto a essa.
 
 L'**Initialization** (Inizializzazione) è la fase finale del caricamento di una classe nella JVM. È il momento in cui il codice Java che hai scritto viene effettivamente eseguito per la prima volta.
-Mentre nella fase precedente (Preparation) la JVM aveva solo preparato lo spazio in memoria riempiendolo con zeri o null, qui avvengono i veri assegnamenti.
-La JVM genera internamente un metodo speciale chiamato <clinit> (Class Initialization). Questo metodo raccoglie:
-- Tutti gli assegnamenti delle variabili statiche (es: static int x = 50;).
-- Tutti i blocchi statici definiti con static { ... }
-In questa fase:
-- Le variabili static ricevono i valori definiti nel codice (il nostro x passa da 0 a 50).
-- Vengono eseguiti i blocchi di codice all'interno dei blocchi static.
-- Viene garantita l'esecuzione in ordine di apparizione nel file sorgente.
-Prima di inizializzare una classe, la JVM si assicura che la sua Superclasse (la classe madre) sia già stata inizializzata. È un processo ricorsivo che risale fino a Object.
+La JVM genera internamente un metodo speciale chiamato _clinit_ (**Class Initialization**). Questo metodo raccoglie:
+- Tutti gli assegnamenti delle variabili statiche (es: static _int x = 50_;).
+- Tutti i blocchi definiti _static_ { ... }<br>
+- Viene garantita l'esecuzione in ordine di apparizione nel file sorgente. Prima di inizializzare una classe, la JVM si assicura che la sua Superclasse (la classe madre) sia già stata inizializzata. È un processo ricorsivo che risale fino alla classe _Object_. 
+
 L'inizializzazione non avviene appena il programma parte, ma solo al primo utilizzo attivo della classe, ovvero quando:
 - Viene creata un'istanza della classe (new Saluto()).
 - Viene chiamato un metodo statico.
