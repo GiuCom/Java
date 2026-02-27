@@ -215,65 +215,64 @@ Riassumendo (con esempio una Ristorante):
   <img title="JVM Architettura EXECUTION ENGINE" alt="JVM Architettura EXECUTION ENGINE" src="img/JVM_Architettura_EXECUTION.png" ><br/>
 </p>
 
-L'**Execution Engine** è il "motore" vero e proprio della JVM. Mentre la Runtime Data Area si occupa di dove memorizzare i dati, l'Execution Engine si occupa di come eseguire il bytecode caricato in memoria, trasformandolo in istruzioni comprensibili dal processore (codice macchina).
+L'**Execution Engine** è il "motore" vero e proprio della JVM. Si occupa di come eseguire il bytecode caricato in memoria, trasformandolo in istruzioni comprensibili dal processore (codice macchina).<br>
 Si compone di tre moduli principali che lavorano in sinergia:
 
-1. **Interpreter (Interprete)**
-   È il primo componente a entrare in azione. Legge il bytecode riga per riga e lo esegue immediatamente.
-  - Vantaggio: Avvio rapidissimo dell'applicazione.
-  - Svantaggio: È relativamente lento nell'esecuzione ripetuta, poiché deve reinterpretare la stessa istruzione ogni volta che incontra un ciclo (loop).
+1. **Interpreter (Interprete)** è il primo componente a entrare in azione. Legge il bytecode riga per riga e lo esegue immediatamente.
+   - **Vantaggio:** Avvio rapidissimo dell'applicazione.
+   - **Svantaggio:** È relativamente lento nell'esecuzione ripetuta, poiché deve reinterpretare la stessa istruzione ogni volta che incontra un ciclo (loop).
 
-2. **JIT Compiler (Just-In-Time Compiler)**
-   Per rimediare alla lentezza dell'interprete, interviene il JIT. Il suo compito è compilare intere sezioni di bytecode in codice macchina nativo durante l'esecuzione.
-  - Profilazione (Hotspots): Il JIT monitora quali parti del codice vengono eseguite più spesso (i cosiddetti "punti caldi").
-  - Compilazione nativa: Una volta identificato un metodo frequente, il JIT lo compila e lo salva in una cache (Code Cache). La volta successiva, la JVM eseguirà direttamente il codice nativo saltando l'interpretazione.
-  - Ottimizzazione: Include tecniche avanzate come l' Inlining (sostituzione della chiamata a un metodo con il suo corpo) e la rimozione di codice morto.
+2. **JIT Compiler (Just-In-Time Compiler)** il suo compito è compilare intere sezioni di bytecode in codice macchina nativo durante l'esecuzione.
+   - **Profilazione (Hotspots):** Il JIT monitora quali parti del codice vengono eseguite più spesso (i cosiddetti "punti caldi").
+   - **Compilazione nativa:** Una volta identificato un metodo frequente, il JIT lo compila e lo salva in una cache (Code Cache). La volta successiva, la JVM eseguirà direttamente il codice nativo saltando l'interpretazione.
+   - **Ottimizzazione:** Include tecniche avanzate come l'**Inlining** (sostituzione della chiamata a un metodo con il suo corpo) e la rimozione di codice morto.
 
-3. **Garbage Collector (GC)**
-   Anche se spesso visto come un'entità a sé, il GC fa parte dell'Execution Engine poiché gestisce attivamente le risorse durante l'esecuzione.
-  - Automazione: Identifica gli oggetti nell'Heap che non hanno più riferimenti attivi e libera la memoria.
-  - Algoritmi: Utilizza diverse strategie (come Mark-and-Sweep) per minimizzare le pause del programma (Stop-the-world).
+3. **Garbage Collector (GC)** fa parte dell'Execution Engine poiché gestisce attivamente le risorse durante l'esecuzione.
+   - **Automazione:** Identifica gli oggetti nell'Heap che non hanno più riferimenti attivi e libera la memoria.
+   - **Algoritmi:** Utilizza diverse strategie (come Mark-and-Sweep) per minimizzare le pause del programma (Stop-the-world).
 
 Riassumendo:
 
     - Execution Engine è un sistema dinamico.
-    - Interprete garantisce la partenza immediata.
-    - JIT accelera il programma man mano che gira.
+    - Interpreter garantisce la partenza immediata.
+    - JIT accelera il programma durante l'esecuzione.
     - Garbage Collector mantiene pulita la memoria.
 
 La **Java Native Interface (JNI)** è il "ponte di comunicazione" ufficiale che permette al codice Java, in esecuzione nella JVM, di interagire con applicazioni e librerie scritte in altri linguaggi (come C, C++ o Assembly).
 Poiché Java gira in una "bolla" isolata (la sandbox), ha bisogno della JNI per "uscire" e toccare direttamente l'hardware o il sistema operativo.
-Esistono tre motivi principali per cui uno sviluppatore decide di usarla:
-- Prestazioni critiche: Per algoritmi matematici o grafici estremamente complessi che beneficiano dell'ottimizzazione manuale del C++.
-- Accesso all'Hardware: Per gestire driver di periferiche (stampanti, sensori, GPU) che non hanno API Java native.
-- Codice Legacy: Per riutilizzare vecchie librerie aziendali scritte decenni fa in C senza doverle riscrivere interamente in Java.
+Esistono tre motivi principali per cui uno sviluppatore decide di usarla:<br>
+- **Prestazioni critiche:** per algoritmi matematici o grafici estremamente complessi che beneficiano dell'ottimizzazione manuale del C++. 
+- **Accesso all'Hardware:** per gestire driver di periferiche (stampanti, sensori, GPU) che non hanno API Java native.
+- **Codice Legacy:** per riutilizzare vecchie librerie aziendali scritte in C senza doverle riscrivere interamente in Java.
 
 Per far comunicare i due mondi, si segue un iter preciso:
-1. Dichiarazione Java: Crei un metodo usando la parola chiave native.  Esempio: public native void salutaNativo();
-2. Generazione Header: Usi il comando javac -h per generare un file di intestazione C (.h) che contiene la firma del metodo "tradotta".
-3. Implementazione C/C++: Scrivi il codice reale nel linguaggio nativo importando l'header generato.
-4. Compilazione Libreria: Trasformi il codice C in una libreria dinamica (.dll su Windows, .so su Linux).
-5. Caricamento: In Java, carichi la libreria all'avvio con System.loadLibrary("nome");
+1. **Dichiarazione Java:** si crea un metodo usando la parola chiave _native_.  
+    - Esempio: _public native void salutaNativo();_
+2. **Generazione Header:** si utilizza il comando _javac -h_ per generare un file di intestazione C (.h) che contiene la firma del metodo "tradotta".
+3. **Implementazione C/C++:** si scrive il codice nel linguaggio nativo importando l'header generato.
+4. **Compilazione Libreria:** convertire il codice C in una libreria dinamica (.dll su Windows, .so su Linux).
+5. **Caricamento:** si carica la libreria all'avvio con _System.loadLibrary("nome");_
 
 Usare la JNI rompe alcune delle promesse fondamentali di Java:
-- Perdita di Portabilità: Se scrivi una libreria in C per Windows, il tuo programma Java non girerà più su Linux finché non ricompilerai la parte nativa per quel sistema.
-- Sicurezza e Crash: Un errore nel codice C (come un puntatore errato) può far crashare l'intera JVM, non solo il tuo programma. Il Garbage Collector non può gestire la memoria allocata dal lato nativo.
-- Overhead: Passare dati tra Java e C non è gratis; c'è un piccolo rallentamento dovuto alla conversione dei dati tra i due formati.
+- **Perdita di Portabilità:** se si utilizza una libreria scritta in linguaggio C e compilata per Windows, il software scritto in linguaggio Java che la utilizza non può essere utilizzata su altri sistemi operativi (Linux, MacOS, etc..). Per risolvere tale problema si deve compilare la libreria C per ogni sistema operativo di destinazione.
+- **Sicurezza e Crash:** un eventuale errore nel codice C può far bloccare la JVM in esecuzione, non solo il tuo programma. Inoltre, il **Garbage Collector** non può gestire la memoria allocata dalla libreria in linguaggio CC.
+- **Overhead:** il trasferimento di dati tra Java e C non è veloce; c'è un piccolo rallentamento dovuto alla conversione tra i due formati.
 
 Riassumendo:
 
-    - Java Native Interface è l'interprete bilingue della JVM: permette a Java di parlare con il mondo 
-      esterno, ma richiede molta attenzione perché espone il programma ai pericoli dei 
-      linguaggi di basso livello.
+    - Java Native Interface è l'interprete bilingue della JVM: permette a Java 
+      di parlare con il mondo esterno, ma richiede molta attenzione perché espone 
+      il programma ai pericoli dei linguaggi di basso livello.
 
 Il **Native Method Library** è un insieme di librerie scritte in linguaggi di "basso livello" (solitamente C o C++) che vengono caricate dalla JVM per eseguire operazioni che il linguaggio Java, da solo, non può compiere direttamente sull'hardware o sul sistema operativo
-Quando Java incontra un metodo dichiarato con la parola chiave native (es. public native void calcola();), non cerca il bytecode, ma cerca l'implementazione corrispondente all'interno di queste librerie esterne (file .dll su Windows o .so su Linux)
-Per gestire queste chiamate, la JVM riserva un'area di memoria specifica chiamata Native Method Stack. Ogni volta che il thread passa dal codice Java a un metodo nativo, lo "stack Java" si ferma e i dati vengono gestiti in questo stack separato dedicato al codice C/C++.
+Quando Java incontra un metodo dichiarato con la parola chiave _native_ (es. _public native void calcola();_), non cerca il bytecode, ma cerca l'implementazione corrispondente all'interno di librerie esterne (file .dll su Windows o .so su Linux).
+Per gestire queste chiamate, la JVM riserva un'area di memoria specifica chiamata **Native Method Stack**. Ogni volta che il thread passa dal codice Java a un metodo nativo, lo "stack Java" si ferma e i dati vengono gestiti in questo stack separato dedicato al codice C/C++.
 
 Riassumendo:
 
-    - Native Method Library è il "ponte" fisico che permette a Java di toccare l'hardware, usando librerie 
-      pre-compilate esterne per compiti che richiedono massima velocità o accesso diretto alle risorse di sistema
+    - Native Method Library è il "ponte" fisico che permette a Java di "toccare" 
+      l'hardware, usando librerie pre-compilate esterne per compiti che 
+      richiedono massima velocità o accesso diretto alle risorse di sistema
 
 
 ## 👥 Authors
