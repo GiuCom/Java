@@ -78,11 +78,9 @@ In generale, i design pattern sono strumenti potenti per migliorare la qualità,
 I design pattern sono spesso presentati come modelli di comunicazione tra i membri di un team di sviluppo. Essi possono aiutare a comunicare idee complesse in modo più chiaro e consentire a un team di adottare un approccio comune alla risoluzione dei problemi.
 Esistono molti tipi diversi di design pattern, che possono essere raggruppati in diverse categorie. Ecco alcune categorie di design pattern comuni:
 
-* **Creational Patterns (Pattern Creazionali):** Questi pattern si concentrano sul processo di creazione delle istanze degli oggetti. Esempi includono Singleton, Factory Method, Abstract Factory, Builder e Prototype. 
-* **Structural Patterns (Pattern Strutturali):** Questi pattern riguardano la composizione delle classi e degli oggetti in strutture più grandi. Esempi includono Adapter, Bridge, Composite, Decorator, Facade e Proxy. 
-* **Behavioral Patterns (Pattern Comportamentali):** Questi pattern gestiscono le interazioni tra oggetti e il flusso di controllo. Esempi includono Observer, Strategy, Command, State, Template Method e Visitor. 
-* **Concurrency Patterns (Pattern di Concorrenza):** Questi pattern affrontano problemi legati alla gestione della concorrenza e della parallelizzazione nel software. Esempi includono Mutex, Semaphore, Reader-Writer Lock, e altri pattern legati alla programmazione concorrente. 
-* **Architectural Patterns (Pattern Architetturali):** Questi pattern riguardano l’organizzazione generale di un’applicazione e delle sue componenti. Esempi includono MVC (Model-View-Controller), MVVM (Model-View-ViewModel), e altri pattern architetturali.
+* **Creational Patterns (Pattern Creazionali):** Questi pattern si concentrano sul processo di creazione delle istanze degli oggetti.
+* **Structural Patterns (Pattern Strutturali):** Questi pattern riguardano la composizione delle classi e degli oggetti in strutture più grandi. 
+* **Behavioral Patterns (Pattern Comportamentali):** Questi pattern gestiscono le interazioni tra oggetti e il flusso di controllo.
 
 Il tema dei pattern viene oggi considerato una delle linee principali di sviluppo dell'ingegneria del software. Esso trova applicazioni in tutta una serie di contesti di grande interesse per l'industria del software, dallo sviluppo di software basato su componenti, ai sistemi aperti, ai framework e così via. La maggior parte dei linguaggi di programmazione moderni e delle tecnologie correlate, sono stati progettati (o modificati) tenendo conto anche dell'obiettivo di essere coerenti con questo approccio emergente allo sviluppo del software.
 I design pattern hanno una serie di utilizzi e utilità all’interno dello sviluppo software:
