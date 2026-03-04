@@ -1,22 +1,22 @@
 package cloud.compagno.designpatterns.crazionali.singleton;
 
-public class Singleton {
+public class SingletonSynchronized {
 
-    /* Dichiarazione di una variabile Singleton */
-    private static Singleton INSTANCE = null;
+    /* Dichiarazione di una variabile SingletonSynchronized */
+    private static SingletonSynchronized INSTANCE = null;
 
     /* Dichiarazione di una variabile stringa */
     private String info;
 
     /* Costruttore privato o comunque non pubblico */
-    private Singleton() {
+    private SingletonSynchronized() {
         info = "Oggetto inizializzato";
     }
 
-    /* Metodo static */
-    public static Singleton getInstance() {
+    /* Metodo static e synchronized */
+    public static synchronized SingletonSynchronized getInstance() {
         if(INSTANCE == null) {
-            INSTANCE = new Singleton();
+            INSTANCE = new SingletonSynchronized();
         }
         return INSTANCE;
     }

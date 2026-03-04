@@ -1,23 +1,20 @@
 package cloud.compagno.designpatterns.crazionali.singleton;
 
-public class Singleton {
+public class SingletonEager {
 
-    /* Dichiarazione di una variabile Singleton */
-    private static Singleton INSTANCE = null;
+    /* Dichiarazione di una variabile SingletonEager */
+    private static final SingletonEager INSTANCE = new SingletonEager();
 
     /* Dichiarazione di una variabile stringa */
     private String info;
 
     /* Costruttore privato o comunque non pubblico */
-    private Singleton() {
+    private SingletonEager() {
         info = "Oggetto inizializzato";
     }
 
     /* Metodo static */
-    public static Singleton getInstance() {
-        if(INSTANCE == null) {
-            INSTANCE = new Singleton();
-        }
+    public static SingletonEager getInstance() {
         return INSTANCE;
     }
 
