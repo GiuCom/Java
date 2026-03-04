@@ -7,24 +7,30 @@ package cloud.compagno.designpatterns.crazionali.singleton;
 public class SingletonBillPugh {
 
     /* Dichiarazione di una variabile stringa */
-    private String stringaConnection = "";
+    private String info;
 
-    // Costruttore privato per impedire istanziazioni esterne
+    /* Costruttore privato o comunque non pubblico */
     private SingletonBillPugh() {
-        System.out.println("Inizializzazione Singleton...");
-        stringaConnection = "jdbc:postgresql://localhost:5432/mydb";
+        info = "Oggetto inizializzato";
     }
 
-    // Classe interna statica che carica l'istanza solo alla prima chiamata
-    private static class SingletonHolder {
+    // Classe statica interna (Holder)
+    // Non viene caricata finché non viene richiamata esplicitamente
+    private static class SingletonHelper {
         private static final SingletonBillPugh INSTANCE = new SingletonBillPugh();
     }
 
+    /* Metodo static */
     public static SingletonBillPugh getInstance() {
-        return SingletonHolder.INSTANCE;
+        return SingletonHelper.INSTANCE;
     }
 
-    public String getStringaConnection() {
-        return stringaConnection;
+    // Setter & Getter
+    public void setInfo (String info) {
+        this.info = info;
+    }
+
+    public String getInfo () {
+        return info;
     }
 }
