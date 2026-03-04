@@ -170,26 +170,44 @@ public class SingletonTest {
                 "Esiste una sola istanza anche con accesso concorrente");
     }
 
-//
-//    @Test
-//    @DisplayName("Dovrebbe restituire sempre la stessa istanza")
-//    void testSingletonInstance() {
-//        SingletonBillPugh instance1 = SingletonBillPugh.getInstance();
-//        SingletonBillPugh instance2 = SingletonBillPugh.getInstance();
-//
-//        // Verifica che i due riferimenti puntino allo stesso oggetto
-//        assertSame(instance1, instance2, "Le istanze dovrebbero essere identiche");
-//
-//        // Verifica un'uguaglianza funzionale aggiuntiva
-//        assertEquals(instance1.hashCode(), instance2.hashCode());
-//    }
-//
-//    @Test
-//    @DisplayName("Dovrebbe restituire la stringa di connessione corretta")
-//    void testGetConnectionString() {
-//        String conn = SingletonBillPugh.getInstance().getStringaConnection();
-//        assertNotNull(conn);
-//        assertTrue(conn.contains("localhost"));
-//    }
+    @Test
+    void testSingletonEnumMultithread() throws InterruptedException {
 
+        // Numero di thread
+        int threadCount = 1000;
+
+        // Semplifica la gestione dell'esecuzione di task in background
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+
+        // Utilizziamo un Set thread-safe per memorizzare le istanze uniche trovate
+        Set<Integer> instanceHashCodes = Collections.newSetFromMap(new ConcurrentHashMap<>());
+
+        // Il latch serve a far partire i thread contemporaneamente
+        CountDownLatch startLatch = new CountDownLatch(1);
+        // Il latch di fine serve ad attendere che tutti i thread abbiano finito
+        CountDownLatch finishLatch = new CountDownLatch(threadCount);
+
+        // Ciclo di thread
+        for (int i = 0; i < threadCount; i++) {
+            executor.submit(() -> {
+                try {
+                    startLatch.await(); // Attende il segnale di partenza
+                    SingletonEnum instance = SingletonEnum.INSTANCE;
+                    instanceHashCodes.add(System.identityHashCode(instance));
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } finally {
+                    finishLatch.countDown();
+                }
+            });
+        }
+
+        startLatch.countDown(); // Segnale di partenza per tutti i thread
+        finishLatch.await();    // Attende il completamento
+        executor.shutdown();
+
+        // Verifica che nel set ci sia esattamente 1 solo hashcode (una sola istanza)
+        assertEquals(1, instanceHashCodes.size(),
+                "Esiste una sola istanza anche con accesso concorrente");
+    }
 }

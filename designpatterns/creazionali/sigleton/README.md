@@ -410,4 +410,64 @@ void testSingletonBillPughMultithread() throws InterruptedException {
 }
 ```
 
+**Singleton Enum**<br>
+È l'approccio definitivo, raccomandato da **Joshua Bloch** (autore di Effective Java), per garantire l'unicità dell'istanza in ogni scenario possibile, anche i più estremi. 
 
+```java
+public enum SingletonEnum {
+    
+    INSTANCE;
+
+    /* Dichiarazione di una variabile stringa */
+    private String info;
+
+    public void setInfo (String info) {
+        this.info = info;
+    }
+
+    public String getInfo () {
+        return info;
+    }
+    
+    public static void main(String[] args) {
+        SingletonEnum singleton = SingletonEnum.INSTANCE;
+        System.out.println(singleton.getInfo());
+        singleton.setInfo("Giuseppe");
+        System.out.println(singleton.getInfo());
+    }
+}
+```
+
+Caratteristiche Principali
+- **Thread-Safety Nativa:** La JVM garantisce che le istanze degli _enum_ siano create una sola volta in modo thread-safe durante il caricamento della classe.
+- **Protezione dalla Reflection:** A differenza dei Singleton classici, gli _enum_ impediscono l'istanziazione tramite _Reflection_ (che lancerebbe un'eccezione _IllegalArgumentException_).
+- **Serializzazione Automatica:** La serializzazione standard di Java garantisce che, anche dopo essere stato salvato su disco e ricaricato, l'oggetto restituito sia sempre lo stesso (prevenendo la creazione di duplicati).
+- **Semplicità:** È il codice più compatto e meno incline a errori umani.
+
+Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
+
+```java
+@Test
+void testSingletonEnumMultithread() throws InterruptedException {
+    // Parte iniziale di codice uguale al test del Metodo Synchronized
+
+    // Ciclo di thread
+    for (int i = 0; i < threadCount; i++) {
+        executor.submit(() -> {
+            try {
+                startLatch.await(); // Attende il segnale di partenza
+                SingletonEnum instance = SingletonEnum.INSTANCE;
+                instanceHashCodes.add(System.identityHashCode(instance));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                finishLatch.countDown();
+            }
+        });
+    }
+
+    // Parte finale del codice uguale al test del Metodo Synchronized
+}
+```
+
+Nonostante sia la soluzione perfetta, ha un piccolo svantaggio: non supporta la **Lazy Initialization** in modo flessibile come il pattern **Bill Pugh**. L'istanza viene creata non appena la classe _Enum_ viene referenziata per la prima volta. Inoltre, non può estendere un'altra classe, perché gli _enum_ estendono già implicitamente _java.lang.Enum_.
