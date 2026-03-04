@@ -44,20 +44,6 @@ public class SingletonTest {
         assertEquals(nuovoMessaggio, instance2.getInfo(), "La modifica testo effettuata sulla prima istanza si riflette sulla seconda");
     }
 
-    // Singleton Eager
-    @Test
-    void testSingletonEagerInstanceIsSame() {
-        // 1. Ottieni due riferimenti chiamando getInstance()
-        SingletonEager instance1 = SingletonEager.getInstance();
-        SingletonEager instance2 = SingletonEager.getInstance();
-
-        // 2. Verifica che l'istanza non sia null
-        assertNotNull(instance1, "L'istanza non dovrebbe essere null");
-
-        // 3. Verifica che entrambi i riferimenti puntino allo STESSO oggetto
-        assertSame(instance1, instance2, "Entrambi i riferimenti devono puntare alla stessa istanza");
-    }
-
     // Singleton Synchronized
     @Test
     void testSingletonSynchronizedMultithread() throws InterruptedException {
@@ -104,19 +90,28 @@ public class SingletonTest {
     // Singleton DCL
     @Test
     public void testSingletonDCLMultithread() throws InterruptedException {
-        int threadCount = 1000;
-        ExecutorService service = Executors.newFixedThreadPool(threadCount);
-        Set<SingletonDCL> instances = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-        // Sincronizzatore per far partire tutti i thread insieme
+        // Numero di thread
+        int threadCount = 1000;
+
+        // Semplifica la gestione dell'esecuzione di task in background
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+
+        // Utilizziamo un Set thread-safe per memorizzare le istanze uniche trovate
+        Set<Integer> instanceHashCodes = Collections.newSetFromMap(new ConcurrentHashMap<>());
+
+        // Il latch serve a far partire i thread contemporaneamente
         CountDownLatch startLatch = new CountDownLatch(1);
+        // Il latch di fine serve ad attendere che tutti i thread abbiano finito
         CountDownLatch finishLatch = new CountDownLatch(threadCount);
 
+        // Ciclo di thread
         for (int i = 0; i < threadCount; i++) {
-            service.submit(() -> {
+            executor.submit(() -> {
                 try {
-                    startLatch.await(); // Attende il via libera
-                    instances.add(SingletonDCL.getInstance());
+                    startLatch.await(); // Attende il segnale di partenza
+                    SingletonDCL instance = SingletonDCL.getInstance();
+                    instanceHashCodes.add(System.identityHashCode(instance));
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 } finally {
@@ -125,11 +120,13 @@ public class SingletonTest {
             });
         }
 
-        startLatch.countDown(); // "Via!" ai thread
-        finishLatch.await();    // Attende la fine di tutti i thread
-        service.shutdown();
+        startLatch.countDown(); // Segnale di partenza per tutti i thread
+        finishLatch.await();    // Attende il completamento
+        executor.shutdown();
 
-        assertEquals(1, instances.size(), "Il Singleton ha creato più di un'istanza!");
+        // Verifica che nel set ci sia esattamente 1 solo hashcode (una sola istanza)
+        assertEquals(1, instanceHashCodes.size(),
+                "Esiste una sola istanza anche con accesso concorrente");
     }
 
     @Test

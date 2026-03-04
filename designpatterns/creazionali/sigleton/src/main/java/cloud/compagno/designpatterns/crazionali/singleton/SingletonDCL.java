@@ -3,7 +3,7 @@ package cloud.compagno.designpatterns.crazionali.singleton;
 public class SingletonDCL {
 
     /* Dichiarazione di una variabile SingletonDCL */
-    private static SingletonDCL INSTANCE = null;
+    private static volatile SingletonDCL INSTANCE = null;
 
     /* Dichiarazione di una variabile stringa */
     private String info;

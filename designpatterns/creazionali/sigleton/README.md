@@ -194,7 +194,7 @@ void testSingletonSynchronizedMultithread() throws InterruptedException {
 public class SingletonDCL {
 
     /* Dichiarazione di una variabile SingletonDCL */
-    private static SingletonDCL INSTANCE = null;
+    private static volatile SingletonDCL INSTANCE = null;
 
     /* Dichiarazione di una variabile stringa */
     private String info;
@@ -229,6 +229,22 @@ public class SingletonDCL {
 }
 ```
 
+La parola chiave **_volatile_** è indispensabile a causa di come la Java Virtual Machine (JVM) e le CPU moderne ottimizzano l'esecuzione del codice (Instruction Reordering).
+Senza _volatile_, l'operazione _INSTANCE = new SingletonDCL();_ non è atomica. A livello di bytecode, viene divisa in tre passaggi:
+
+- **Allocazione memoria:** Viene riservato lo spazio per l'oggetto.
+- **Inizializzazione:** Viene eseguito il costruttore (impostando i campi).
+- **Assegnazione:** Il riferimento _INSTANCE_ punta alla memoria allocata.
+
+Il rischio è che la JVM può riordinare i passaggi 2 e 3. Se il thread A esegue il passaggio 3 (assegnazione) prima del passaggio 2 (costruttore):
+
+- L'istanza non è più null, ma i suoi campi interni non sono ancora stati inizializzati.
+- Il thread B arriva, esegue il primo controllo _if (instance == null)_, vede che non è _null_ e restituisce l'oggetto.
+- Il thread B tenta di usare l'oggetto, ma trova valori incoerenti o nulli, causando crash improvvisi.
+
+La keyword _volatile_ inibisce il riordinamento impedendo alla JVM di scambiare l'ordine tra la costruzione dell'oggetto e l'assegnazione del riferimento.
+Inoltre, forza la CPU a scrivere il valore direttamente nella memoria principale (RAM), assicurando che ogni thread legga sempre il valore più aggiornato e non una copia "vecchia" salvata nella cache locale del core.
+
 Caratteristiche Principali
 - **Riduzione dei Lock:** Invece di sincronizzare l'intero metodo, si sincronizza solo il blocco di creazione dell'istanza. Una volta che l'istanza esiste, i thread non entrano più nel blocco _synchronized_.
 - **Doppio Controllo:** Si verifica se l'istanza è nulla due volte: una fuori dal blocco _synchronized_ (per velocità) e una dentro (per sicurezza).
@@ -237,7 +253,27 @@ Caratteristiche Principali
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
 ```java
+@Test
+public void testSingletonDCLMultithread() throws InterruptedException {
+    // Parte iniziale di codice uguale al test del Metodo Synchronized
 
+    // Ciclo di thread
+    for (int i = 0; i < threadCount; i++) {
+        executor.submit(() -> {
+            try {
+                startLatch.await(); // Attende il segnale di partenza
+                SingletonDCL instance = SingletonDCL.getInstance();
+                instanceHashCodes.add(System.identityHashCode(instance));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                finishLatch.countDown();
+            }
+        });
+    }
+
+    // Parte finale del codice uguale al test del Metodo Synchronized
+}
 ```
 
 
@@ -273,6 +309,7 @@ public class SingletonEager {
     }
 }
 ```
+
 Caratteristiche Principali
 - **Istanza Statica Finale:** L'oggetto viene dichiarato come _static final_, assicurando che sia creato una sola volta dal **ClassLoader**.
 - **Costruttore Privato:** Impedisce la creazione di nuove istanze dall'esterno tramite l'operatore _new_.
@@ -281,59 +318,96 @@ Caratteristiche Principali
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
 ```java
-// Singleton Eager
 @Test
-void testSingletonEagerInstanceIsSame() {
-// 1. Ottieni due riferimenti chiamando getInstance()
-SingletonEager instance1 = SingletonEager.getInstance();
-SingletonEager instance2 = SingletonEager.getInstance();
+void testSingletonEagerMultithread() throws InterruptedException {
+    // Parte iniziale di codice uguale al test del Metodo Synchronized
 
-        // 2. Verifica che l'istanza non sia null
-        assertNotNull(instance1, "L'istanza non dovrebbe essere null");
-
-        // 3. Verifica che entrambi i riferimenti puntino allo STESSO oggetto
-        assertSame(instance1, instance2, "Entrambi i riferimenti devono puntare alla stessa istanza");
+    // Ciclo di thread
+    for (int i = 0; i < threadCount; i++) {
+        executor.submit(() -> {
+            try {
+                startLatch.await(); // Attende il segnale di partenza
+                SingletonEager instance = SingletonEager.getInstance();
+                instanceHashCodes.add(System.identityHashCode(instance));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                finishLatch.countDown();
+            }
+        });
     }
-
-    @Test
-    void testSingletonEagerMultithread() throws InterruptedException {
-
-        // Numero di thread
-        int threadCount = 100;
-
-        // Semplifica la gestione dell'esecuzione di task in background
-        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
-
-        // Utilizziamo un Set thread-safe per memorizzare le istanze uniche trovate
-        Set<Integer> instanceHashCodes = Collections.newSetFromMap(new ConcurrentHashMap<>());
-
-        // Il latch serve a far partire i thread contemporaneamente
-        CountDownLatch startLatch = new CountDownLatch(1);
-        // Il latch di fine serve ad attendere che tutti i thread abbiano finito
-        CountDownLatch finishLatch = new CountDownLatch(threadCount);
-
-        // Ciclo di thread
-        for (int i = 0; i < threadCount; i++) {
-            executor.submit(() -> {
-                try {
-                    startLatch.await(); // Attende il segnale di partenza
-                    SingletonEager instance = SingletonEager.getInstance();
-                    instanceHashCodes.add(System.identityHashCode(instance));
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } finally {
-                    finishLatch.countDown();
-                }
-            });
-        }
-
-        startLatch.countDown(); // Segnale di partenza per tutti i thread
-        finishLatch.await();    // Attende il completamento
-        executor.shutdown();
-
-        // Verifica che nel set ci sia esattamente 1 solo hashcode (una sola istanza)
-        assertEquals(1, instanceHashCodes.size(),
-                "Esiste una sola istanza anche con accesso concorrente");
-    }
+    
+    // Parte finale del codice uguale al test del Metodo Synchronized
+}
 ```
+
+
+**Bill Pugh Singleton**<br>
+È considerato l'approccio più elegante ed efficiente in Java. Sfrutta le garanzie fornite dalle specifiche della Java Virtual Machine (JVM) riguardo al caricamento delle classi per gestire la thread-safety senza l'uso esplicito di _synchronized_.
+
+```java
+public class SingletonBillPugh {
+
+    /* Dichiarazione di una variabile stringa */
+    private String info;
+
+    /* Costruttore privato o comunque non pubblico */
+    private SingletonBillPugh() {
+        info = "Oggetto inizializzato";
+    }
+
+    // Classe statica interna (Holder)
+    // Non viene caricata finché non viene richiamata esplicitamente
+    private static class SingletonHelper {
+        private static final SingletonBillPugh INSTANCE = new SingletonBillPugh();
+    }
+
+    /* Metodo static */
+    public static SingletonBillPugh getInstance() {
+        return SingletonHelper.INSTANCE;
+    }
+
+    // Setter & Getter
+    public void setInfo (String info) {
+        this.info = info;
+    }
+
+    public String getInfo () {
+        return info;
+    }
+}
+```
+
+Caratteristiche Principali
+- **Lazy Initialization:** L'istanza non viene creata quando viene caricata la classe principale (_SingletonBillPugh_), ma solo al primo richiamo del metodo _getInstance()_.
+- **Thread Safety Nativa:** La JVM garantisce che il caricamento di una classe sia un'operazione thread-safe. Poiché l'istanza è una costante _static_ della classe interna, la sua creazione è atomica e protetta dalla JVM stessa. 
+- **Performance Massime:** Non essendoci blocchi _synchronized_ o keyword _volatile_, l'accesso all'istanza è veloce quanto un normale accesso a una variabile statica.
+- **Resistenza ai riordinamenti:** Risolve intrinsecamente il problema degli oggetti parzialmente costruiti senza bisogno di configurazioni extra.
+
+Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
+
+```java
+@Test
+void testSingletonBillPughMultithread() throws InterruptedException {
+    // Parte iniziale di codice uguale al test del Metodo Synchronized
+
+    // Ciclo di thread
+    for (int i = 0; i < threadCount; i++) {
+        executor.submit(() -> {
+            try {
+                startLatch.await(); // Attende il segnale di partenza
+                SingletonBillPugh instance = SingletonBillPugh.getInstance();
+                instanceHashCodes.add(System.identityHashCode(instance));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                finishLatch.countDown();
+            }
+        });
+    }
+
+    // Parte finale del codice uguale al test del Metodo Synchronized
+}
+```
+
 
