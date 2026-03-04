@@ -10,13 +10,13 @@ public class SingletonMain {
         System.out.println("Richiedo la prima istanza...");
         Singleton singleton1 = Singleton.getInstance();
         System.out.println("Singleton istanza n° 1.....(HashCode: " + singleton1.hashCode() + ")");
-        System.out.println("Stringa di connessione: " + singleton1.getStringaConnection());
+        System.out.println("Stringa di connessione: " + singleton1.getInfo());
 
         // Seconda chiamata: non vedrai il messaggio di inizializzazione
         System.out.println("\nRichiedo la seconda istanza...");
         Singleton singleton2 = Singleton.getInstance();
         System.out.println("Singleton istanza n° 2.....(HashCode: " + singleton2.hashCode() + ")");
-        System.out.println("Stringa di connessione: " + singleton2.getStringaConnection());
+        System.out.println("Stringa di connessione: " + singleton2.getInfo());
 
         // Verifica finale via console
         System.out.println("\nVerifica se l'istanza è lo stessa...");
