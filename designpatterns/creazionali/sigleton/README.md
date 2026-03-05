@@ -1,14 +1,15 @@
 <h1 style="text-align: center;">Design Patterns</h1>
-<h2 style="text-align: center;">Creazionali</h2>
+<h3 style="text-align: center;">Creazionali</h3>
 <h1 style="text-align: center;">Singleton</h1>
-<hr>
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
 <br/>
 
+----
+
 ## 🚀 Introduzione
-Il **Singleton** è un pattern creazionale che garantisce l'esistenza di una sola istanza relativa ad una classe, fornendo un punto di accesso globale a tale istanza. 
+Il **Singleton** è un pattern creazionale che garantisce l'esistenza di una sola istanza, relativa a una classe, durante l'intero ciclo di vita di un'applicazione e fornendo un punto di accesso globale a tale istanza. Utilizzando l’invocazione a un metodo incaricato della produzione degli oggetti, le diverse richieste di istanziazione, comportano la restituzione di un riferimento allo stesso oggetto.
 <br>Viene utilizzato per risorse condivise come logger, configurazioni o connessioni a database, evitando duplicazioni e garantendo coerenza.
 
 ## 🏭 Caratteristiche
@@ -23,7 +24,9 @@ In UML, è rappresentato:
   <img title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_Singleton_UML.png" style="width: 65%; height: 65%;"><br/>
 </p>
 
-La versione "base" del pattern denominata **Lazy Initialization (Non thread-safe)** crea l'istanza solo alla prima chiamata del metodo _getInstance_ risparmiando risorse se non utilizzata.
+
+### **Lazy Initialization (Non thread-safe)**
+Questa versione "base" del pattern crea l'istanza solo alla prima chiamata del metodo `getInstance` risparmiando risorse se non utilizzata.
 
 ```java
 public class Singleton {
@@ -96,11 +99,11 @@ public class SingletonTest {
 
 Questa versione non è adatta a sistemi multithread perché non è **thread-safe**. In un ambiente con più thread, la mancanza di sincronizzazione può portare alla creazione di più istanze della classe, violando il principio cardine del pattern:
 
-- **Race Condition:** Quando due o più thread chiamano contemporaneamente il metodo `getInstance()` nel momento in cui l'istanza è ancora `null`, entrambi possono superare il controllo `if(INSTANCE == null){ .. }` nello stesso istante. Di conseguenza, ogni thread procederà a creare la propria istanza separata.
-- **Mancanza di atomicità:** L'operazione "controlla se è nullo e poi crea" (**check-then-act**) non è atomica. Senza un meccanismo di blocco, i thread possono intercalare le loro operazioni in modo imprevedibile.
-- **Problemi di visibilità della memoria:** Senza l'uso di parole chiave come `synchronized` o `volatile`, un thread potrebbe non "vedere" immediatamente l'istanza appena creata da un altro thread a causa delle ottimizzazioni della memoria della JVM, portandolo a crearne una nuova.
+- **Race Condition:** Quando due o più thread chiamano contemporaneamente il metodo `getInstance()` nel momento in cui la variabile **Singleton** `INSTANCE` è ancora `null`, entrambi possono superare il controllo `if(INSTANCE == null){ .. }` di conseguenza, ogni thread procederà a creare la propria istanza separata.
+- **Mancanza di atomicità:** L'operazione `if(INSTANCE == null){ .. }` "controlla se è nullo e poi crea" (**check-then-act**) non è atomica. Senza un meccanismo di blocco, i thread possono intercalare le loro operazioni in modo imprevedibile.
+- **Problemi di visibilità della memoria:** Senza l'uso di keyword `synchronized` o `volatile`, un thread potrebbe non "vedere" immediatamente l'istanza appena creata da un altro thread, causa ottimizzazioni della memoria da parte della JVM, portandolo a crearne una nuova.
 
-Per rendere il Singleton **thread-safe**, si possono utilizzare le seguenti varianti:
+Per rendere il codice **thread-safe**, si possono utilizzare altre varianti.
 
 ----
 
