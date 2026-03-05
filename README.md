@@ -17,11 +17,10 @@ Argomenti trattati:
   - Java Runtime Environment & Java Development Kit
   - Java Virtual Machine
 
-- Design Patterns
-  - Descrizione - [link](designpatterns)
+- Design Patterns - [link](designpatterns) 
   - Patterns Creazionali - [link](designpatterns/creazionali)
-  - Patterns Strutturali
-  - Patterns Comportamentali
+  - Patterns Strutturali - [link](designpatterns/strutturali)
+  - Patterns Comportamentali - [link](designpatterns/comportamentali)
 
 
 ## 👥 Authors
