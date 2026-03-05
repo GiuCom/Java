@@ -1,11 +1,16 @@
+<p align="center">
 <h1 style="text-align: center;">Design Patterns</h1>
-<a href="../creazionali"><h3 style="text-align: center;">Creazionali</h3></a>
+
+## [Creazionali](..)
+
 <h1 style="text-align: center;">Singleton</h1>
+</p>
+
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
 <br/>
-[..](..)
+
 ----
 
 ## 🚀 Introduzione
