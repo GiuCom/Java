@@ -1,12 +1,12 @@
-<h1 style="text-align: center;">Design Patterns</h1>
-<h3 style="text-align: center;">Creazionali</h3>
-<h1 style="text-align: center;">Singleton</h1>
-
-[![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
-[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
-<br/>
+## [Design Patterns](../..)
+### [Creazionali](..)
+# Singleton
 
 ----
+
+[![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br>
+<br>
 
 ## 🚀 Introduzione
 Il **Singleton** è un pattern creazionale che garantisce l'esistenza di una sola istanza, relativa a una classe, durante l'intero ciclo di vita di un'applicazione e fornendo un punto di accesso globale a tale istanza.<br> 
@@ -213,7 +213,7 @@ Sebbene questa versione risolva il problema della creazione di istanze multiple 
 È un'evoluzione del **Metodo Synchronized**, progettato per ridurre l'overhead delle prestazioni. Eliminando la sincronizzazione si riduce, l'uso del _**lock**_, solo al momento della creazione effettiva dell'istanza.<br>
 La creazione di un nuovo oggetto viene sdoppiata in due fasi:
 
-- **Primo Controllo (Non Sincronizzato):** Si verifica se l'istanza è nulla. Se non è nulla, il metodo `getInstance()` restituisce l'oggetto senza acquisire alcun _**lock**:. Questo risolve il problema delle prestazioni.
+- **Primo Controllo (Non Sincronizzato):** Si verifica se l'istanza è nulla. Se non è nulla, il metodo `getInstance()` restituisce l'oggetto senza acquisire alcun _**lock**_. Questo risolve il problema delle prestazioni.
 - **Sincronizzazione:** Se l'istanza è nulla, il thread acquisisce il _**lock**_ su un blocco di codice protetto.
 - **Secondo Controllo (Sincronizzato):** Una volta dentro il blocco protetto, si controlla nuovamente se l'istanza è nulla. Questo è fondamentale perché un altro thread potrebbe aver creato l'istanza nel breve lasso di tempo tra il primo controllo e l'acquisizione del _**lock**_.
 
