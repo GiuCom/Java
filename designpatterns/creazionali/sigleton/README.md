@@ -458,7 +458,14 @@ L'unica vera vulnerabilità (comune a quasi tutte le versione del pattern **Sing
 ----
 
 ### **Singleton Enum**<br>
-È l'approccio definitivo, raccomandato da **Joshua Bloch** (autore di _Effective Java_), per garantire l'unicità dell'istanza in ogni scenario possibile, anche i più estremi. 
+È l'approccio definitivo, raccomandato da **Joshua Bloch** (autore di _Effective Java_), per garantire l'unicità dell'istanza in ogni scenario possibile, anche i più estremi.
+A differenza delle versioni precedenti, non si basa su un trucco di logica (come i lock o le classi interne), ma sfrutta direttamente la natura intrinseca degli `Enum` nel linguaggio Java.<br>
+L' `enum` è una classe speciale che estende `java.lang.Enum`. La JVM garantisce proprietà uniche per le istanze di un enum:
+
+1. **Istanziazione Unica:** La JVM garantisce che ogni costante definita in un `enum` venga istanziata una sola volta durante il caricamento della classe. È, di fatto, un'inizializzazione **Eager** gestita dal runtime.
+2. **Thread-Safety Nativa:** Il processo di inizializzazione degli `enum` è protetto dal meccanismo di class-loading della JVM, rendendolo thread-safe senza bisogno di `synchronized` o `volatile`.
+3. **Protezione contro la Reflection:** Se si prova a istanziare un `enum` tramite `Reflection` (usando `Constructor.newInstance()`), la JVM lancia una `IllegalArgumentException`. È l'unico modo per impedire tecnicamente la creazione di una seconda istanza.
+4. **Serializzazione Automatica:** Nelle altre versione del pattern **Singleton**, la **deserializzazione** crea un nuovo oggetto, rompendo il pattern (a meno di non implementare `readResolve()`). Gli `Enum` hanno un meccanismo di serializzazione speciale che garantisce che l'oggetto deserializzato sia esattamente lo stesso dell'originale.
 
 ```java
 public enum SingletonEnum {
@@ -484,12 +491,6 @@ public enum SingletonEnum {
     }
 }
 ```
-
-Caratteristiche Principali
-- **Thread-Safety Nativa:** La JVM garantisce che le istanze degli `enum` siano create una sola volta in modo thread-safe durante il caricamento della classe.
-- **Protezione dalla Reflection:** A differenza delle varianti viste precedentemente, gli `enum` impediscono l'istanziazione tramite `Reflection` (che lancerebbe un'eccezione `IllegalArgumentException`).
-- **Serializzazione Automatica:** La serializzazione standard di Java garantisce che l'oggetto restituito sia sempre lo stesso (prevenendo la creazione di duplicati).
-- **Semplicità:** È il codice più compatto e meno incline a errori umani.
 
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
@@ -517,4 +518,13 @@ void testSingletonEnumMultithread() throws InterruptedException {
 }
 ```
 
-Nonostante sia la soluzione perfetta, ha un piccolo svantaggio: non supporta la **Lazy Initialization** in modo flessibile come il pattern **Bill Pugh**. L'istanza viene creata non appena la classe `enum` viene referenziata per la prima volta. Inoltre, non può estendere un'altra classe, perché gli `enum` estendono già implicitamente `java.lang.Enum`.
+Caratteristiche Principali
+- **Thread-Safety Nativa:** La JVM garantisce che le istanze degli `enum` siano create una sola volta in modo thread-safe durante il caricamento della classe.
+- **Protezione dalla Reflection:** A differenza delle varianti viste precedentemente, gli `enum` impediscono l'istanziazione tramite `Reflection` (che lancerebbe un'eccezione `IllegalArgumentException`).
+- **Serializzazione Automatica:** La serializzazione standard di Java garantisce che l'oggetto restituito sia sempre lo stesso (prevenendo la creazione di duplicati).
+- **Semplicità:** È il codice più compatto e meno incline a errori umani.
+
+Nonostante sia la soluzione perfetta, ha due piccoli svantaggi:
+
+- **Nessuna Lazy Initialization (flessibilità):** Essendo un `enum`, l'istanza viene creata appena la classe viene toccata.
+- **Nessuna Ereditarietà (tecnico):** Un `enum` non può estendere un'altra classe (perché estende già implicitamente `java.lang.Enum`), sebbene possa implementare interfacce.
