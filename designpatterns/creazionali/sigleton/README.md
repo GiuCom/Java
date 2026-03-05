@@ -1,15 +1,17 @@
 <h1 style="text-align: center;">Design Patterns</h1>
-<h2 style="text-align: center;">Creazionali</h2>
+<h3 style="text-align: center;">Creazionali</h3>
 <h1 style="text-align: center;">Singleton</h1>
-<hr>
 
 [![Static Badge](https://img.shields.io/badge/Java_version-25-blue)](https://openjdk.org/projects/jdk/25/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/GiuCom/Design_Patterns/blob/main/LICENSE)<br/>
 <br/>
 
+----
 
 ## 🚀 Introduzione
-Il Singleton è un pattern creazionale che garantisce l'esistenza di una sola istanza relativa di una classe, fornendo un punto di accesso globale a tale istanza. Viene utilizzato per risorse condivise come logger, configurazioni o connessioni a database, evitando duplicazioni e garantendo coerenza.
+Il **Singleton** è un pattern creazionale che garantisce l'esistenza di una sola istanza, relativa a una classe, durante l'intero ciclo di vita di un'applicazione e fornendo un punto di accesso globale a tale istanza.<br> 
+Utilizzando l’invocazione a un metodo incaricato della produzione degli oggetti, l'eventuali successivi accessi al metodo durante l'esecuzione dell'applicazione, comportano la restituzione di un riferimento allo stesso oggetto.
+<br>Viene utilizzato per risorse condivise come logger, configurazioni o connessioni a database, evitando duplicazioni e garantendo coerenza.
 
 ## 🏭 Caratteristiche
 Il pattern si basa su tre elementi chiave:
@@ -19,20 +21,24 @@ Il pattern si basa su tre elementi chiave:
 
 In UML, è rappresentato:
 
-( foto UML )
+<p align="center">
+  <img title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_Singleton_UML.png" style="width: 65%; height: 65%;"><br/>
+</p>
 
-La versione "base" del pattern denominata **Lazy Initialization (Non thread-safe)** crea l'istanza solo alla prima chiamata del metodo _getInstance_ risparmiando risorse se non utilizzata.
+
+### **Lazy Initialization (Non thread-safe)**
+Questa versione "base" del pattern crea l'istanza solo alla prima chiamata del metodo `getInstance` risparmiando risorse, se non utilizzata.
 
 ```java
 public class Singleton {
 
-    /* Dichiarazione di una variabile Singleton */
+    /* Dichiarazione variabile Singleton */
     private static Singleton INSTANCE = null;
 
-    /* Dichiarazione di una variabile stringa */
+    /* Dichiarazione variabile stringa */
     private String info;
 
-    /* Costruttore privato o comunque non pubblico */
+    /* Costruttore private */
     private Singleton() {
         info = "Oggetto inizializzato";
     }
@@ -56,7 +62,7 @@ public class Singleton {
 }
 ```
 
-Test JUnit 5 per verificare che la classe Singleton mantenga un'unica istanza e conservi correttamente lo stato.
+Test JUnit 5 per verificare che la classe **Singleton** mantenga un'unica istanza e conservi correttamente lo stato.
 
 ```java
 public class SingletonTest {
@@ -92,17 +98,28 @@ public class SingletonTest {
 }
 ```
 
-Questa versione non è adatta a sistemi multithread perché non è **thread-safe**. In un ambiente con più thread, la mancanza di sincronizzazione può portare alla creazione di più istanze della classe, violando il principio cardine del pattern.
+Questa versione non è adatta a sistemi multithread perché non è **thread-safe**.<br>
+In un ambiente con più thread, la mancanza di sincronizzazione può portare alla creazione di più istanze della classe, violando il principio cardine del pattern.<br>
+I principali motivi per cui evitare o prestare estrema attenzione alla versione Lazy sono:
 
-Alcuni motivi tecnici sono:
-- **Race Condition:** Quando due o più thread chiamano contemporaneamente il metodo _getInstance()_ nel momento in cui l'istanza è ancora _null_, entrambi possono superare il controllo _if(INSTANCE == null)_ nello stesso istante. Di conseguenza, ogni thread procederà a creare la propria istanza separata.
-- **Mancanza di atomicità:** L'operazione "controlla se è nullo e poi crea" (check-then-act) non è atomica. Senza un meccanismo di blocco, i thread possono intercalare le loro operazioni in modo imprevedibile.
-- **Problemi di visibilità della memoria:** Senza l'uso di parole chiave come _synchronized_ o _volatile_, un thread potrebbe non "vedere" immediatamente l'istanza appena creata da un altro thread a causa delle ottimizzazioni della memoria della JVM, portandolo a crearne una nuova.
+- **Race Condition:** Quando due o più thread chiamano contemporaneamente il metodo `getInstance()`, nel momento in cui la variabile **Singleton** `INSTANCE` è ancora `null`, entrambi possono superare il controllo `if(INSTANCE == null){ .. }` di conseguenza, ogni thread procederà a creare la propria istanza separata.
+- **Mancanza di atomicità:** L'operazione `if(INSTANCE == null){ .. }` "controlla se è nullo e poi crea" (**check-then-act**) non è atomica. Senza un meccanismo di blocco, i thread possono intercalare le loro operazioni in modo imprevedibile.
+- **Overhead di Sincronizzazione:** Senza l'uso di keyword `synchronized` o `volatile`, un thread potrebbe non "vedere" immediatamente l'istanza appena creata da un altro thread, causa ottimizzazioni della memoria da parte della JVM, portandolo a crearne una nuova.
+- **Latenza al Primo Utilizzo:** Poiché l'oggetto viene creato solo quando serve, la prima chiamata metodo `getInstance()` subirà un ritardo dovuto al tempo di istanziazione. Se l'oggetto è "pesante" (es. apre una connessione DB complessa), questo può causare picchi di latenza improvvisi durante l'esecuzione.
 
-Per rendere il Singleton **thread-safe**, si possono utilizzare le seguenti varianti:
+Per migliorare il codice e renderlo **thread-safe**, si possono utilizzare le seguenti versioni.
 
-**Metodo Synchronized**<br>
-Il modificatore synchronized viene utilizzato per risolvere il problema della concorrenza: senza di esso, due thread che accedono contemporaneamente al metodo potrebbero creare due istanze diverse.
+----
+
+### **Metodo Synchronized**<br>
+Il modificatore `synchronized` viene utilizzato per risolvere il problema della concorrenza.<br>
+A livello tecnico, questa versione aggiunge un modificatore di **mutua esclusione** direttamente alla firma del metodo `getInstance()` che restituisce l'istanza.<br>
+Passaggi logici:
+
+1. **Chiamata al Metodo:** Un thread invoca il metodo `getInstance()`.
+2. **Acquisizione del Monitor:** Il thread tenta di acquisire il _**lock**_ (il monitor) della classe. Se un altro thread lo sta già usando, il nuovo arrivato viene messo in stato di attesa.
+3. **Controllo e Creazione:** Una volta ottenuto il _**lock**_, il thread controlla se la variabile `static` `INSTANCE` è `null`. Se lo è, istanzia l'oggetto.
+4. **Rilascio del Lock:** Il thread restituisce l'istanza e rilascia il _**lock**_, permettendo ad altri thread di accedere al metodo `getInstance()`.
 
 ```java
 public class SingletonSynchronized {
@@ -113,7 +130,7 @@ public class SingletonSynchronized {
     /* Dichiarazione di una variabile stringa */
     private String info;
 
-    /* Costruttore privato o comunque non pubblico */
+    /* Costruttore private */
     private SingletonSynchronized() {
         info = "Oggetto inizializzato";
     }
@@ -137,13 +154,7 @@ public class SingletonSynchronized {
 }
 ```
 
-Caratteristiche Principali
-- **Lazy Initialization:** L'istanza non viene creata all'avvio dell'applicazione, ma solo la prima volta che viene effettivamente richiesta tramite il metodo _getInstance()_.
-- **Thread Safety:** L'uso della parola chiave _synchronized_ nel metodo di accesso garantisce che un solo thread alla volta possa eseguire il blocco di codice, evitando che due thread creino contemporaneamente due istanze diverse (violando il pattern).
-- **Overhead di Performance:** Poiché l'intero metodo è sincronizzato, ogni chiamata a _getInstance()_ deve acquisire un _lock_, anche dopo che l'istanza è già stata creata. Questo può diventare un colloquio di bottiglia in applicazioni ad alto traffico.
-- **Semplicità:** È la soluzione più immediata da scrivere rispetto a varianti più complesse.
-
-- Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
+Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
 ```java
 void testSingletonSynchronizedMultithread() throws InterruptedException {
@@ -187,8 +198,24 @@ void testSingletonSynchronizedMultithread() throws InterruptedException {
     }
 ```
 
-**Double-Checked Locking (DCL)**<br>
-È un'evoluzione del **Metodo Synchronized**, progettato per ridurre l'overhead delle prestazioni eliminando la sincronizzazione, non necessaria una volta che l'istanza è stata creata.
+Caratteristiche Principali
+- **Lazy Initialization:** L'istanza non viene creata all'avvio dell'applicazione, ma solo la prima volta che viene effettivamente richiesta tramite il metodo `getInstance()`.
+- **Thread Safety:** L'uso della keyword `synchronized` nel metodo di accesso garantisce che un solo thread alla volta possa eseguire il blocco di codice, evitando che due thread creino contemporaneamente due istanze diverse (violando il pattern).
+- **Overhead di Performance:** Poiché l'intero metodo è sincronizzato, ogni chiamata a `getInstance()` deve acquisire un _lock_, anche dopo che l'istanza è già stata creata. Questo può diventare un colloquio di bottiglia in applicazioni ad alto traffico.
+
+Sebbene questa versione risolva il problema della creazione di istanze multiple (**Race Condition** vista nella versione **Lazy Initialization**), introduce i seguenti colli di bottiglia:
+- **Degrado delle Prestazioni:** Il _**lock**_ viene acquisito ogni volta che viene chiamato il metodo `getInstance()`, anche se l'istanza esiste già da tempo e basterebbe leggerla.
+- **Contesa (Contention):** In applicazioni ad alto traffico con molti thread, i thread rimarranno in coda inutilmente per un'operazione di sola lettura, riducendo drasticamente il throughput del sistema.
+
+----
+
+### **Double-Checked Locking (DCL)**<br>
+È un'evoluzione del **Metodo Synchronized**, progettato per ridurre l'overhead delle prestazioni. Eliminando la sincronizzazione si riduce, l'uso del _**lock**_, solo al momento della creazione effettiva dell'istanza.<br>
+La creazione di un nuovo oggetto viene sdoppiata in due fasi:
+
+- **Primo Controllo (Non Sincronizzato):** Si verifica se l'istanza è nulla. Se non è nulla, il metodo `getInstance()` restituisce l'oggetto senza acquisire alcun _**lock**:. Questo risolve il problema delle prestazioni.
+- **Sincronizzazione:** Se l'istanza è nulla, il thread acquisisce il _**lock**_ su un blocco di codice protetto.
+- **Secondo Controllo (Sincronizzato):** Una volta dentro il blocco protetto, si controlla nuovamente se l'istanza è nulla. Questo è fondamentale perché un altro thread potrebbe aver creato l'istanza nel breve lasso di tempo tra il primo controllo e l'acquisizione del _**lock**_.
 
 ```java
 public class SingletonDCL {
@@ -199,7 +226,7 @@ public class SingletonDCL {
     /* Dichiarazione di una variabile stringa */
     private String info;
 
-    /* Costruttore privato o comunque non pubblico */
+    /* Costruttore private */
     private SingletonDCL() {
         info = "Oggetto inizializzato";
     }
@@ -229,27 +256,6 @@ public class SingletonDCL {
 }
 ```
 
-La parola chiave **_volatile_** è indispensabile a causa di come la Java Virtual Machine (JVM) e le CPU moderne ottimizzano l'esecuzione del codice (Instruction Reordering).
-Senza _volatile_, l'operazione _INSTANCE = new SingletonDCL();_ non è atomica. A livello di bytecode, viene divisa in tre passaggi:
-
-- **Allocazione memoria:** Viene riservato lo spazio per l'oggetto.
-- **Inizializzazione:** Viene eseguito il costruttore (impostando i campi).
-- **Assegnazione:** Il riferimento _INSTANCE_ punta alla memoria allocata.
-
-Il rischio è che la JVM può riordinare i passaggi 2 e 3. Se il thread A esegue il passaggio 3 (assegnazione) prima del passaggio 2 (costruttore):
-
-- L'istanza non è più null, ma i suoi campi interni non sono ancora stati inizializzati.
-- Il thread B arriva, esegue il primo controllo _if (instance == null)_, vede che non è _null_ e restituisce l'oggetto.
-- Il thread B tenta di usare l'oggetto, ma trova valori incoerenti o nulli, causando crash improvvisi.
-
-La keyword _volatile_ inibisce il riordinamento impedendo alla JVM di scambiare l'ordine tra la costruzione dell'oggetto e l'assegnazione del riferimento.
-Inoltre, forza la CPU a scrivere il valore direttamente nella memoria principale (RAM), assicurando che ogni thread legga sempre il valore più aggiornato e non una copia "vecchia" salvata nella cache locale del core.
-
-Caratteristiche Principali
-- **Riduzione dei Lock:** Invece di sincronizzare l'intero metodo, si sincronizza solo il blocco di creazione dell'istanza. Una volta che l'istanza esiste, i thread non entrano più nel blocco _synchronized_.
-- **Doppio Controllo:** Si verifica se l'istanza è nulla due volte: una fuori dal blocco _synchronized_ (per velocità) e una dentro (per sicurezza).
-- **Parola chiave volatile:** È fondamentale. Senza _volatile_, a causa delle ottimizzazioni del compilatore o della cache della CPU, un thread potrebbe vedere un'istanza parzialmente inizializzata, causando crash imprevedibili.
-
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
 ```java
@@ -276,9 +282,36 @@ public void testSingletonDCLMultithread() throws InterruptedException {
 }
 ```
 
+La keyword `volatile` è indispensabile in quanto la Java Virtual Machine (JVM) o la CPU potrebbero eseguire un **reordering** delle operazioni durante l'istanziazione.<br>
+L'operazione `INSTANCE = new SingletonDCL();` non è atomica e, a livello di bytecode, viene divisa in tre passaggi:
 
-**Eager Initialization (inizializzazione anticipata)**<br>
-L'istanza viene creata al caricamento della classe, indipendentemente dall'uso.
+1. **Allocazione memoria:** Viene riservato lo spazio per l'oggetto.
+2. **Inizializzazione:** Viene eseguito il costruttore (impostando i campi).
+3. **Assegnazione:** Il riferimento _INSTANCE_ punta alla memoria allocata.
+
+Può succedere, con numero alto di utilizzo del metodo `getInstance()`, che la JVM non esegue i passaggi 2 e 3 in modo ordinato. Se il thread A esegue il passaggio 3 (assegnazione) prima del passaggio 2 (costruttore) si ottine:
+
+- L'istanza non è più null, ma i suoi campi interni non sono ancora stati inizializzati.
+- Il thread B, esegue il primo controllo `if (instance == null) { .. }` e vede che non è `null` e restituisce l'oggetto.
+- Il thread B tenta di usare l'oggetto, ma trova valori incoerenti o nulli, causando crash improvvisi.
+
+La keyword `volatile` inibisce il riordinamento impedendo alla JVM di scambiare l'ordine tra la costruzione dell'oggetto e l'assegnazione del riferimento.
+Inoltre, forza la CPU a scrivere il valore direttamente nella memoria principale (RAM), assicurando che ogni thread legga sempre il valore più aggiornato e non una copia "vecchia" salvata nella cache locale del core.
+
+Caratteristiche Principali
+- **Riduzione dei Lock:** Invece di sincronizzare l'intero metodo, si sincronizza solo il blocco di creazione dell'istanza. Una volta che l'istanza esiste, i thread non entrano più nel blocco `synchronized`.
+- **Doppio Controllo:** Si verifica se l'istanza è nulla due volte: una fuori dal blocco `synchronized` (per velocità) e una dentro (per sicurezza).
+- **Parola chiave volatile:** Se non si utilizza la keyword `volatile`, un thread potrebbe vedere un'istanza parzialmente inizializzata, causando crash imprevedibili.
+
+----
+
+### Eager Initialization (inizializzazione anticipata)
+L'istanza viene creata nel momento esatto in cui la classe viene caricata in memoria dal runtime, anziché al momento della prima richiesta.<br>
+Il funzionamento si basa sulle specifiche del caricamento delle classi:
+
+1. **Istanziazione Statica:** L'istanza viene dichiarata come `static` e inizializzata immediatamente sulla stessa riga.
+2. **Caricamento:** Quando il programma fa riferimento alla classe per la prima volta (anche solo per leggere una costante), il **ClassLoader** carica la classe e inizializza tutte le variabili statiche.
+3. **Accesso Diretto:** Il metodo `getInstance()` si limita a restituire l'istanza già esistente, senza eseguire alcun controllo di tipo `if (INSTANCE == null) { ... }`.
 
 ```java
 public class SingletonEager {
@@ -289,7 +322,7 @@ public class SingletonEager {
     /* Dichiarazione di una variabile stringa */
     private String info;
 
-    /* Costruttore privato o comunque non pubblico */
+    /* Costruttore private */
     private SingletonEager() {
         info = "Oggetto inizializzato";
     }
@@ -309,11 +342,6 @@ public class SingletonEager {
     }
 }
 ```
-
-Caratteristiche Principali
-- **Istanza Statica Finale:** L'oggetto viene dichiarato come _static final_, assicurando che sia creato una sola volta dal **ClassLoader**.
-- **Costruttore Privato:** Impedisce la creazione di nuove istanze dall'esterno tramite l'operatore _new_.
-- **Thread-Safety Nativa:** È intrinsecamente sicuro per il multithreading senza bisogno di blocchi _synchronized_, poiché la JVM gestisce l'inizializzazione statica in modo atomico.
 
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
@@ -341,9 +369,24 @@ void testSingletonEagerMultithread() throws InterruptedException {
 }
 ```
 
+Caratteristiche Principali
+- **Istanza Statica Finale:** L'oggetto viene dichiarato come `static final`, assicurando che sia creato una sola volta dal **ClassLoader**.
+- **Costruttore Privato:** Impedisce la creazione di nuove istanze dall'esterno tramite l'operatore `new`.
+- **Thread-Safety Nativa:** È intrinsecamente sicuro per il multithreading senza bisogno di blocchi `synchronized` o `native`, poiché la JVM gestisce l'inizializzazione statica in modo atomico.
+- **Velocità di Accesso:** Il metodo `getInstance()` è estremamente rapido, poiché non contiene logica condizionale né _**lock**_.
 
-**Bill Pugh Singleton**<br>
-È considerato l'approccio più elegante ed efficiente in Java. Sfrutta le garanzie fornite dalle specifiche della Java Virtual Machine (JVM) riguardo al caricamento delle classi per gestire la thread-safety senza l'uso esplicito di _synchronized_.
+Un possibile svantaggio è nella mancata gestione delle eccezioni infatti, se l'inizializzazione statica fallisce (es. errore di connessione), l'intera classe diventa inutilizzabile e l'errore può essere difficile da catturare correttamente.
+
+----
+
+### **Bill Pugh Singleton**<br>
+Noto anche come **Initialization-on-demand holder idiom**, è considerato da molti esperti la soluzione ottimale per implementare il pattern **Singleton** in Java.<br>
+Sfrutta una particolarità del meccanismo di caricamento delle classi della JVM per ottenere i vantaggi di entrambe le versioni precedenti: è **Lazy Initialization** (efficiente) e **Thread-Safe** (sicuro) senza l'uso di `synchronized`.<br>
+La magia di questo pattern risiede nell'utilizzo di una classe privata statica interna **SingletonHelper**. Ecco come funziona a livello di memoria e runtime:
+
+1. **Caricamento Differito:** Quando la classe principale **SingletonBillPugh** viene caricata in memoria, la classe interna **SingletonHelper** non viene caricata. Di conseguenza, l'istanza non viene ancora creata.
+2. **Trigger di Inizializzazione:** L'istanza viene creata solo nel momento in cui viene chiamato per la prima volta il metodo `getInstance()`. Questo metodo fa riferimento a `SingletonHelper.INSTANCE`.
+3. **Garanzia della JVM:** Solo in quel momento la JVM carica la classe **SingletonHelper**. Poiché il caricamento delle classi è un'operazione sequenziale e thread-safe garantita dalle specifiche della JVM, l'istanza statica viene creata una sola volta, anche se più thread chiamano `getInstance()` contemporaneamente.
 
 ```java
 public class SingletonBillPugh {
@@ -378,12 +421,6 @@ public class SingletonBillPugh {
 }
 ```
 
-Caratteristiche Principali
-- **Lazy Initialization:** L'istanza non viene creata quando viene caricata la classe principale (_SingletonBillPugh_), ma solo al primo richiamo del metodo _getInstance()_.
-- **Thread Safety Nativa:** La JVM garantisce che il caricamento di una classe sia un'operazione thread-safe. Poiché l'istanza è una costante _static_ della classe interna, la sua creazione è atomica e protetta dalla JVM stessa. 
-- **Performance Massime:** Non essendoci blocchi _synchronized_ o keyword _volatile_, l'accesso all'istanza è veloce quanto un normale accesso a una variabile statica.
-- **Resistenza ai riordinamenti:** Risolve intrinsecamente il problema degli oggetti parzialmente costruiti senza bisogno di configurazioni extra.
-
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
 ```java
@@ -410,8 +447,25 @@ void testSingletonBillPughMultithread() throws InterruptedException {
 }
 ```
 
-**Singleton Enum**<br>
-È l'approccio definitivo, raccomandato da **Joshua Bloch** (autore di Effective Java), per garantire l'unicità dell'istanza in ogni scenario possibile, anche i più estremi. 
+Caratteristiche Principali
+- **Lazy Initialization:** L'istanza non viene creata quando viene caricata la classe principale **SingletonBillPugh**, ma solo al primo richiamo del metodo `getInstance()`.
+- **Thread Safety Nativa:** La JVM garantisce che il caricamento di una classe sia un'operazione thread-safe. Poiché l'istanza è una costante `static` della classe interna, la sua creazione è atomica e protetta dalla JVM stessa. 
+- **Performance Massime:** Non essendoci blocchi con keyword `synchronized` o `volatile`, l'accesso all'istanza è veloce quanto un normale accesso a una variabile `static`.
+- **Resistenza ai riordinamenti:** Risolve intrinsecamente il problema degli oggetti parzialmente costruiti senza bisogno di configurazioni extra.
+
+L'unica vera vulnerabilità (comune a quasi tutte le versione del pattern **Singleton**) è l'uso della **Reflection**, che potrebbe forzare l'accesso al costruttore privato. Per blindarlo completamente, bisognerebbe lanciare un'eccezione nel costruttore se l'istanza esiste già.
+
+----
+
+### **Singleton Enum**<br>
+È l'approccio definitivo, raccomandato da **Joshua Bloch** (autore di _Effective Java_), per garantire l'unicità dell'istanza in ogni scenario possibile, anche i più estremi.
+A differenza delle versioni precedenti, non si basa su un trucco di logica (come i lock o le classi interne), ma sfrutta direttamente la natura intrinseca degli `Enum` nel linguaggio Java.<br>
+L' `enum` è una classe speciale che estende `java.lang.Enum`. La JVM garantisce proprietà uniche per le istanze di un enum:
+
+1. **Istanziazione Unica:** La JVM garantisce che ogni costante definita in un `enum` venga istanziata una sola volta durante il caricamento della classe. È, di fatto, un'inizializzazione **Eager** gestita dal runtime.
+2. **Thread-Safety Nativa:** Il processo di inizializzazione degli `enum` è protetto dal meccanismo di class-loading della JVM, rendendolo thread-safe senza bisogno di `synchronized` o `volatile`.
+3. **Protezione contro la Reflection:** Se si prova a istanziare un `enum` tramite `Reflection` (usando `Constructor.newInstance()`), la JVM lancia una `IllegalArgumentException`. È l'unico modo per impedire tecnicamente la creazione di una seconda istanza.
+4. **Serializzazione Automatica:** Nelle altre versione del pattern **Singleton**, la **deserializzazione** crea un nuovo oggetto, rompendo il pattern (a meno di non implementare `readResolve()`). Gli `Enum` hanno un meccanismo di serializzazione speciale che garantisce che l'oggetto deserializzato sia esattamente lo stesso dell'originale.
 
 ```java
 public enum SingletonEnum {
@@ -437,12 +491,6 @@ public enum SingletonEnum {
     }
 }
 ```
-
-Caratteristiche Principali
-- **Thread-Safety Nativa:** La JVM garantisce che le istanze degli _enum_ siano create una sola volta in modo thread-safe durante il caricamento della classe.
-- **Protezione dalla Reflection:** A differenza dei Singleton classici, gli _enum_ impediscono l'istanziazione tramite _Reflection_ (che lancerebbe un'eccezione _IllegalArgumentException_).
-- **Serializzazione Automatica:** La serializzazione standard di Java garantisce che, anche dopo essere stato salvato su disco e ricaricato, l'oggetto restituito sia sempre lo stesso (prevenendo la creazione di duplicati).
-- **Semplicità:** È il codice più compatto e meno incline a errori umani.
 
 Test JUnit 5 per verificare che la classe mantenga un'unica istanza e conservi correttamente lo stato durante l'esecuzione di diversi thread.
 
@@ -470,4 +518,13 @@ void testSingletonEnumMultithread() throws InterruptedException {
 }
 ```
 
-Nonostante sia la soluzione perfetta, ha un piccolo svantaggio: non supporta la **Lazy Initialization** in modo flessibile come il pattern **Bill Pugh**. L'istanza viene creata non appena la classe _Enum_ viene referenziata per la prima volta. Inoltre, non può estendere un'altra classe, perché gli _enum_ estendono già implicitamente _java.lang.Enum_.
+Caratteristiche Principali
+- **Thread-Safety Nativa:** La JVM garantisce che le istanze degli `enum` siano create una sola volta in modo thread-safe durante il caricamento della classe.
+- **Protezione dalla Reflection:** A differenza delle varianti viste precedentemente, gli `enum` impediscono l'istanziazione tramite `Reflection` (che lancerebbe un'eccezione `IllegalArgumentException`).
+- **Serializzazione Automatica:** La serializzazione standard di Java garantisce che l'oggetto restituito sia sempre lo stesso (prevenendo la creazione di duplicati).
+- **Semplicità:** È il codice più compatto e meno incline a errori umani.
+
+Nonostante sia la soluzione perfetta, ha due piccoli svantaggi:
+
+- **Nessuna Lazy Initialization (flessibilità):** Essendo un `enum`, l'istanza viene creata appena la classe viene toccata.
+- **Nessuna Ereditarietà (tecnico):** Un `enum` non può estendere un'altra classe (perché estende già implicitamente `java.lang.Enum`), sebbene possa implementare interfacce.
