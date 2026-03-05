@@ -213,7 +213,7 @@ Sebbene questa versione risolva il problema della creazione di istanze multiple 
 È un'evoluzione del **Metodo Synchronized**, progettato per ridurre l'overhead delle prestazioni. Eliminando la sincronizzazione si riduce, l'uso del _**lock**_, solo al momento della creazione effettiva dell'istanza.<br>
 La creazione di un nuovo oggetto viene sdoppiata in due fasi:
 
-- **Primo Controllo (Non Sincronizzato):** Si verifica se l'istanza è nulla. Se non è nulla, il metodo `getInstance()` restituisce l'oggetto senza acquisire alcun _**lock**:. Questo risolve il problema delle prestazioni.
+- **Primo Controllo (Non Sincronizzato):** Si verifica se l'istanza è nulla. Se non è nulla, il metodo `getInstance()` restituisce l'oggetto senza acquisire alcun _**lock**_. Questo risolve il problema delle prestazioni.
 - **Sincronizzazione:** Se l'istanza è nulla, il thread acquisisce il _**lock**_ su un blocco di codice protetto.
 - **Secondo Controllo (Sincronizzato):** Una volta dentro il blocco protetto, si controlla nuovamente se l'istanza è nulla. Questo è fondamentale perché un altro thread potrebbe aver creato l'istanza nel breve lasso di tempo tra il primo controllo e l'acquisizione del _**lock**_.
 
