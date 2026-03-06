@@ -22,9 +22,14 @@ Il pattern si basa su tre elementi chiave:
 In UML, è rappresentato:
 
 <p align="center">
-  <img title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_Singleton_UML.png" style="width: 65%; height: 65%;"><br/>
+  <img alt="Singleton schema UML" title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_Singleton_UML.png" style="width: 65%; height: 65%;"><br/>
 </p>
 
+-----
+
+### [ESEMPIO](src/main/java/cloud/compagno/designpatterns/crazionali/singleton/esempio)
+
+-----
 
 ### **Lazy Initialization (Non thread-safe)**
 Questa versione "base" del pattern crea l'istanza solo alla prima chiamata del metodo `getInstance` risparmiando risorse, se non utilizzata.
