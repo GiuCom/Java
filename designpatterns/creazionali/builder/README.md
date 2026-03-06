@@ -123,7 +123,7 @@ public class ComputerOfficeBuilder extends ComputerBuilder {
 public class ComputerDirector {
     private ComputerBuilder builder;
 
-    public void setBuilder(ComputerBuilder b) { builder = b; }
+    void setBuilder(ComputerBuilder b) { builder = b; }
 
     public void assembla() {
         builder.creaNuovoComputer();
