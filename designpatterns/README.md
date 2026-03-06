@@ -48,7 +48,7 @@ I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi com
 | Categoria                                | Design Pattern                        | Descrizione                                                                                                           |
 |:-----------------------------------------|:--------------------------------------|:----------------------------------------------------------------------------------------------------------------------|
 | **[Creazionali](creazionali)**           | **Abstract Factory**                  | Fornisce un'interfaccia per creare famiglie di oggetti correlati senza specificarne le classi concrete.               |
-|                                          | **Builder**                           | Separa la costruzione di un oggetto complesso dalla sua rappresentazione.                                             |
+|                                          | **[Builder](creazionali/builder)**                           | Separa la costruzione di un oggetto complesso dalla sua rappresentazione.                                             |
 |                                          | **Factory Method**                    | Definisce un'interfaccia per creare un oggetto, lasciando alle sottoclassi la scelta della classe da istanziare.      |
 |                                          | **Prototype**                         | Crea nuovi oggetti copiando un'istanza esistente (prototipo).                                                         |
 |                                          | **[Sigleton](creazionali/sigleton)**  | Garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa.                      |

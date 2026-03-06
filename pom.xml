@@ -46,7 +46,10 @@
 
         <!-- Variabili si sistema -->
         <singleton.versione>1.0.0</singleton.versione>
-        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.SingletonMain</singleton.mainClass>
+        <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.esempio.SingletonMain</singleton.mainClass>
+        <builder.versione>1.0.0</builder.versione>
+        <builder.mainClass>cloud.compagno.designpatterns.crazionali.builder.esempio.BuilderMain</builder.mainClass>
+
         <!-- -->
     </properties>
 

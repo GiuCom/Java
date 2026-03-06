@@ -10,8 +10,8 @@
     </parent>
 
     <groupId>cloud.compagno.designpatterns.crazionali</groupId>
-    <artifactId>sigleton</artifactId>
-    <name>${project.artifactId}-${singleton.versione}</name>
+    <artifactId>builder</artifactId>
+    <name>${project.artifactId}-${builder.versione}</name>
     <packaging>jar</packaging>
 
     <build>
@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>${singleton.mainClass}</mainClass>
+                            <mainClass>${builder.mainClass}</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
