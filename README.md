@@ -40,9 +40,17 @@ Lista di chi ha contribuito:<br/>
 
 ## 📚 References
 
-Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
-Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
-Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
+
+**Libri:**<br/>
+- Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
+- Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
+- Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
+
+**Siti web:**<br/>
+- **Wikipedia** - [link](https://www.wikipedia.org)<br/>
+- **YouTube** - [link](https://www.youtube.com)<br/>
+- **Gemini** - [link](https://gemini.google.com)<br/>
+- **html.it** - [link](https://www.html.it)<br/>
 
 
 ## ⚖️ Licenza
