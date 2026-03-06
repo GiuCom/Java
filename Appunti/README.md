@@ -8,7 +8,7 @@
   <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
 </p>
 
-## 📚 Storia
+## 📚 <a name="Storia"></a>Storia
 <div class="text-justify">Java nasce all’inizio degli anni ’90 in un contesto di rapida evoluzione tecnologica, caratterizzato dalla diffusione di dispositivi elettronici sempre più complessi e dalla necessità di renderli programmabili in modo semplice, sicuro e indipendente dall’hardware. Nel 1991 presso la Sun Microsystems, <b>James Gosling, Patrick Naughton</b> e <b>Mike Sheridan</b> guidarono un gruppo di lavoro noto come <b>Green Team</b> con l’obiettivo di sviluppare un linguaggio di programmazione ad alto livello destinato al controllo di dispositivi elettronici come elettrodomestici, smart card, robot e sistemi embedded. Le richieste principali erano ambiziose: il linguaggio doveva essere portabile, cioè eseguibile su architetture hardware differenti, robusto, per ridurre al minimo gli errori a runtime, e semplice da compilare, poiché i produttori dei dispositivi non erano disposti a investire in strumenti di sviluppo complessi.</div>
 <br/>
 <p align="center">
@@ -65,7 +65,7 @@ Per velocizzare l'esecuzione dell'applicativo, Java utilizza un componente chiam
 
 In breve, un applicativo scritto in linguaggio Java viene compilato per diventare portabile e interpretato/eseguito velocemente su qualsiasi dispositivo con installato un JVM.
 
-## 🧑‍💻 JRE & JDK
+## 🧑‍💻 <a name="JRE_JDK"></a>JRE & JDK
 Il successo globale di Java, fin dal suo debutto nel 1995, è strettamente legato al superamento di uno dei limiti storici dell'informatica: la dipendenza del software dall'hardware sottostante.
 Per aggevolare gli svilippatori o gli utenti che utilizzano un applicativo scritto in linguaggio Java è stata introdotta un'architettura stratificata che separa lo sviluppo dall'esecuzione attraverso tre componenti fondamentali: JDK, JRE e JVM. 
 
@@ -73,7 +73,7 @@ Il **Java Development Kit (JDK)** rappresenta l'ambiente di sviluppo integrale n
 
 Il **Java Runtime Environment (JRE)** agisce come strato di astrazione tra l'applicazione e il sistema operativo, integrando le librerie di classi standard (Java Class Libraries) e la JVM (Java Virtual Machine) necessari affinché il codice possa prendere vita su qualsiasi dispositivo, garantendo portabilità, sicurezza e gestione efficiente delle risorse
 
-## 🧑‍💻 JVM
+## 🧑‍💻 <a name="JVM"></a>JVM
 La **Java Virtual Machine (JVM)**, componente fondamentale del Java Runtime Environment (JRE), funge da traduttore universale, consente ai programmi scritti in linguaggio Java di essere eseguiti su qualsiasi piattaforma senza modifiche del codice sorgente, in quanto esiste una JVM specifica per ogni Sistema Operativo (Windows, Linux o Mac) che "capisce" quel codice.
 </br>
 
@@ -275,44 +275,3 @@ Riassumendo:
       richiedono massima velocità o accesso diretto alle risorse di sistema
 
 
-## 👥 Authors
-
-- **Giuseppe Compagno** - [link](https://www.compagno.cloud)<br/>
-
-
-## 🤝 Contributi
-
-Disponibile a condividere con chiunque consigli o revisioni di codice per migliore il contenuto di questo repository<br/>
-
-
-## 🙏 Ringraziamenti
-
-Lista di chi ha contribuito:<br/>
-
-
-## 📚 References
-
-Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
-Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
-Rudolf Pecinovský, "***OOP – Learn Object-Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
-
-
-## ⚖️ Licenza
-
-Questo progetto è coperto da **licenza MIT** - [link](../LICENSE)<br/>
-
-
-## 📞 Contact
-
-Per un supporto o aiuto:<br/>
-- Crea un issue<br/>
-- Invia un pull request<br/>
-- Contattami via mail - [mail](mailto:info@compagno.cloud)<br/>
-
-
-## 🔍 Version History
-
-- 1.0.0: Fase iniziale<br/>
-
-
---- ❤️ by Giuseppe ♾️ ---
