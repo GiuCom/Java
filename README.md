@@ -50,6 +50,7 @@ Lista di chi ha contribuito:<br/>
 - [**YouTube**](https://www.youtube.com)<br/>
 - [**Gemini**](https://gemini.google.com)<br/>
 - [**html.it**](https://www.html.it)<br/>
+- [**Stack Overflow**](https://stackoverflow.com)<br/>
 
 
 ## ⚖️ Licenza

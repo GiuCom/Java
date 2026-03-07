@@ -217,6 +217,5 @@ Abbiamo utilizzato:
 
 ----
 
-
 Nello sviluppo software moderno (specialmente in linguaggi come Java), è molto diffusa la variante descritta da **Joshua Bloch** nel libro _Effective Java_. Questa variante elimina la classe **Director** e utilizza una classe statica interna (**Inner Builder**) combinata con una **fluent interface** per concatenare le chiamate ai metodi di costruzione.
 
