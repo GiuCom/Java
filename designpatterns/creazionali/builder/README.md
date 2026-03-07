@@ -46,13 +46,13 @@ Le classi che utilizzeremo sono:
 
 - **Computer (Product):** L'oggetto complesso finale. Ha diverse parti (CPU, RAM, Storage, GPU).
 - **ComputerBuilder (Builder):** Un'interfaccia che dichiara i passi di costruzione.
-- **ComputerGamingBuilder, OfficeBuilder (Concrete Builders):** Forniscono le implementazioni specifiche per ogni passo di costruzione e mantengono lo stato del prodotto in via di assemblaggio.
+- **ComputerGamingBuilder, ComputerOfficeBuilder (Concrete Builders):** Forniscono le implementazioni specifiche per ogni passo di costruzione e mantengono lo stato del prodotto in via di assemblaggio.
 - **ComputerDirector (Director):** Definisce l'ordine esatto in cui eseguire i passi di costruzione.
 
 Un dettaglio architetturale cruciale del pattern è che il **Director** non restituisce mai il prodotto. Il Client istanzia il **Builder**, lo passa al **Director**, dice al **Director** di eseguire il lavoro, e infine estrae il prodotto finito dal **Builder**.
 <br>Flusso di esecuzione:
 
-1. Il Client sceglie il tipo specifico di costruzione instanziando **GamingBuilder**.
+1. Il Client sceglie il tipo specifico di costruzione instanziando **ComputerGamingBuilder**.
 2. Il Client passa questo builder al **Director**.
 3. Il Client invoca un metodo sul **Director** (es. `constructFullComputer()`).
 4. Il **Director** chiama iterativamente i metodi `build...()` sul **Builder**.
