@@ -219,3 +219,199 @@ Abbiamo utilizzato:
 
 Nello sviluppo software moderno (specialmente in linguaggi come Java), è molto diffusa la variante descritta da **Joshua Bloch** nel libro _Effective Java_. Questa variante elimina la classe **Director** e utilizza una classe statica interna (**Inner Builder**) combinata con una **fluent interface** per concatenare le chiamate ai metodi di costruzione.
 
+Questa versione del pattern è particolarmente apprezzata nel moderno sviluppo Java perché garantisce l'immutabilità dell'oggetto finale, permette di inserire logiche di validazione
+
+In questo esempio, vedrai come il **Builder** possa gestire la complessità di un PC moderno, dove alcuni componenti sono obbligatori (CPU, RAM) e altri sono opzionali o multipli (Dischi, Periferiche).
+
+La nuova classe **Computer** (con **Inner Static Builder**) rende i campi final e il costruttore private. La costruzione dell'oggetto viene delegata interamente alla classe statica interna **Builder**.
+
+```java
+public class ComputerInnerStaticBuilder {
+  // Campi final per garantire l'immutabilità
+  private final String cpu;
+  private final String ram;
+  private final String gpu;
+
+  // Costruttore private: può essere chiamato solo dal Builder
+  private ComputerInnerStaticBuilder(Builder builder) {
+    this.cpu = builder.cpu;
+    this.ram = builder.ram;
+    this.gpu = builder.gpu;
+  }
+
+  // Metodi getter (niente setter per l'immutabilità)
+  public String getCpu() { return cpu; }
+  public String getRam() { return ram; }
+  public String getGpu() { return gpu; }
+
+  public void mostraConfigurazione() {
+    System.out.println("PC con: " + cpu + ", " + ram + ", " + gpu);
+  }
+
+  // --- INNER STATIC BUILDER ---
+  public static class Builder {
+    private String cpu;
+    private String ram;
+    private String gpu;
+
+    // Metodi fluenti che ritornano l'istanza del Builder stesso
+    public Builder cpu(String cpu) {
+      this.cpu = cpu;
+      return this;
+    }
+
+    public Builder ram(String ram) {
+      this.ram = ram;
+      return this;
+    }
+
+    public Builder gpu(String gpu) {
+      this.gpu = gpu;
+      return this;
+    }
+
+    // Metodo build finale che istanzia l'oggetto Computer
+    public ComputerInnerStaticBuilder build() {
+      return new ComputerInnerStaticBuilder(this);
+    }
+  }
+}
+```
+
+La classe **BuilderMain** viene modificata (dal commento `// Versione con InnerStaticBuilder` in poi) con l'interfaccia "fluente" (chaining dei metodi) che rende estremamente chiara la creazione degli oggetti, senza bisogno di usare classi diverse (**ComputerGamingBuilder, ComputerOfficeBuilder**) o il **ComputerDirector**.
+
+```java
+public class BuilderMain {
+    public static void main(String[] args) {
+
+      // -------------------------------
+      // Versione base
+      // -------------------------------
+      ComputerDirector ingegnere = new ComputerDirector();
+      ComputerBuilder gamingBuilder = new ComputerGamingBuilder();
+
+      // L'ingegnere usa il manuale del PC da Gaming
+      ingegnere.setBuilder(gamingBuilder);
+      ingegnere.assembla();
+
+      // Otteniamo il prodotto finale
+      Computer mioPC = gamingBuilder.getComputer();
+      mioPC.mostraConfigurazione();
+
+      // -------------------------------
+      // Versione con InnerStaticBuilder
+      // -------------------------------
+
+      // Creazione di un PC da Gaming
+      ComputerInnerStaticBuilder gamingPc = new ComputerInnerStaticBuilder.Builder()
+              .cpu("Intel i9")
+              .ram("32GB DDR5")
+              .gpu("NVIDIA RTX 4090")
+              .build();
+
+      // Creazione di un PC da Ufficio
+      ComputerInnerStaticBuilder officePc = new ComputerInnerStaticBuilder.Builder()
+              .cpu("Intel i5")
+              .ram("16GB DDR5")
+              .gpu("NVIDIA GeForce GT 1030")
+              .build();
+
+      // Creazione di un PC Server omettendone la GPU (flessibilità del Builder)
+      ComputerInnerStaticBuilder serverPc = new ComputerInnerStaticBuilder.Builder()
+              .cpu("AMD EPYC")
+              .ram("128GB ECC")
+              .build();
+
+      System.out.println("Configurazione Gaming:");
+      gamingPc.mostraConfigurazione();
+
+      System.out.println("\nConfigurazione Ufficio:");
+      officePc.mostraConfigurazione();
+
+      System.out.println("\nConfigurazione Server:");
+      serverPc.mostraConfigurazione();
+    }
+}
+```
+
+----
+
+## Test
+Per garantire la solidità del codice, ecco una classe di test che verifica le singole configurazioni. Mostra chiaramente come testare i valori assegnati e i casi con attributi mancanti.
+
+Le Annotazioni e Asserzioni utilizzate sono:
+
+- **`@Test`** Questa annotazione dice a JUnit che il metodo che la segue è un caso di test autonomo e deve essere eseguito dal framework.
+- **Le Asserzioni (`Assertions.*`)** Sono il cuore del test. Sono metodi che verificano se il risultato ottenuto (Actual) combacia con quello atteso (Expected). Se l'asserzione fallisce, il test fallisce.
+- **`assertNotNull(oggetto)`** Verifica che l'oggetto sia stato effettivamente creato in memoria e non sia _null_.
+- **`assertEquals(atteso, reale)`** Verifica che due valori siano identici.
+- **`assertNull(oggetto)`** Verifica esplicitamente che un valore sia _null_.
+
+I Test creati sono:
+
+1. **`testGamingComputerBuilder()`** Questo metodo verifica il "percorso ideale" per una configurazione completa.
+   - Istanzia un Computer utilizzando il **Builder** e valorizzando tutti i parametri disponibili (CPU, RAM, GPU).
+   - Questo metodo è importante in quanto assicura che i metodi "fluenti" (`.cpu()`, `.ram()`, `.gpu()`) salvino correttamente i dati nello stato interno del **Builder** e che il metodo `.build()` li trasferisca fedelmente all'oggetto finale **ComputerInnerStaticBuilder**.
+   - Inoltre, dopo aver verificato che l'oggetto esista (`assertNotNull`), controlla singolarmente che la stringa "Intel i9" sia finita esattamente nel campo cpu, e così via.
+
+2. **testOfficeComputerBuilder()** Sembra una ripetizione del test precedente, ma ha uno scopo strutturale.
+   - Crea un'altra configurazione completa, ma con valori diversi.
+   - Dimostra che il **Builder** può essere riutilizzato per creare configurazioni completamente diverse senza che ci siano "interferenze". Creando una nuova istanza di `new ComputerInnerStaticBuilder.Builder()`, abbiamo la garanzia di partire da uno stato pulito.
+
+3. **testPartialComputerBuilder()** Questo è il test più interessante perché esalta il vero vantaggio del pattern **Builder**.
+   - Crea un **ComputerInnerStaticBuilder** impostando solo la CPU e ignorando intenzionalmente RAM e GPU.
+   - Non utilizzando il pattern Builder, avremmo dovuto passare _null_ nei costruttori (es. `new ComputerInnerStaticBuilder("AMD Ryzen 7", null, null)`), rendendo il codice illeggibile. Il **Builder** ci permette semplicemente di omettere la chiamata ai metodi che non ci interessano (es. `new ComputerInnerStaticBuilder.Builder().cpu("AMD Ryzen 7").build();`).
+   - Verifica che la CPU sia stata impostata correttamente, utilizzando `assertNull()` per verificare che RAM e GPU, non essendo state chiamate nel builder, siano rimaste al loro valore di default per gli oggetti in Java (cioè _null_). Il test passa solo se questi campi sono effettivamente vuoti, confermando che il **Builder** gestisce perfettamente i parametri opzionali.
+
+In alcune asserzioni è stato inserito un parametro stringa opzionale, ad esempio:
+`assertNull(customPc.getRam(), "La RAM non è stata impostata, dovrebbe essere null");`<br>
+Se quel test dovesse fallire (magari perché modificata la **Builder** inserendo una RAM di default di "8GB"), JUnit stamperà esattamente quella frase nel report di errore. Questo rende il debugging più veloce, perché comunica subito cosa è andato storto e perché.
+
+```java
+@Test
+public void testGamingComputerBuilder() {
+  ComputerInnerStaticBuilder gamingPc = new ComputerInnerStaticBuilder.Builder()
+          .cpu("Intel i9")
+          .ram("32GB DDR5")
+          .gpu("NVIDIA RTX 4090")
+          .build();
+
+  assertNotNull(gamingPc, "L'oggetto Computer non dovrebbe essere nullo");
+  assertEquals("Intel i9", gamingPc.getCpu());
+  assertEquals("32GB DDR5", gamingPc.getRam());
+  assertEquals("NVIDIA RTX 4090", gamingPc.getGpu());
+}
+
+@Test
+public void testOfficeComputerBuilder() {
+  ComputerInnerStaticBuilder officePc = new ComputerInnerStaticBuilder.Builder()
+          .cpu("Intel i5")
+          .ram("16GB DDR5")
+          .gpu("NVIDIA GeForce GT 1030")
+          .build();
+
+  assertNotNull(officePc);
+  assertEquals("Intel i5", officePc.getCpu());
+  assertEquals("16GB DDR5", officePc.getRam());
+  assertEquals("NVIDIA GeForce GT 1030", officePc.getGpu());
+}
+
+@Test
+public void testPartialComputerBuilder() {
+  // Test per dimostrare la flessibilità nell'omettere parametri
+  ComputerInnerStaticBuilder customPc = new ComputerInnerStaticBuilder.Builder()
+          .cpu("AMD Ryzen 7")
+          .build();
+
+  assertNotNull(customPc);
+  assertEquals("AMD Ryzen 7", customPc.getCpu());
+  assertNull(customPc.getRam(), "La RAM non è stata impostata, dovrebbe essere null");
+  assertNull(customPc.getGpu(), "La GPU non è stata impostata, dovrebbe essere null");
+}
+```
+
+Vantaggi di questa rifattorizzazione:
+
+- **Riduzione delle classi:** Siamo passati da 5 file (**Computer, Builder astratto, Director** e 2 **Builder concreti**) a un solo file (**ComputerInnerStaticBuilder.java**).
+- **Immutabilità:** Gli oggetti creati non possono essere alterati post-costruzione, rendendoli molto sicuri da utilizzare.
+- **Flessibilità parametrica:** Se ci sono parametri opzionali, non devi creare costruttori telescopici o chiamare mille metodi setter.
