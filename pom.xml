@@ -48,7 +48,9 @@
         <singleton.versione>1.0.0</singleton.versione>
         <singleton.mainClass>cloud.compagno.designpatterns.crazionali.singleton.esempio.SingletonMain</singleton.mainClass>
         <builder.versione>1.0.0</builder.versione>
-        <builder.mainClass>cloud.compagno.designpatterns.crazionali.builder.esempio.BuilderMain</builder.mainClass>
+        <builder.mainClass>cloud.compagno.designpatterns.crazionali.builder.BuilderMain</builder.mainClass>
+        <prototype.versione>1.0.0</prototype.versione>
+        <prototype.mainClass>cloud.compagno.designpatterns.crazionali.prototype.PrototypeMain</prototype.mainClass>
 
         <!-- -->
     </properties>
