@@ -282,11 +282,10 @@ La classe **BuilderMain** viene modificata (dal commento `// Versione con InnerS
 
 ```java
 public class BuilderMain {
-    public static void main(String[] args) {
-
-      // -------------------------------
-      // Versione base
-      // -------------------------------
+    static void main() {
+      System.out.println("// -------------------------------");
+      System.out.println("// Versione standard");
+      System.out.println("// -------------------------------");
       ComputerDirector ingegnere = new ComputerDirector();
       ComputerBuilder gamingBuilder = new ComputerGamingBuilder();
 
@@ -298,10 +297,10 @@ public class BuilderMain {
       Computer mioPC = gamingBuilder.getComputer();
       mioPC.mostraConfigurazione();
 
-      // -------------------------------
-      // Versione con InnerStaticBuilder
-      // -------------------------------
-
+      System.out.println();
+      System.out.println("// -------------------------------");
+      System.out.println("// Versione con InnerStaticBuilder");
+      System.out.println("// -------------------------------");
       // Creazione di un PC da Gaming
       ComputerInnerStaticBuilder gamingPc = new ComputerInnerStaticBuilder.Builder()
               .cpu("Intel i9")
