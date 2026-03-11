@@ -14,6 +14,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>sigleton</module>
+        <module>builder</module>
+        <module>prototype</module>
+        <module>abstractfactory</module>
     </modules>
 
 
