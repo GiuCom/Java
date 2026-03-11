@@ -51,6 +51,8 @@
         <builder.mainClass>cloud.compagno.designpatterns.crazionali.builder.BuilderMain</builder.mainClass>
         <prototype.versione>1.0.0</prototype.versione>
         <prototype.mainClass>cloud.compagno.designpatterns.crazionali.prototype.PrototypeMain</prototype.mainClass>
+        <abstractfactory.versione>1.0.0</abstractfactory.versione>
+        <abstractfactory.mainClass>cloud.compagno.designpatterns.crazionali.abstractfactory.AbstractFactoryMain</abstractfactory.mainClass>
 
         <!-- -->
     </properties>
