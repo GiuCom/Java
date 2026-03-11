@@ -51,7 +51,7 @@ Lista di chi ha contribuito:<br/>
 - [**Gemini**](https://gemini.google.com)<br/>
 - [**html.it**](https://www.html.it)<br/>
 - [**Stack Overflow**](https://stackoverflow.com)<br/>
-
+- [**Giuseppe Dell'Abate's Blog**](https://dellabate.wordpress.com)<br/>
 
 ## ⚖️ Licenza
 

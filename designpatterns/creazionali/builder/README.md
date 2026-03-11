@@ -33,7 +33,7 @@ L'implementazione classica del pattern prevede quattro attori principali:
 In UML, è rappresentato:
 
 <p align="center">
-  <img alt="Builder schema UML" title="Builder schema UML" src="../../../Appunti/img/DesignPatterns_Builder_UML.png" style="width: 80%; height: 80%;"><br/>
+  <img alt="Builder schema UML" title="Builder schema UML" src="../../../Appunti/img/DesignPatterns_UML_Builder.png" style="width: 80%; height: 80%;"><br/>
 </p>
 
 -----
