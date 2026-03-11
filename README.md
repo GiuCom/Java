@@ -11,22 +11,21 @@
 Dedicato a chi vuole approcciarsi al mondo Java e visionare materiale per apprendere o cogliere spunto per eventuali lezione su questo linguaggio di programmazione.
 Argomenti trattati:
 
-- Appunti di Java - [link](Appunti)
+- [Appunti di Java](Appunti)
   - Storia di Java
   - Modalità di traduzione del codice
   - Java Runtime Environment & Java Development Kit
   - Java Virtual Machine
 
-- Design Patterns
-  - Descrizione - [link](designpatterns)
-  - Creazionali - [link](designpatterns/creazionali)
-  - Strutturali
-  - Comportamentali
+- [Design Patterns](designpatterns) 
+  - [Creazionali](designpatterns/creazionali)
+  - [Strutturali](designpatterns/strutturali)
+  - [Comportamentali](designpatterns/comportamentali)
 
 
 ## 👥 Authors
 
-- **Giuseppe Compagno** - [mail](https://www.compagno.cloud)<br/>
+- [**Giuseppe Compagno**](https://www.compagno.cloud)<br/>
 
 
 ## 🤝 Contributi
@@ -41,14 +40,22 @@ Lista di chi ha contribuito:<br/>
 
 ## 📚 References
 
-Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
-Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
-Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
+**Libri:**<br/>
+- Claudio De Sio Cesari, "[***Il nuovo Java***](https://www.nuovojava.it)", 2020 <br/>
+- Franco Guidi Polanco, "[***GOF's design patterns in Java***](http://eii.ucv.cl/pers/guidi/designpatterns.htm)", 2002 <br/>
+- Rudolf Pecinovský, "[***OOP – Learn Object Oriented Thinking and Programming***](https://pub.bruckner.cz/titles/oop)", 2013 <br/>
 
+**Siti web:**<br/>
+- [**Wikipedia**](https://www.wikipedia.org)<br/>
+- [**YouTube**](https://www.youtube.com)<br/>
+- [**Gemini**](https://gemini.google.com)<br/>
+- [**html.it**](https://www.html.it)<br/>
+- [**Stack Overflow**](https://stackoverflow.com)<br/>
+- [**Giuseppe Dell'Abate's Blog**](https://dellabate.wordpress.com)<br/>
 
 ## ⚖️ Licenza
 
-Questo progetto è coperto da **licenza MIT** - [LICENSE](LICENSE)<br/>
+Questo progetto è coperto da [**Licenza MIT**](LICENSE)<br/>
 
 
 ## 📞 Contact
@@ -56,7 +63,7 @@ Questo progetto è coperto da **licenza MIT** - [LICENSE](LICENSE)<br/>
 Per un supporto o aiuto:<br/>
 - Crea un issue<br/>
 - Invia un pull request<br/>
-- Contattami via mail - [mail](mailto:info@compagno.cloud)<br/>
+- Contattami [email](mailto:info@compagno.cloud)<br/>
 
 
 ## 🔍 Version History
