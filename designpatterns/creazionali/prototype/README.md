@@ -452,6 +452,81 @@ Analisi dei Pro e Contro del *Deep Copy*
 Per trasformare la classe **FiguraCache** (Prototype Registry) in un sistema che garantisca la **Deep Copy**, non si deve modificare la struttura della mappa, ma il modo in cui la classe interagisce con il metodo `clone()` della classe base.
 Il segreto è la **delegazione**: il Prototype Registry si fida che ogni oggetto sappia clonare se stesso profondamente.
 
+Il Registry memorizza i prototipi "master". Quando viene invocato il metodo `.getFigura`, viene invocato il metodo `clone()` della classe **Figura**, precedentemente modificato per il **Deep Copy**, garantendo che l'oggetto restituito sia totalmente isolato.
+
+La classe **FiguraCache.java** si modifica:
+
+```java
+public class FiguraCache {
+    // Una mappa per conservare i prototipi "master"
+    private static Map<String, Figura> figuraMap = new Hashtable<>();
+    private static FiguraCache instance;
+
+    private FiguraCache() {
+        // Carichiamo i prototipi MASTER (che rimarranno intatti nella mappa)
+        Cerchio masterCerchio = new Cerchio();
+        masterCerchio.setId("1");
+        masterCerchio.setCoordinate(0, 0); // Posizione iniziale (0,0)
+        figuraMap.put(masterCerchio.getId(), masterCerchio);
+
+        Rettangolo masterRettangolo = new Rettangolo();
+        masterRettangolo.setId("2");
+        masterRettangolo.setCoordinate(0, 0); // Posizione iniziale (0,0)
+        figuraMap.put(masterRettangolo.getId(), masterRettangolo);
+    }
+
+    public static synchronized FiguraCache getInstance() {
+        if (instance == null) instance = new FiguraCache();
+        return instance;
+    }
+
+    // Metodo che restituisce il CLONE del prototipo richiesto
+    public static Figura getFigura(String figuraId) {
+        Figura cachedFigura = figuraMap.get(figuraId);
+
+        if (cachedFigura == null) {
+            return null;
+        }
+
+        // Restituiamo SEMPRE un clone, mai l'originale in cache
+        Figura master = figuraMap.get(figuraId.toUpperCase());
+        // Qui avviene la magia della Deep Copy delegata alla classe Shape
+        return (master != null) ? (Figura) master.clone() : null;
+    }
+
+    // Metodo per caricare i prototipi iniziali (simula un DB o config pesante)
+    public static void loadCache() {
+        Cerchio cerchio = new Cerchio();
+        cerchio.setId("1");
+        figuraMap.put(cerchio.getId(), cerchio);
+
+        Rettangolo rettangolo = new Rettangolo();
+        rettangolo.setId("2");
+        figuraMap.put(rettangolo.getId(), rettangolo);
+
+        System.out.println("Cache caricata: Cerchio (ID:1) e Rettangolo (ID:2) pronti.");
+    }
+}
+```
+
+La classe utilizza il pattern [Singleton](../sigleton) per assicurare che esista un'unica "sorgente della verità" per i prototipi:
+
+- **Costruttore Privato:** Impedisce la creazione di istanze multiple. Solo il Registry può istanziare se stesso.
+- **`getInstance()`**: Punto di accesso globale sincronizzato (synchronized) per essere sicuro anche in ambienti multi-thread.
+
+Internamente, il Registry utilizza `Map<String, Figura>`:
+
+- **Contenuto:** La mappa ospita le istanze "Master". Questi oggetti vengono creati una sola volta (nel costruttore) e configurati con i valori di default (es. un Cerchio con posizione 0,0).
+- **Stato Immutabile (Virtuale):** Sebbene gli oggetti nella mappa siano tecnicamente mutabili, il Registry li tratta come immutabili non esponendoli mai direttamente.
+
+Il cuore della classe è il metodo `getFigura(String figuraId)` in quanto se si facesse semplicemente `return master;`, il primo client che modifica la posizione del cerchio cambierebbe la posizione del prototipo nella cache per tutti i client futuri. Chiamando `clone()`, il Registry "sdoppia" l'oggetto e i suoi riferimenti interni prima di consegnarlo. 
+
+Vantaggi della combinazione Prototype Registry + Deep Copy
+
+- **Protezione dai Side-Effect:** Se un programmatore modifica accidentalmente un oggetto ottenuto dal Registry, non corromperà il sistema globale. Ogni richiesta riparte da uno stato "pulito".
+- **Performance selettiva:** Il Registry paga il costo della creazione complessa (es. caricamento da DB) solo una volta all'avvio. La clonazione profonda successiva è molto più veloce di una nuova istanza da zero.
+- **Manutenzione Centralizzata:** Se devi cambiare la posizione iniziale di tutti i rettangoli del sistema, la modifichi in un solo punto: il metodo loadPrototipiIniziali() del Registry.
+
 
 ----
 
@@ -573,6 +648,67 @@ public class PrototypeTest {
             Cerchio clonato = (Cerchio) originale.clone();
             assertNull(clonato.getCoordinate());
         }, "Il metodo clone() deve gestire i campi nulli senza eccezioni");
+    }
+
+    // --- TEST VERSIONE PROTOTYPE REGISTRY + Deep Copy ---
+
+    private FiguraCache registry;
+
+    @BeforeEach
+    void setUp() {
+        // Otteniamo l'istanza Singleton prima di ogni test
+        registry = FiguraCache.getInstance();
+    }
+
+    @Test
+    @DisplayName("Test di Isolamento Totale: Modifica profonda di un clone")
+    void testDeepCopyIsolationInRegistry() {
+        // 1. Estraiamo il primo clone (Cerchio)
+        Figura clone1 = FiguraCache.getFigura("1");
+        assertNotNull(clone1);
+
+        // Supponiamo che il master nel registry abbia posizione (0,0)
+        int xOriginale = clone1.getCoordinate().x;
+        int yOriginale = clone1.getCoordinate().y;
+
+        // 2. Modifichiamo pesantemente lo stato interno di clone1
+        clone1.setId("MODIFICATO_1");
+        clone1.setCoordinate(999, 888);
+
+        // 3. Estraiamo un secondo clone dello stesso tipo dal Registry
+        Figura clone2 = FiguraCache.getFigura("1");
+
+        // 4. VERIFICA: Il secondo clone deve essere "pulito"
+        // Non deve aver risentito delle modifiche fatte a clone1
+        assertNotEquals(clone1.getId(), clone2.getId(), "L'ID non deve essere lo stesso");
+        assertEquals(xOriginale, clone2.getCoordinate().x, "La coordinata X del secondo clone deve essere quella di default (0)");
+        assertEquals(yOriginale, clone2.getCoordinate().y, "La coordinata Y del secondo clone deve essere quella di default (0)");
+
+        // 5. VERIFICA MEMORIA: Gli oggetti Position devono avere indirizzi diversi
+        assertNotSame(clone1.getCoordinate(), clone2.getCoordinate(), "I cloni non devono condividere lo stesso oggetto Position");
+    }
+
+    @Test
+    @DisplayName("Test di Integrità del Master: Il Registry non deve corrompersi")
+    void testRegistryMasterIntegrity() {
+        // Estraiamo un clone e modifichiamolo
+        Figura clone = FiguraCache.getFigura("2");
+        clone.setCoordinate(-1, -2); // Valore assurdo per testare la corruzione
+
+        // Richiediamo un nuovo clone: se il master fosse corrotto, avremmo x = -1
+        Figura freshClone = FiguraCache.getFigura("2");
+
+        // Se il Registry lavora bene, il valore deve essere quello di default impostato nel loadPrototipi (es. 10)
+        assertNotEquals(-1, freshClone.getCoordinate().x, "Il prototipo Master nel Registry è stato corrotto!");
+    }
+
+    @Test
+    @DisplayName("Test Singleton: Stesso Registry per tutta l'app")
+    void testSingletonRegistry() {
+        FiguraCache instance1 = FiguraCache.getInstance();
+        FiguraCache instance2 = FiguraCache.getInstance();
+
+        assertSame(instance1, instance2, "Deve esistere una sola istanza del Registry in memoria");
     }
 }
 ```

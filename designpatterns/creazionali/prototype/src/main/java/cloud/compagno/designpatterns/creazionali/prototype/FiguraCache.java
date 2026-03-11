@@ -11,12 +11,14 @@ public class FiguraCache {
     private FiguraCache() {
         // Carichiamo i prototipi MASTER (che rimarranno intatti nella mappa)
         Cerchio masterCerchio = new Cerchio();
+        masterCerchio.setId("1");
         masterCerchio.setCoordinate(0, 0); // Posizione iniziale (0,0)
-        figuraMap.put("1", masterCerchio);
+        figuraMap.put(masterCerchio.getId(), masterCerchio);
 
         Rettangolo masterRettangolo = new Rettangolo();
+        masterRettangolo.setId("2");
         masterRettangolo.setCoordinate(0, 0); // Posizione iniziale (0,0)
-        figuraMap.put("2", masterRettangolo);
+        figuraMap.put(masterRettangolo.getId(), masterRettangolo);
     }
 
     public static synchronized FiguraCache getInstance() {

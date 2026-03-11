@@ -1,6 +1,7 @@
 package cloud.compagno.designpatterns.creazionali.prototype;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ public class PrototypeTest {
         assertEquals(cerchio.getNomeFigura(), clonedCerchio.getNomeFigura(), "Il tipo deve essere identico nel clone");
     }
 
-    // --- TEST VERSIONE REGISTRY (FiguraCache) ---
+    // --- TEST VERSIONE PROTOTYPE REGISTRY (FiguraCache) ---
 
     @BeforeAll
     static void setupRegistry() {
@@ -58,7 +59,7 @@ public class PrototypeTest {
 
         // 3. Verifico che il secondoo clone abbia ancora l'ID originalee ("2") e non quello modificato ("ID-MODIFICATO")
         assertNotEquals(primoClone.getId(), secondoClone.getId(), "La modifica di un clone non deve corrompere il prototipo nel Registry");
-        assertEquals("2", secondoClone.getId(), "Il nuovo clone dal registry deve avere lo stato originalee");
+        assertEquals("2", secondoClone.getId(), "Il nuovo clone dal registry deve avere lo stato originale");
     }
 
     // --- TEST VERSIONE STANDARD (Deep Copy) ---
@@ -118,5 +119,67 @@ public class PrototypeTest {
             Cerchio clonato = (Cerchio) originale.clone();
             assertNull(clonato.getCoordinate());
         }, "Il metodo clone() deve gestire i campi nulli senza eccezioni");
+    }
+
+
+    // --- TEST VERSIONE PROTOTYPE REGISTRY + Deep Copy ---
+
+    private FiguraCache registry;
+
+    @BeforeEach
+    void setUp() {
+        // Otteniamo l'istanza Singleton prima di ogni test
+        registry = FiguraCache.getInstance();
+    }
+
+    @Test
+    @DisplayName("Test di Isolamento Totale: Modifica profonda di un clone")
+    void testDeepCopyIsolationInRegistry() {
+        // 1. Estraiamo il primo clone (Cerchio)
+        Figura clone1 = FiguraCache.getFigura("1");
+        assertNotNull(clone1);
+
+        // Supponiamo che il master nel registry abbia posizione (0,0)
+        int xOriginale = clone1.getCoordinate().x;
+        int yOriginale = clone1.getCoordinate().y;
+
+        // 2. Modifichiamo pesantemente lo stato interno di clone1
+        clone1.setId("MODIFICATO_1");
+        clone1.setCoordinate(999, 888);
+
+        // 3. Estraiamo un secondo clone dello stesso tipo dal Registry
+        Figura clone2 = FiguraCache.getFigura("1");
+
+        // 4. VERIFICA: Il secondo clone deve essere "pulito"
+        // Non deve aver risentito delle modifiche fatte a clone1
+        assertNotEquals(clone1.getId(), clone2.getId(), "L'ID non deve essere lo stesso");
+        assertEquals(xOriginale, clone2.getCoordinate().x, "La coordinata X del secondo clone deve essere quella di default (0)");
+        assertEquals(yOriginale, clone2.getCoordinate().y, "La coordinata Y del secondo clone deve essere quella di default (0)");
+
+        // 5. VERIFICA MEMORIA: Gli oggetti Position devono avere indirizzi diversi
+        assertNotSame(clone1.getCoordinate(), clone2.getCoordinate(), "I cloni non devono condividere lo stesso oggetto Position");
+    }
+
+    @Test
+    @DisplayName("Test di Integrità del Master: Il Registry non deve corrompersi")
+    void testRegistryMasterIntegrity() {
+        // Estraiamo un clone e modifichiamolo
+        Figura clone = FiguraCache.getFigura("2");
+        clone.setCoordinate(-1, -2); // Valore assurdo per testare la corruzione
+
+        // Richiediamo un nuovo clone: se il master fosse corrotto, avremmo x = -1
+        Figura freshClone = FiguraCache.getFigura("2");
+
+        // Se il Registry lavora bene, il valore deve essere quello di default impostato nel loadPrototipi (es. 10)
+        assertNotEquals(-1, freshClone.getCoordinate().x, "Il prototipo Master nel Registry è stato corrotto!");
+    }
+
+    @Test
+    @DisplayName("Test Singleton: Stesso Registry per tutta l'app")
+    void testSingletonRegistry() {
+        FiguraCache instance1 = FiguraCache.getInstance();
+        FiguraCache instance2 = FiguraCache.getInstance();
+
+        assertSame(instance1, instance2, "Deve esistere una sola istanza del Registry in memoria");
     }
 }
