@@ -22,7 +22,7 @@ Il pattern si basa su tre elementi chiave:
 In UML, è rappresentato:
 
 <p align="center">
-  <img alt="Singleton schema UML" title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_Singleton_UML.png" style="width: 65%; height: 65%;"><br/>
+  <img alt="Singleton schema UML" title="Singleton schema UML" src="../../../Appunti/img/DesignPatterns_UML_Singleton.png" style="width: 65%; height: 65%;"><br/>
 </p>
 
 -----
