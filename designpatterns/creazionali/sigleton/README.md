@@ -488,7 +488,7 @@ public enum SingletonEnum {
         return info;
     }
     
-    public static void main(String[] args) {
+    static void main() {
         SingletonEnum singleton = SingletonEnum.INSTANCE;
         System.out.println(singleton.getInfo());
         singleton.setInfo("Giuseppe");
