@@ -12,6 +12,9 @@
     <groupId>cloud.compagno.designpatterns</groupId>
     <artifactId>strutturali</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>adapter</module>
+    </modules>
 
 
 </project>
