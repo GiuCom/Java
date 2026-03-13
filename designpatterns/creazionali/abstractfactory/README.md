@@ -39,7 +39,7 @@ Una UI multi-piattaforma illustra come l'**Abstract Factory** permetta di gestir
 <br>Vediamo le classi e interfacce da compilare:
 
 <br>Interfaccia **Abstract Factory**
-<br>Desfinisce cosa deve saper fare ogni componente, indipendentemente dal sistema operativo.
+<br>Definisce cosa deve saper fare ogni componente, indipendentemente dal sistema operativo.
 
 - **Button:** Definisce il comportamento comune a tutti i bottoni (es. il metodo `paint()`).
 - **Checkbox:** Definisce il comportamento comune a tutte le checkbox
@@ -120,8 +120,8 @@ class MacFactory implements GUIFactory {
 }
 ```
 
-<br>La classe **Applicazione** (Client)
-<br>L'applicazione non sa (e non deve sapere) quale factory stia usando. Riceve un oggetto di tipo GUIFactory nel costruttore e lo usa per popolare la sua interfaccia.
+<br>Classe **Applicazione**
+<br>L'applicazione non sa (e non deve sapere) quale factory stia usando. Riceve un oggetto di tipo **GUIFactory** nel costruttore e lo usa per popolare la sua interfaccia.
 
 - **Vantaggio:** Per cambiare l'intero stile dell'app da Windows a Mac, basta cambiare l'istanza della factory passata all'inizio, senza toccare una singola riga di codice della logica UI.
 
@@ -147,8 +147,8 @@ class Application {
 }
 ```
 
-<br>La classe **AbstractFactoryMain** (Client)
-<br>n questo scenario, il main funge da orchestratore: configura il sistema in base a una variabile (simulando una scelta di configurazione) e istruisce l'applicazione.
+<br>Classe **AbstractFactoryMain** (Client)
+<br>In questo scenario, il `main` funge da orchestratore, configura il sistema in base a una variabile (simulando una scelta di configurazione) e istruisce l'applicazione.
 ```java
 public class AbstractFactoryMain {
     /**
@@ -184,9 +184,9 @@ public class AbstractFactoryMain {
 Durante l'esecuzione del codice si ottiene:
 
 - **Configurazione:** Il `main` legge una proprietà di sistema (o un file config).
-- **Istanziazione:** Se sei su Windows, crea una **WindowsFactory**. Se sei su Mac crea una **MacFactory**.
+- **Istanziazione:** Se il sistema operativo è Windows, crea una **WindowsFactory**. Se MacOS crea una **MacFactory**.
 - **Iniezione:** La factory scelta viene passata al costruttore di **Application**.
-- **Esecuzione:** Quando chiami app.render(), il client userà i metodi `paint()` degli oggetti concreti creati dalla factory specifica, senza mai aver nominato classi come **WindowsButton** nel suo codice interno.
+- **Esecuzione:** Quando viene utilizzato il metodo `app.render()`, il client userà i metodi `paint()` degli oggetti concreti creati dalla factory specifica, senza mai aver nominato classi ( es. **WindowsButton** ) nel suo codice interno.
 
 Vantaggi e Svantaggi:
 
