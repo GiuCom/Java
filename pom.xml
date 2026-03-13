@@ -53,6 +53,8 @@
         <prototype.mainClass>cloud.compagno.designpatterns.crazionali.prototype.PrototypeMain</prototype.mainClass>
         <abstractfactory.versione>1.0.0</abstractfactory.versione>
         <abstractfactory.mainClass>cloud.compagno.designpatterns.crazionali.abstractfactory.AbstractFactoryMain</abstractfactory.mainClass>
+        <factorymethod.versione>1.0.0</factorymethod.versione>
+        <factorymethod.mainClass>cloud.compagno.designpatterns.crazionali.factorymethod.FactoryMethodMain</factorymethod.mainClass>
 
         <!-- -->
     </properties>
