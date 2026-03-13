@@ -1,4 +1,4 @@
-package cloud.compagno.designpatterns.crazionali.singleton;
+package cloud.compagno.designpatterns.creazionali.singleton;
 
 // Bill Pugh Singleton
 // garantisce il caricamento pigro (lazy loading) e la thread-safety senza sincronizzazioni costose
