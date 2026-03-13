@@ -45,6 +45,7 @@
         <!-- -->
 
         <!-- Variabili si sistema -->
+        <!-- Creazionali -->
         <singleton.versione>1.0.0</singleton.versione>
         <singleton.mainClass>cloud.compagno.designpatterns.creazionali.singleton.esempio.SingletonMain</singleton.mainClass>
         <builder.versione>1.0.0</builder.versione>
@@ -55,8 +56,11 @@
         <abstractfactory.mainClass>cloud.compagno.designpatterns.creazionali.abstractfactory.AbstractFactoryMain</abstractfactory.mainClass>
         <factorymethod.versione>1.0.0</factorymethod.versione>
         <factorymethod.mainClass>cloud.compagno.designpatterns.creazionali.factorymethod.FactoryMethodMain</factorymethod.mainClass>
-
+        <!-- Strutturali -->
+        <adapter.versione>1.0.0</adapter.versione>
+        <adapter.mainClass>cloud.compagno.designpatterns.strutturali.adapter.AdapterMain</adapter.mainClass>
         <!-- -->
+
     </properties>
 
     <description>${nome.applicazione}</description>
