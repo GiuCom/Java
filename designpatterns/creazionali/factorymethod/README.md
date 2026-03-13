@@ -181,7 +181,7 @@ In breve, la classe madre stabilisce quando e come usare l'oggetto, mentre le cl
 ----
 
 ## Test
-Il test di un Factory Method non serve solo a verificare che un oggetto venga creato, ma a garantire che la logica di business rimanga corretta indipendentemente dal tipo di oggetto prodotto.
+Il test di un **Factory Method** non serve solo a verificare che un oggetto venga creato, ma a garantire che la logica di business rimanga corretta indipendentemente dal tipo di oggetto prodotto.
 
 ```java
 public class FactoryMethodTest {
@@ -210,21 +210,20 @@ public class FactoryMethodTest {
 
 I passaggi logici eseguiti nel test JUnit:
 
-1. Fase di Setup (Preparazione)
-   In questa fase, il test istanzia il Concrete Creator (es. LogisticaTerra).
-   Dettaglio: Non stiamo testando direttamente la classe Camion, ma la capacità della factory LogisticaTerra di fornire l'oggetto giusto quando richiesto.
-   Codice: Logistica logistica = new LogisticaTerra();
-2. Fase di Execution (Esecuzione del Factory Method)
-   Il test invoca il metodo che contiene la logica di business (pianificaConsegna()).
-   Dettaglio: Internamente, questo metodo chiama il Factory Method astratto creaTrasporto(). È qui che avviene il "miracolo" del pattern: la classe base Logistica esegue un metodo che non ha ancora implementato, delegando l'esecuzione alla sottoclasse istanziata nel setup.
-   Codice: String risultato = logistica.pianificaConsegna();
-3. Fase di Assertion (Verifica dei Risultati)
-   Questa è la parte più critica e si divide in due controlli:
-   Verifica del Tipo (Identità): Si controlla che l'oggetto creato sia effettivamente quello atteso (es. che LogisticaTerra abbia prodotto un Camion e non una Nave). In JUnit si usa spesso assertTrue(oggetto instanceof ClasseAttesa).
-   Verifica del Comportamento (Output): Si controlla che l'azione eseguita dal prodotto sia corretta. Nel nostro esempio, verifichiamo che la stringa restituita contenga le parole chiave "via terra" o "box di cartone".
-   Codice: assertTrue(risultato.contains("via terra"));
-   Perché questi passaggi sono importanti?
-   Isolamento: Il test conferma che se aggiungi una nuova factory (es. LogisticaAerea), non devi modificare i test delle altre factory.
-   Polimorfismo: Dimostra che il codice client (il test stesso) può trattare tutte le factory allo stesso modo, usando l'interfaccia comune Logistica.
-   Contratto: Assicura che ogni "Prodotto Concreto" rispetti il contratto definito dall'interfaccia Trasporto.
-   Vuoi che proviamo a scrivere un test più avanzato che utilizzi i Mock (con Mockito) per isolare ancora di più la creazione dalla logica?
+1. **Fase di Setup (Preparazione):**
+   In questa fase, il test istanzia il **Concrete Creator** (**LogisticaTerra**).
+   - Non viene testata direttamente la classe **Camion**, ma la capacità della factory **LogisticaTerra** di fornire l'oggetto giusto quando richiesto (`Logistica logistica = new LogisticaTerra();`)
+2. **Fase di Execution (Esecuzione del Factory Method):** 
+   Il test invoca il metodo che contiene la logica di business `pianificaConsegna()` che chiama il Factory Method astratto `creaTrasporto()`. È qui che avviene il "miracolo" del pattern, la classe base **Logistica** esegue un metodo che non ha ancora implementato, delegando l'esecuzione alla sottoclasse istanziata nel setup.
+   `String risultato = logistica.pianificaConsegna();`
+3. **Fase di Assertion (Verifica dei Risultati):** Questa è la parte più critica e si divide in due controlli:
+   - **Verifica del Tipo (Identità):** Si controlla che l'oggetto creato sia effettivamente quello atteso (es. che **LogisticaTerra** abbia prodotto un **Camion** e non una **Nave**). In JUnit si usa `assertTrue(oggetto instanceof ClasseAttesa)`.
+   - **Verifica del Comportamento (Output):** Si controlla che l'azione eseguita dal prodotto sia corretta. Nel nostro esempio, verifichiamo che la stringa restituita contenga le parole chiave **"via terra"** o **"box di cartone"**.
+     `assertTrue(risultato.contains("via terra"));`
+   
+Questi passaggi sono importanti in quanto si può verificare:
+
+- **L'isolamento:** Il test conferma che se aggiungi una nuova factory (es. **LogisticaAerea**), non si deve modificare i test delle altre factory. 
+- **Il polimorfismo:** Dimostra che il codice client (il test stesso) può trattare tutte le factory allo stesso modo, usando l'interfaccia comune **Logistica**. 
+- **Il contratto:** Assicura che ogni "Prodotto Concreto" rispetti il contratto definito dall'interfaccia **Trasporto**.
+ 
