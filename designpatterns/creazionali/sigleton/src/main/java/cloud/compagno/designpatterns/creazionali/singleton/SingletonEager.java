@@ -1,4 +1,4 @@
-package cloud.compagno.designpatterns.crazionali.singleton;
+package cloud.compagno.designpatterns.creazionali.singleton;
 
 public class SingletonEager {
 
