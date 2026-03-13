@@ -1,4 +1,4 @@
-package cloud.compagno.designpatterns.crazionali.singleton.esempio;
+package cloud.compagno.designpatterns.creazionali.singleton.esempio;
 
 public class DatabaseConnection {
 

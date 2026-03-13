@@ -1,4 +1,4 @@
-package cloud.compagno.designpatterns.crazionali.singleton.esempio;
+package cloud.compagno.designpatterns.creazionali.singleton.esempio;
 
 import static org.junit.jupiter.api.Assertions.*;
 

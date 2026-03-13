@@ -27,7 +27,7 @@ In UML, è rappresentato:
 
 -----
 
-### [ESEMPIO](src/main/java/cloud/compagno/designpatterns/crazionali/singleton/esempio)
+### [ESEMPIO](src/main/java/cloud/compagno/designpatterns/creazionali/singleton/esempio)
 
 -----
 

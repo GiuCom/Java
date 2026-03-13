@@ -13,7 +13,6 @@ Argomenti trattati:
 
 - [Appunti di Java](Appunti)
   - Storia di Java
-  - Modalità di traduzione del codice
   - Java Runtime Environment & Java Development Kit
   - Java Virtual Machine
 
