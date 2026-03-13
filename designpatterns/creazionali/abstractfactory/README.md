@@ -10,10 +10,10 @@
 
 ## 🚀 Introduzione
 L'**Abstract Factory** è un pattern creazionale che fornisce un'interfaccia per creare famiglie di oggetti correlati o dipendenti, senza specificare le loro classi concrete. È spesso definito come una "_fabbrica di fabbriche_".
-Le sue principali funzionalità e caratteristiche:
+<br>Le sue principali funzionalità e caratteristiche:
 
 1. **Disaccoppiamento e Astrazione:** Il pattern separa il codice che utilizza gli oggetti (il client) dalla logica della loro creazione, infatti:
-   - Il client interagisce solo con interfacce astratte, ignorando quali classi specifiche (concrete) che vengano effettivamente istanziate.
+   - Il client interagisce solo con interfacce astratte, ignorando quali classi specifiche (concrete) vengano effettivamente istanziate.
    - Questo meccanismo permette di cambiare l'intera famiglia di prodotti (ad esempio, passare da un tema grafico "Light" a uno "Dark") semplicemente sostituendo la factory utilizzata, senza modificare il codice del client.
    
 2. **Creazione di Famiglie di Prodotti:** A differenza del pattern **Factory Method** (che crea un solo tipo di oggetto), l'**Abstract Factory** gestisce gruppi di oggetti che devono lavorare insieme, permettendo la coerenza tra i prodotti. Infatti, se una factory crea un pulsante in stile Windows, creerà anche una barra di scorrimento in stile Windows, evitando che vengano mescolati componenti incompatibili.
@@ -35,10 +35,11 @@ In UML, è rappresentato:
 -----
 
 ### [ESEMPIO](src/main/java/cloud/compagno/designpatterns/crazionali/singleton/esempio)
-L'esempio della UI multi-piattaforma illustra come l'Abstract Factory permetta di gestire intere "famiglie" di oggetti (bottoni, checkbox, scrollbar) garantendo che siano sempre compatibili tra loro (es. non mescolare mai un bottone Windows con una checkbox Mac).
+Una UI multi-piattaforma illustra come l'**Abstract Factory** permetta di gestire intere "famiglie" di oggetti (bottoni, checkbox, scrollbar) garantendo che siano sempre compatibili tra loro (es. non mescolare mai un bottone Windows con una checkbox Mac).
+<br>Vediamo le classi e interfacce da compilare:
 
-<br>Le interfacce **Abstract Factory**
-<br>Definiamo cosa deve saper fare ogni componente, indipendentemente dal sistema operativo. Usiamo le interface.
+<br>Interfaccia **Abstract Factory**
+<br>Desfinisce cosa deve saper fare ogni componente, indipendentemente dal sistema operativo.
 
 - **Button:** Definisce il comportamento comune a tutti i bottoni (es. il metodo `paint()`).
 - **Checkbox:** Definisce il comportamento comune a tutte le checkbox
@@ -58,8 +59,8 @@ interface Checkbox {
 }
 ```
 
-<br>Le classi **Concrete Factory**
-<br>Scriviamo il codice specifico per ogni piattaforma. Avremo, quindi, classi come **WindowsButton** e **MacButton** che implementano l'interfaccia **Button**, ognuna con la propria logica di rendering
+<br>Classe **Concrete Factory**
+<br>Contiene il codice specifico per ogni piattaforma. Si avranno, quindi, classi come **WindowsButton** e **MacButton** che implementano l'interfaccia **Button**, ognuna con la propria logica di rendering
 
 ```java
 // Prodotto Concreto A1
@@ -89,8 +90,8 @@ class MacCheckbox implements Checkbox {
 }
 ```
 
-<br>L'interfaccia' **Abstract Product**
-<br>L'interface **GUIFactory** agisce come un "contratto". Dichiara i metodi per creare ogni tipo di prodotto della famiglia
+<br>Interfaccia **Abstract Product**
+<br>**GUIFactory** è l'interfaccia che agisce come un "contratto". Dichiara i metodi per creare ogni tipo di prodotto della famiglia
 
 ```java
 interface GUIFactory {
@@ -99,8 +100,8 @@ interface GUIFactory {
 }
 ```
 
-<br>Le classi **Concrete Product**
-<br>Ogni factory concreta è responsabile della creazione di una variante specifica della famiglia di prodotti:
+<br>Classe **Concrete Product**
+<br>È responsabile della creazione di una variante specifica della famiglia di prodotti:
 
 - **WindowsFactory:** Restituirà sempre nuovi oggetti **WindowsButton** e **WindowsCheckbox**.
 - **MacFactory:** Restituirà sempre nuovi oggetti **MacButton** e **MacCheckbox**.
