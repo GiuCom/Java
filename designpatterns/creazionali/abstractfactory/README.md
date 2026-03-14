@@ -34,9 +34,9 @@ In UML, è rappresentato:
 
 -----
 
-### [ESEMPIO](src/main/java/cloud/compagno/designpatterns/crazionali/singleton/esempio)
+### ESEMPIO
 Una UI multi-piattaforma illustra come l'**Abstract Factory** permetta di gestire intere "famiglie" di oggetti (bottoni, checkbox, scrollbar) garantendo che siano sempre compatibili tra loro (es. non mescolare mai un bottone Windows con una checkbox Mac).
-<br>Vediamo le classi e interfacce da compilare:
+<br>Vediamo le classi e interfacce da implementare:
 
 <br>Interfaccia **Abstract Factory**
 <br>Definisce cosa deve saper fare ogni componente, indipendentemente dal sistema operativo.
