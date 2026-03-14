@@ -41,8 +41,7 @@ In UML, è rappresentato:
 ### ESEMPIO
 
 Simuliamo l'assemblaggio di un Computer.<br> A seconda del Builder che utilizzeremo (es. Computer da ufficio vs. Computer da gaming), otterremo prodotti con caratteristiche radicalmente diverse, pur utilizzando le stesse istruzioni di assemblaggio.
-
-Le classi che utilizzeremo sono:
+<br>Vediamo le classi e interfacce da implementare:
 
 - **Computer (Product):** L'oggetto complesso finale. Ha diverse parti (CPU, RAM, Storage, GPU).
 - **ComputerBuilder (Builder):** Un'interfaccia che dichiara i passi di costruzione.

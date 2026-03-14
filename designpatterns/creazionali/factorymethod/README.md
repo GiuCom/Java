@@ -30,7 +30,7 @@ In UML, è rappresentato:
 
 ### ESEMPIO
 Immaginiamo un'app di logistica che inizialmente gestisce solo trasporti su strada, ma che deve essere pronta a gestire trasporti marittimi.
-<br>Creiamo le seguenti classi:
+<br>Vediamo le classi e interfacce da implementare:
 
 **Trasporto.java** (Product)<br>
 È il contratto comune. Definisce le operazioni che tutti i tipi di trasporto devono compiere (es. `consegna()`). Il codice client interagirà solo con questa interfaccia, ignorando se il mezzo è un camion o una nave.

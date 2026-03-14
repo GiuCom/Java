@@ -29,7 +29,7 @@ In UML, è rappresentato:
 
 ### ESEMPIO
 Per utilizzare il pattern **Prototype**, l'approccio standard prevede l'implementazione dell'interfaccia **Cloneable** e l'override del metodo `clone()`.
-Nel nostro esempio, creiamo le seguenti classi:
+<br>Vediamo le classi e interfacce da implementare:
 
 **Figura.java** (Prototype)<br>
 È la classe base che definisce il contratto per tutti i prototipi:
