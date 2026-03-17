@@ -129,7 +129,7 @@ Il `main` simula il comportamento di un'applicazione reale che deve far conviver
 - **Istanziazione del Legacy (vecchioHardware):** Iniziamo creando l'oggetto che "parla la lingua sbagliata". Questo rappresenta, ad esempio, una libreria esterna o un database che non possiamo modificare.
 - **Creazione del Ponte (AdattatoreTermometro):** Qui avviene il cuore del pattern. "Impacchettiamo" il vecchio hardware dentro l'adattatore. L'adattatore agisce come uno scudo o un traduttore.
 - **Utilizzo del Polimorfismo:** Si noterà che la variabile `sensoreModerno` è dichiarata di tipo **SensoreMeteo** (l'interfaccia target). Questo è fondamentale, il resto dell'applicazione vedrà solo metodi in Celsius. Se domani cambiassimo il termometro con uno nativo Celsius, il codice del `main` (dopo la creazione) non cambierebbe di una virgola.
-- **Esecuzione Invisibile:** Quando chiamiamo `getTemperaturaCelsius()`, il `main` non vede la formula matematica né la chiamata a `letturaInFahrenheit()`. L'adattatore intercetta la richiesta, interroga il vecchio hardware, fa il calcolo **(°F-32)*5/9** e restituisce il numero pulito.
+- **Esecuzione Invisibile:** Quando chiamiamo `getTemperaturaCelsius()`, il `main` non vede la formula matematica né la chiamata a `letturaInFahrenheit()`. L'adattatore intercetta la richiesta, interroga il vecchio hardware, fa il calcolo _(°F-32)*5/9_ e restituisce il numero pulito.
 - **Output:** Il risultato finale mostra come dati incompatibili siano stati armonizzati perfettamente.
 
 Riepilogo dei vantaggi:
