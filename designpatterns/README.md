@@ -54,7 +54,7 @@ I 23 design pattern presentati nel libro rappresentano soluzioni ai problemi com
 |                                        | **[Sigleton](creazionali/sigleton)**  | Garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa.                      |
 |                                        |                                       |                                                                                                                       |
 | **[Strutturali](strutturali)**         | **[Adapter](strutturali/adapter)**                           | Converte l'interfaccia di una classe in un'altra interfaccia attesa dai client.                                       |
-|                                        | **Bridge**                            | Disaccoppia un'astrazione dalla sua implementazione in modo che le due possano variare indipendentemente.             |
+|                                        | **[Bridge](strutturali/bridge)**                            | Disaccoppia un'astrazione dalla sua implementazione in modo che le due possano variare indipendentemente.             |
 |                                        | **Composite**                         | Struttura gli oggetti in composizioni a albero per rappresentare gerarchie parte-tutto.                               |
 |                                        | **Decorator**                         | Aggiunge dinamicamente responsabilità aggiuntive a un oggetto.                                                        |
 |                                        | **Facade**                            | Fornisce un'interfaccia unificata e semplificata per un insieme di interfacce in un sottosistema.                     |

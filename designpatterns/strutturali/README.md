@@ -22,15 +22,15 @@ Essi hanno come obbiettivo:
 * **Estensibilità:** Aggiungere responsabilità agli oggetti senza alterare il codice originale.
 </p>
 
-| **Pattern**             | **Focus Principale** | **Differenza Chiave**                                              |
-|:------------------------|:---------------------|:-------------------------------------------------------------------|
-| **[Adapter](adapter)**  | Compatibilità        | Cambia l'interfaccia di un oggetto esistente.                      |
-| **Bridge**              | Architettura         | Separa l'astrazione dall'implementazione a priori.                 |
-| **Composite**           | Gerarchia            | Tratta oggetti singoli e gruppi nello stesso modo.                 |
-| **Decorator**           | Estensione           | Aggiunge responsabilità senza cambiare l'interfaccia.              |
-| **Facade**              | Semplicità           | Fornisce una porta d'ingresso semplificata a un sistema complesso. |
-| **Flyweight**           | Efficienza           | Ottimizza la memoria condividendo lo stato comune.                 |
-| **Proxy**               | Controllo            | Gestisce l'accesso all'oggetto reale (ne è un delegato).           |
+| **Pattern**                | **Focus Principale** | **Differenza Chiave**                                              |
+|:---------------------------|:---------------------|:-------------------------------------------------------------------|
+| **[Adapter](adapter)**     | Compatibilità        | Cambia l'interfaccia di un oggetto esistente.                      |
+| **[Bridge](bridge)**       | Architettura         | Separa l'astrazione dall'implementazione a priori.                 |
+| **Composite**              | Gerarchia            | Tratta oggetti singoli e gruppi nello stesso modo.                 |
+| **Decorator**              | Estensione           | Aggiunge responsabilità senza cambiare l'interfaccia.              |
+| **Facade**                 | Semplicità           | Fornisce una porta d'ingresso semplificata a un sistema complesso. |
+| **Flyweight**              | Efficienza           | Ottimizza la memoria condividendo lo stato comune.                 |
+| **Proxy**                  | Controllo            | Gestisce l'accesso all'oggetto reale (ne è un delegato).           |
 
 <p style="text-align: justify;">
 I pattern strutturali permettono di costruire sistemi software robusti ed eleganti, evitando il rischio di creare "monoliti" rigidi. Grazie a questi modelli, è possibile far evolvere componenti indipendenti e integrarli in architetture coerenti, riducendo drasticamente il debito tecnico legato a gerarchie di ereditarietà troppo profonde o interfacce incompatibili.
