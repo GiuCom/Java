@@ -10,8 +10,8 @@
     </parent>
 
     <groupId>cloud.compagno.designpatterns.strutturali</groupId>
-    <artifactId>bridge</artifactId>
-    <name>${project.artifactId}-${bridge.versione}</name>
+    <artifactId>composite</artifactId>
+    <name>${project.artifactId}-${composite.versione}</name>
     <packaging>jar</packaging>
 
     <build>
@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>${bridge.mainClass}</mainClass>
+                            <mainClass>${composite.mainClass}</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -58,4 +58,5 @@
             -->
         </plugins>
     </build>
+
 </project>
