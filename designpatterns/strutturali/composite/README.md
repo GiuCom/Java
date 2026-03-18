@@ -32,7 +32,7 @@ La struttura del pattern è composta dalle seguenti classi e interfacce:
 In UML, è rappresentato:
 
 <p align="center">
-  <img alt="Composite schema UML" title="Composite schema UML" src="../../../Appunti/img/DesignPatterns_UML_Composite.png" style="width: 95%; height: 95%;"><br/>
+  <img alt="Composite schema UML" title="Composite schema UML" src="../../../Appunti/img/DesignPatterns_UML_Composite.png" style="width: 75%; height: 75%;"><br/>
 </p>
 
 -----

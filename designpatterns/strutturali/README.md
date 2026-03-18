@@ -28,7 +28,7 @@ Essi hanno come obbiettivo:
 | **[Adapter](adapter)**      | Compatibilità        | Cambia l'interfaccia di un oggetto esistente.                      |
 | **[Bridge](bridge)**        | Architettura         | Separa l'astrazione dall'implementazione a priori.                 |
 | **[Composite](composite)**  | Gerarchia            | Tratta oggetti singoli e gruppi nello stesso modo.                 |
-| **Decorator**               | Estensione           | Aggiunge responsabilità senza cambiare l'interfaccia.              |
+| **[Decorator](decorator)**               | Estensione           | Aggiunge responsabilità senza cambiare l'interfaccia.              |
 | **Facade**                  | Semplicità           | Fornisce una porta d'ingresso semplificata a un sistema complesso. |
 | **Flyweight**               | Efficienza           | Ottimizza la memoria condividendo lo stato comune.                 |
 | **Proxy**                   | Controllo            | Gestisce l'accesso all'oggetto reale (ne è un delegato).           |
