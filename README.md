@@ -53,6 +53,7 @@ Lista di chi ha contribuito:<br/>
 - [**Giuseppe Dell'Abate's Blog**](https://dellabate.wordpress.com)<br/>
 - [**Codemotion**](https://www.codemotion.com)<br/>
 - [**Medium**](https://medium.com)<br/>
+- [**ResearchGate**](https://www.researchgate.net)<br/>
 
 ## ⚖️ Licenza
 
