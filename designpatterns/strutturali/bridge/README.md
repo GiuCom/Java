@@ -29,7 +29,8 @@ In UML, è rappresentato:
 -----
 
 ### ESEMPIO
-Realizziamo un sistema di produzione di Veicoli. L'idea è separare il Tipo di Veicolo (Astrazione) dal Processo di Produzione (Implementazione). In questo modo, si possono aggiungere nuovi veicoli (es. Camion) o nuovi processi (es. Produzione in Serie) senza modificare le classi esistenti.<br>Vediamo le classi e interfacce da implementare:
+Realizziamo un sistema di produzione di Veicoli. L'idea è separare il Tipo di Veicolo (Astrazione) dal Processo di Produzione (Implementazione). In questo modo, si possono aggiungere nuovi veicoli (es. Camion) o nuovi processi (es. Produzione in Serie) senza modificare le classi esistenti.
+<br>Vediamo le classi e interfacce da implementare:
 
 **Officina.java** (Implementor)<br>
 Questa interfaccia definisce le operazioni di base che tutte le implementazioni concrete devono fornire.
