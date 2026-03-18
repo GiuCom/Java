@@ -61,6 +61,8 @@
         <adapter.mainClass>cloud.compagno.designpatterns.strutturali.adapter.AdapterMain</adapter.mainClass>
         <bridge.versione>1.0.0</bridge.versione>
         <bridge.mainClass>cloud.compagno.designpatterns.strutturali.bridge.BridgeMain</bridge.mainClass>
+        <composite.versione>1.0.0</composite.versione>
+        <composite.mainClass>cloud.compagno.designpatterns.strutturali.composite.CompositeMain</composite.mainClass>
         <!-- -->
 
     </properties>
