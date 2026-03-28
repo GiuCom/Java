@@ -65,6 +65,10 @@
         <composite.mainClass>cloud.compagno.designpatterns.strutturali.composite.CompositeMain</composite.mainClass>
         <decorator.versione>1.0.0</decorator.versione>
         <decorator.mainClass>cloud.compagno.designpatterns.strutturali.decorator.DecoratorMain</decorator.mainClass>
+        <facade.versione>1.0.0</facade.versione>
+        <facade.mainClass>cloud.compagno.designpatterns.strutturali.facade.FacadeMain</facade.mainClass>
+        <flyweight.versione>1.0.0</flyweight.versione>
+        <flyweight.mainClass>cloud.compagno.designpatterns.strutturali.flyweight.FlyweightMain</flyweight.mainClass>
         <!-- -->
 
     </properties>
