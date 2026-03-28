@@ -13,11 +13,11 @@
     <artifactId>creazionali</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>sigleton</module>
-        <module>builder</module>
-        <module>prototype</module>
         <module>abstractfactory</module>
+        <module>builder</module>
         <module>factorymethod</module>
+        <module>prototype</module>
+        <module>sigleton</module>
     </modules>
 
 

@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>designpatterns</module>
-        <module>designpatterns/strutturali/proxy</module>
     </modules>
 
     <properties>
