@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>designpatterns</module>
+        <module>designpatterns/strutturali/proxy</module>
     </modules>
 
     <properties>
@@ -69,6 +70,8 @@
         <facade.mainClass>cloud.compagno.designpatterns.strutturali.facade.FacadeMain</facade.mainClass>
         <flyweight.versione>1.0.0</flyweight.versione>
         <flyweight.mainClass>cloud.compagno.designpatterns.strutturali.flyweight.FlyweightMain</flyweight.mainClass>
+        <proxy.versione>1.0.0</proxy.versione>
+        <proxy.mainClass>cloud.compagno.designpatterns.strutturali.proxy.ProxyMain</proxy.mainClass>
         <!-- -->
 
     </properties>

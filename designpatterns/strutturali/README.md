@@ -30,7 +30,7 @@ Essi hanno come obbiettivo:
 | **[Decorator](decorator)** | Estensione           | Aggiunge responsabilità senza cambiare l'interfaccia.              |
 | **[Facade](facade)**       | Semplicità           | Fornisce una porta d'ingresso semplificata a un sistema complesso. |
 | **[Flyweight](flyweight)** | Efficienza           | Ottimizza la memoria condividendo lo stato comune.                 |
-| **Proxy**                  | Controllo            | Gestisce l'accesso all'oggetto reale (ne è un delegato).           |
+| **[Proxy](proxy)**         | Controllo            | Gestisce l'accesso all'oggetto reale (ne è un delegato).           |
 
 <p style="text-align: justify;">
 I pattern strutturali permettono di costruire sistemi software robusti ed eleganti, evitando il rischio di creare "monoliti" rigidi. Grazie a questi modelli, è possibile far evolvere componenti indipendenti e integrarli in architetture coerenti, riducendo drasticamente il debito tecnico legato a gerarchie di ereditarietà troppo profonde o interfacce incompatibili.

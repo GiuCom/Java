@@ -174,22 +174,22 @@ public class HomeTheater {
 }
 ```
 
-Il pattern Facade è uno dei più amati per la sua capacità di portare ordine nel caos di un sistema complesso. Tuttavia, come ogni strumento di design, non è una "bacchetta magica" e presenta dei compromessi.
+Il pattern **Facade** è uno dei più amati per la sua capacità di portare ordine nel caos di un sistema complesso. Tuttavia, come ogni strumento di design, non è una "bacchetta magica" e presenta dei compromessi.
 
-Pro (Vantaggi)
+**Pro (Vantaggi)**
 - **Isolamento dalla Complessità:** Il vantaggio principale è la semplicificazione. Il client non deve conoscere le decine di metodi di **Projector**, **SoundSystem** o **StreamingService**. Deve solo sapere che esiste un metodo `watchMovie()`. L'uso dei **Records** all'interno del pattern rende lo scambio di dati ancora più pulito e meno propenso a errori.
 - **Disaccoppiamento (Low Coupling):** Se si sostituisce il sottosistema di Streaming con una nuova tecnologia (es. passare da un server locale a una API cloud), si deve modificare solo la classe **HomeTheater** (Facade). Il codice del `main` (Client) rimane intatto.
 - **Sicurezza e Controllo:** La classe **HomeTheater** (Facade) funge da "guardiano". Impedisce ai programmatori meno esperti di chiamare i metodi del sottosistema di classi nell'ordine sbagliato (ad esempio, far partire l'audio prima di aver acceso l'amplificatore), evitando bug difficili da tracciare.
 - **Punto di Ingresso Unico:** In architetture a microservizi o moduli (JPMS), il pattern **Facade** definisce chiaramente qual è l'interfaccia pubblica del modulo, nascondendo tutto ciò che è implementazione interna.
 
-Contro (Svantaggi)
+**Contro (Svantaggi)**
 - **Rischio "God Object" (Classe Onnipotente):** Il rischio maggiore è che la classe **HomeTheater** (Facade) diventi una classe troppo grande che conosce troppe cose e fa troppo. Se non viene gestita bene, finisce per essere accoppiata con ogni singola classe del sistema, diventando difficile da mantenere.
 In questo caso una soluzione applicabile è dividere la classe in più "Facciate" specializzate (es. **HomeTheaterVideo**, **HomeTheaterAudio**).
 - **Limitazione della Flessibilità per utenti esperti:** Un utente "Power User" potrebbe aver bisogno di una configurazione specifica che la classe **HomeTheater** (Facade) non espone (es. cambiare solo l'equalizzazione dell'audio senza spegnere le luci).
 Il pattern non impedisce di accedere direttamente ai sottosistemi (Class), ma se lo si fa troppo spesso, l'utilità della classe **HomeTheater** (Facade) svanisce.
 - **Manutenzione Duplicata:** Ogni volta che si aggiunge una funzionalità fondamentale a un sottosistema (Class), si deve aggiornare anche la classe **HomeTheater** (Facade) per esporre quella nuova funzione, aggiungendo un passaggio in più nello sviluppo.
 
-Quando usarlo?
+**Quando usarlo**
 - Quando vuoi fornire un'interfaccia semplice a un sistema complesso.
 - Quando ci sono molte dipendenze tra i client e le classi che implementano un'astrazione.
 - Quando si vuole stratificare i sottosistemi (usando la classe **HomeTheater** (Facade) come punto di ingresso per ogni livello).
