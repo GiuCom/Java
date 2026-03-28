@@ -6,7 +6,7 @@
     <img title="Logo Java" alt="Logo Java" src="../Appunti/img/Java_Logo_256px.png" ><br/>
     <img title="Versione Java" alt="Versione Java" src="https://img.shields.io/badge/Java_version-25-blue" >
     <img title="Licenza MIT" alt="Licenza MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" ><br/>
-<p/>
+</p>
 
 
 ## 📚 Storia
@@ -19,7 +19,7 @@ Il termine <b>design pattern</b> non ha origine nel settore informatico, fu iniz
 </p>
 
 <p style="text-align: justify;">
-In questo libro si descrive un “linguaggio” per la progettazione di un centro urbano. Le unità di questo linguaggio vengono definite patterns (o modelli). Quest’ultime descrivono l'altezza delle finestre, il numero di piani in altezza di una particolare costruzione, quanto debbono essere ampie le aree verdi nelle vicinanze. Come citato nel libro (con riferimento a edifici e città): “Un pattern descrive un problema che ricorre nell’ambiente e l’essenza della soluzione del problema, in modo tale che si possa riusare questa soluzione milioni di volte senza mai ripeterla in maniera identica due volte”. Lo studio fu realizzato analizzando diverse città medioevali europee e ricercando gli elementi comuni che avessero lo stesso concetto di soluzione ricorrente a un problema altrettanto ricorrente. Pertanto, furono illustrati 253 pattern che permettevano di codificare e standardizzare una possibile soluzione lasciando, a chiunque, ampi margini di personalizzazione per realizzare la propria costruzione. Ciò rende potente l’uso di questo nuovo approccio nell’architettura. Un’altro vantaggio è la modularità in quanto essendo, i pattern, specifici su alcuni problemi e generici su altri rende possibile combinare due o più per realizzare un unico progetto.
+In questo libro si descrive un “linguaggio” per la progettazione di un centro urbano. Le unità di questo linguaggio vengono definite patterns (o modelli). Quest’ultime descrivono l'altezza delle finestre, il numero di piani in altezza di una particolare costruzione, quanto debbono essere ampie le aree verdi nelle vicinanze. Come citato nel libro (con riferimento a edifici e città): “Un pattern descrive un problema che ricorre nell’ambiente e l’essenza della soluzione del problema, in modo tale che si possa riusare questa soluzione milioni di volte senza mai ripeterla in maniera identica due volte”. Lo studio fu realizzato analizzando diverse città medioevali europee e ricercando gli elementi comuni che avessero lo stesso concetto di soluzione ricorrente a un problema altrettanto ricorrente. Pertanto, furono illustrati 253 pattern che permettevano di codificare e standardizzare una possibile soluzione lasciando, a chiunque, ampi margini di personalizzazione per realizzare la propria costruzione. Ciò rende potente l’uso di questo nuovo approccio nell’architettura. Un altro vantaggio è la modularità in quanto essendo, i pattern, specifici su alcuni problemi e generici su altri rende possibile combinare due o più per realizzare un unico progetto.
 
 Negli anni 80, dopo un lungo periodo di ricerca condotta da un team di informatici tra cui spiccano **Adele Goldberg, Alan Kay, Dan Ingalls** e **Ted Kaehler**, venne sviluppato il sistema **Smalltalk-80**, il quale può senz’altro essere riconosciuto, insieme al linguaggio Simula, il capostipite dei linguaggi orientati agli oggetti (Object Oriented Programs) e dell'ambiente grafico interattivo (GUI).
 </p>
