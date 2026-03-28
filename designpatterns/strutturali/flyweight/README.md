@@ -199,6 +199,12 @@ public class FlyweightMain {
 ----
 
 ## Test
+Dipendenze e configurazione
+
+- **Dipendenze di test:** 
+  - `junit-jupiter-api`, 
+  - `junit-jupiter-engine`
+- **Configurazione consigliata:** Maven o Gradle con plugin Surefire/Pitest adeguato per eseguire JUnit 5
 
 ```java
 
