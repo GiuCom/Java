@@ -171,7 +171,7 @@ Dovresti considerare l'uso del Proxy nelle seguenti situazioni:
 
 ## Test
 Il test verifica che il Proxy non istanzi l'oggetto reale finché non è strettamente necessario.
-
+<br>L'obiettivo non è testare il cosa (la visualizzazione dell'immagine), ma il quando (il momento del caricamento).
 
 ```java
 @DisplayName("Validazione Pattern Proxy")
@@ -198,3 +198,10 @@ public class ProxyTest {
     }
 }
 ```
+
+Punti chiave:
+- **Test del Comportamento, non dello Stato:** Il test si focalizza sul ciclo di vita dell'oggetto. La distinzione tra "Prima chiamata" e "Seconda chiamata" serve a verificare che il pattern Proxy agisca come un filtro intelligente. La prima volta inizializza la risorsa pesante (il "Soggetto Reale"), la seconda volta riutilizza l'istanza già pronta.
+- **Lazy Loading (Caricamento Pigro):** Il commento iniziale evidenzia il cuore del pattern. Creando un oggetto della classe **ProxyImmagine**, `new ProxyImmagine(file)`, non stiamo occupando memoria per i dati del file, ma solo preparando un "segnaposto". L'efficienza del sistema è testata implicitamente dalla fluidità tra l'istanziazione e l'uso.
+- **Trasparenza dell'Interfaccia:** L'uso di `proxy.visualizza()` dimostra che il client non sa (e non deve sapere) se sta parlando con l'oggetto reale o con il sostituto. Il test conferma che il pattern Proxy rispetta il contratto dell'interfaccia.
+
+In sintesi, è un test di controllo degli accessi, valida l'abilità del pattern **Proxy** di gestire una risorsa costosa in modo oculato.
