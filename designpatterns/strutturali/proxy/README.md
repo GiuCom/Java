@@ -148,24 +148,24 @@ public class ProxyMain {
 Il pattern **Proxy** è uno strumento potente per gestire il controllo e l'ottimizzazione degli accessi, ma introduce un livello di astrazione che va valutato con attenzione.
 
 **Pro (Vantaggi)**
-- Controllo dell'Accesso (Sicurezza): Permette di gestire i permessi (chi può fare cosa) senza modificare la logica dell'oggetto reale.
-- Ottimizzazione delle Risorse (Lazy Loading): Consente di ritardare l'inizializzazione di oggetti pesanti o costosi solo al momento del bisogno, risparmiando memoria e CPU all'avvio dell'app.
-- Gestione Remota: Nasconde la complessità della rete (marshalling, protocolli, latenza), facendo sembrare un oggetto remoto come se fosse locale.
-- Trasparenza (Open/Closed Principle): È possibile introdurre nuovi proxy (per log, cache o monitoraggio) senza dover modificare il codice del client o dell'oggetto reale.
-- Lifecycle Management: Il proxy può gestire il ciclo di vita dell'oggetto reale (creazione, distruzione, pulizia risorse) in modo autonomo.
+- **Controllo dell'Accesso (Sicurezza):** Permette di gestire i permessi (chi può fare cosa) senza modificare la logica dell'oggetto reale.
+- **Ottimizzazione delle Risorse (Lazy Loading):** Consente di ritardare l'inizializzazione di oggetti pesanti o costosi solo al momento del bisogno, risparmiando memoria e CPU all'avvio dell'app.
+- **Gestione Remota:** Nasconde la complessità della rete (marshalling, protocolli, latenza), facendo sembrare un oggetto remoto come se fosse locale.
+- **Trasparenza (Open/Closed Principle):** È possibile introdurre nuovi proxy (per log, cache o monitoraggio) senza dover modificare il codice del client o dell'oggetto reale.
+- **Lifecycle Management:** Il proxy può gestire il ciclo di vita dell'oggetto reale (creazione, distruzione, pulizia risorse) in modo autonomo.
 
 **Contro (Svantaggi)**
-- Latenza: L'introduzione di un intermediario aggiunge un passaggio in più nella catena di chiamate, il che può causare un leggero ritardo (specialmente critico in sistemi real-time).
-- Complessità del Codice: Aumenta il numero di classi e interfacce nel sistema, rendendo il design più articolato da navigare per nuovi sviluppatori.
-- Risposta Ritardata: Nel caso del Virtual Proxy, la prima chiamata potrebbe apparire molto lenta all'utente finale (perché l'oggetto viene creato in quel momento), causando un'esperienza d'uso non fluida se non gestita con feedback visivi.
+- **Latenza:** L'introduzione di un intermediario aggiunge un passaggio in più nella catena di chiamate, il che può causare un leggero ritardo (specialmente critico in sistemi real-time).
+- **Complessità del Codice:** Aumenta il numero di classi e interfacce nel sistema, rendendo il design più articolato da navigare per nuovi sviluppatori.
+- **Risposta Ritardata:** Nel caso del **Virtual Proxy**, la prima chiamata potrebbe apparire molto lenta all'utente finale (perché l'oggetto viene creato in quel momento), causando un'esperienza d'uso non fluida se non gestita con feedback visivi.
 
 **Quando usarlo**
-Dovresti considerare l'uso del Proxy nelle seguenti situazioni:
-- Virtual Proxy (Lazy Loading): Quando hai oggetti che consumano molta memoria (immagini 4K, grandi dataset, connessioni DB pesanti) e che non vengono usati sempre o immediatamente dal client.
-- Protection Proxy (Access Control): Quando diverse parti del sistema hanno livelli di autorizzazione differenti e vuoi centralizzare il controllo di sicurezza prima di toccare i dati sensibili.
-- Remote Proxy: Quando devi interagire con servizi esterni (API REST, microservizi, server RPC) e vuoi che il resto del codice rimanga pulito e ignaro dei dettagli di rete.
-- Logging/Auditing Proxy: Quando hai bisogno di tracciare ogni singola chiamata effettuata a un oggetto specifico per scopi di debug o conformità legale, senza "sporcare" la logica di business.
-- Caching Proxy: Quando l'oggetto reale esegue calcoli complessi o query lente e vuoi memorizzare i risultati per restituirli istantaneamente alle chiamate successive identiche.
+<br>Bisogna considerare l'uso del Proxy nelle seguenti situazioni:
+- **Virtual Proxy (Lazy Loading):** Quando hai oggetti che consumano molta memoria (immagini 4K, grandi dataset, connessioni DB pesanti) e che non vengono usati sempre o immediatamente dal client.
+- **Protection Proxy (Access Control):** Quando diverse parti del sistema hanno livelli di autorizzazione differenti e vuoi centralizzare il controllo di sicurezza prima di toccare i dati sensibili.
+- **Remote Proxy:** Quando devi interagire con servizi esterni (API REST, microservizi, server RPC) e vuoi che il resto del codice rimanga pulito e ignaro dei dettagli di rete.
+- **Logging/Auditing Proxy:** Quando hai bisogno di tracciare ogni singola chiamata effettuata a un oggetto specifico per scopi di debug o conformità legale, senza "sporcare" la logica di business.
+- **Caching Proxy:** Quando l'oggetto reale esegue calcoli complessi o query lente e vuoi memorizzare i risultati per restituirli istantaneamente alle chiamate successive identiche.
 
 ----
 
