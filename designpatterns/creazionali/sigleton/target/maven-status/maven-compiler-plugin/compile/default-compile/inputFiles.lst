@@ -1,0 +1,9 @@
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/Singleton.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/SingletonBillPugh.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/SingletonDCL.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/SingletonEager.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/SingletonEnum.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/SingletonSynchronized.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/esempio/DatabaseConnection.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/esempio/DatabaseConnectionEnum.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/creazionali/sigleton/src/main/java/cloud/compagno/designpatterns/creazionali/singleton/esempio/SingletonMain.java

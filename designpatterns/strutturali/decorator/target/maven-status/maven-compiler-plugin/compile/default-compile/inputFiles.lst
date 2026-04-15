@@ -1,0 +1,7 @@
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/CifraturaBase64Decorator.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/DecoratorMain.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/FirmaDecorator.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/Messaggio.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/MessaggioDecorator.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/MessaggioSemplice.java
+/media/psf/Condivisa/Sviluppo/Java/Progetti/JavaAppunti/designpatterns/strutturali/decorator/src/main/java/cloud/compagno/designpatterns/strutturali/decorator/PrioritaAltaDecorator.java

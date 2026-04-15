@@ -1,0 +1,11 @@
+cloud/compagno/designpatterns/creazionali/abstractfactory/Checkbox.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/Button.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/MacButton.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/WindowsFactory.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/AbstractFactoryMain.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/MacFactory.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/MacCheckbox.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/WindowsCheckbox.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/WindowsButton.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/GUIFactory.class
+cloud/compagno/designpatterns/creazionali/abstractfactory/Application.class
