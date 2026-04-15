@@ -1,0 +1,8 @@
+cloud/compagno/designpatterns/creazionali/builder/ComputerInnerStaticBuilder$Builder.class
+cloud/compagno/designpatterns/creazionali/builder/ComputerDirector.class
+cloud/compagno/designpatterns/creazionali/builder/Computer.class
+cloud/compagno/designpatterns/creazionali/builder/BuilderMain.class
+cloud/compagno/designpatterns/creazionali/builder/ComputerInnerStaticBuilder.class
+cloud/compagno/designpatterns/creazionali/builder/ComputerOfficeBuilder.class
+cloud/compagno/designpatterns/creazionali/builder/ComputerBuilder.class
+cloud/compagno/designpatterns/creazionali/builder/ComputerGamingBuilder.class

@@ -1,0 +1,4 @@
+cloud/compagno/designpatterns/strutturali/adapter/AdattatoreTermometro.class
+cloud/compagno/designpatterns/strutturali/adapter/SensoreMeteo.class
+cloud/compagno/designpatterns/strutturali/adapter/AdapterMain.class
+cloud/compagno/designpatterns/strutturali/adapter/VecchioTermometroFahrenheit.class

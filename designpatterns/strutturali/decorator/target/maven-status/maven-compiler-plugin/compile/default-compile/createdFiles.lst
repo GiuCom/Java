@@ -1,0 +1,7 @@
+cloud/compagno/designpatterns/strutturali/decorator/PrioritaAltaDecorator.class
+cloud/compagno/designpatterns/strutturali/decorator/MessaggioDecorator.class
+cloud/compagno/designpatterns/strutturali/decorator/DecoratorMain.class
+cloud/compagno/designpatterns/strutturali/decorator/CifraturaBase64Decorator.class
+cloud/compagno/designpatterns/strutturali/decorator/MessaggioSemplice.class
+cloud/compagno/designpatterns/strutturali/decorator/FirmaDecorator.class
+cloud/compagno/designpatterns/strutturali/decorator/Messaggio.class
