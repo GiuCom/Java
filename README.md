@@ -54,6 +54,7 @@ Lista di chi ha contribuito:<br/>
 - [**Codemotion**](https://www.codemotion.com)<br/>
 - [**Medium**](https://medium.com)<br/>
 - [**ResearchGate**](https://www.researchgate.net)<br/>
+- [**Carlos Caballero**](https://www.carloscaballero.io)<br/>
 
 ## ⚖️ Licenza
 
