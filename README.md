@@ -27,9 +27,22 @@ Lista di chi ha contribuito:<br/>
 
 ## 📚 References
 
-Claudio De Sio Cesari, "***Il nuovo Java***", 2020 - [link](https://www.nuovojava.it)<br/>
-Franco Guidi Polanco, "***GOF's design patterns in Java***", 2002 - [link](http://eii.ucv.cl/pers/guidi/designpatterns.htm)<br/>
-Rudolf Pecinovský, "***OOP – Learn Object Oriented Thinking and Programming***", 2013 - [link](https://pub.bruckner.cz/titles/oop)<br/>
+**Libri:**<br/>
+- Claudio De Sio Cesari, "[***Il nuovo Java***](https://www.nuovojava.it)", 2020 <br/>
+- Franco Guidi Polanco, "[***GOF's design patterns in Java***](http://eii.ucv.cl/pers/guidi/designpatterns.htm)", 2002 <br/>
+- Rudolf Pecinovský, "[***OOP – Learn Object Oriented Thinking and Programming***](https://pub.bruckner.cz/titles/oop)", 2013 <br/>
+
+**Siti web:**<br/>
+- [**Wikipedia**](https://www.wikipedia.org)<br/>
+- [**YouTube**](https://www.youtube.com)<br/>
+- [**Gemini**](https://gemini.google.com)<br/>
+- [**html.it**](https://www.html.it)<br/>
+- [**Stack Overflow**](https://stackoverflow.com)<br/>
+- [**Giuseppe Dell'Abate's Blog**](https://dellabate.wordpress.com)<br/>
+- [**Codemotion**](https://www.codemotion.com)<br/>
+- [**Medium**](https://medium.com)<br/>
+- [**ResearchGate**](https://www.researchgate.net)<br/>
+- [**Carlos Caballero**](https://www.carloscaballero.io)<br/>
 
 
 ## ⚖️ Licenza

@@ -195,17 +195,126 @@ public class FlyweightMain {
 }
 ```
 
+Il pattern **Flyweight** è una soluzione chirurgica per l’ottimizzazione della memoria. Si basa sulla separazione tra lo stato intrinseco (dati costanti e condivisibili, come il colore o il nome di una specie di albero) e lo stato estrinseco (dati variabili e unici, come le coordinate X e Y di ogni singolo albero).
+
+**Pro (Vantaggi)**
+- **Risparmio drastico di memoria:** È il vantaggio principale. Riducendo il numero di oggetti fisici in RAM, permette di gestire migliaia (o milioni) di elementi che altrimenti causerebbero un `OutOfMemoryError`.
+- **Centralizzazione dei dati comuni:** Se devi cambiare una proprietà "intrinseca" (es. cambiare il colore di tutte le "Querce" da Verde a Marrone), puoi farlo in un unico oggetto condiviso.
+- **Migliori performance di caching:** Poiché gli oggetti condivisi sono pochi, è più probabile che rimangano nella cache del processore, migliorando la velocità di accesso ai dati comuni.
+
+**Contro (Svantaggi)**
+- **Complessità del codice:** Introduce una struttura più articolata (**Factory**, gestione degli stati, `pool` di oggetti), rendendo il sistema più difficile da leggere e manutenere per chi non conosce il pattern.
+- **Overhead di CPU:** Calcolare lo stato estrinseco o passarlo come parametro ogni volta che si chiama un metodo (es. `disegna(x, y)`) può consumare cicli di CPU extra rispetto ad avere tutto pronto dentro l'oggetto.
+- **Problemi con il Multi-threading:** Se gli oggetti **Flyweight** non sono rigorosamente immutabili, la condivisione tra thread diversi può causare gravi bug di concorrenza.
+
+**Quando usarlo**
+<br>Il pattern **Flyweight** non va usato "per default", ma solo quando si verificano contemporaneamente queste condizioni:
+- **Quantità massiccia di oggetti:** L'applicazione deve creare un numero di oggetti talmente elevato da saturare la memoria RAM.
+- **Stati ripetitivi:** Gran parte dello stato di questi oggetti può essere estratto e condiviso.
+- **L'identità dell'oggetto non è cruciale:** Se il software non ha bisogno di distinguere tra due istanze "identiche" tramite il loro indirizzo di memoria (puntatore), ma solo tramite il loro contenuto.
 
 ----
 
 ## Test
-Dipendenze e configurazione
-
-- **Dipendenze di test:** 
-  - `junit-jupiter-api`, 
-  - `junit-jupiter-engine`
-- **Configurazione consigliata:** Maven o Gradle con plugin Surefire/Pitest adeguato per eseguire JUnit 5
+Dimostra che il sistema è in grado di gestire migliaia di alberi (potenzialmente) salvando in memoria solo poche definizioni di specie, mantenendo però l'individualità della posizione di ogni albero.
 
 ```java
+public class FlyweightTest {
 
+    // ---------------------------------------
+    // Test della classe FlyweightFactory.java
+    // ---------------------------------------
+    @Test
+    void testCondivisioneTipiIntrinseci() {
+        FlyweightFactory factory = new FlyweightFactory();
+        Foresta foresta = new Foresta(factory);
+
+        // Pianta alberi con tipi identici (stato intrinseco identico)
+        foresta.inserisciAlbero(0, 0, "Quercia", "Verde", "Ruvida");
+        foresta.inserisciAlbero(5, 10, "Quercia", "Verde", "Ruvida");
+        // Pianta un albero con tipo differente
+        foresta.inserisciAlbero(3, 12, "Acero", "Rosso", "Liscia");
+
+        // Ci si aspetta due tipi intrinseci condivisi
+        assertEquals(2, factory.getPoolSize(), "Il numero di TreeType creati nel pool dovrebbe essere 2");
+
+        // Verifica che i primi due alberi condividano lo stesso TreeType
+        Albero a1 = foresta.getAlberi().get(0);
+        Albero a2 = foresta.getAlberi().get(1);
+        assertSame(a1.tipoDiAlbero(), a2.tipoDiAlbero(), "I due alberi con lo stesso stato intrinseco dovrebbero condividere lo stesso TreeType");
+    }
+
+    // -----------------------------
+    // Test della classe Albero.java
+    // -----------------------------
+    @Test
+    void disegnoRiceveInformazioniIntrinseche() {
+        AlberoDefinizione alberoDefinizione = new AlberoDefinizione("Quercia", "Verde", "Ruvida");
+        Albero albero = new Albero(7, 9, alberoDefinizione);
+
+        // Reindirizza l'output standard per catturare la stampa
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
+
+        albero.disegna();
+
+        // Ripristina l'output originale
+        System.setOut(originalOut);
+
+        String printed = out.toString();
+        assertTrue(printed.contains("Quercia"));
+        assertTrue(printed.contains("Verde"));
+        assertTrue(printed.contains("Ruvida"));
+        // Controlla che la posizione sia presente
+        assertTrue(printed.contains("[7, 9]"));
+    }
+
+    // ------------------------------
+    // Test della classe Foresta.java
+    // ------------------------------
+    @Test
+    void forestaCondivisioneEOutput() {
+        FlyweightFactory factory = new FlyweightFactory();
+        Foresta foresta = new Foresta(factory);
+
+        foresta.inserisciAlbero(0, 0, "Quercia", "Verde", "Ruvida");
+        foresta.inserisciAlbero(5, 10, "Quercia", "Verde", "Ruvida");
+        foresta.inserisciAlbero(3, 12, "Acero", "Rosso", "Liscia");
+
+        // Cattura output
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
+
+        foresta.disegna();
+
+        System.setOut(originalOut);
+
+        String printed = out.toString();
+        assertTrue(printed.contains("Disegno albero di tipo Quercia"));
+        assertTrue(printed.contains("Disegno albero di tipo Acero"));
+        // Verifica pool
+        assertEquals(2, factory.getPoolSize(), "Il pool dovrebbe contenere esattamente 2 TreeType");
+    }
+}
 ```
+
+Ecco una descrizione accurata dei tre test principali:
+1. **Verifica della Condivisione (FlyweightFactory)**
+   <br>Il test `testCondivisioneTipiIntrinseci` si concentra sul cuore del pattern, **la gestione della memoria**.
+   - **Cosa fa:** Inserisce tre alberi nella foresta. Due hanno caratteristiche identiche (Quercia, Verde, Ruvida), il terzo è diverso (Acero).
+   - **Obiettivo:** Dimostrare che la classe **FlyweightFactory** non crea duplicati inutili.
+   - **Risultato atteso:** Il pool deve contenere solo 2 oggetti (uno per la Quercia e uno per l'Acero). Il test usa `assertSame` per confermare che i primi due alberi puntino esattamente alla stessa istanza di memoria per il loro "tipo".
+
+2. **Verifica dello Stato Estrinseco (Albero)**
+   Il test `disegnoRiceveInformazioniIntrinseche` analizza come l'oggetto "leggero" (l'albero) combina i suoi dati.
+   - **Cosa fa:** Crea un singolo albero in una posizione specifica (7, 9) e cattura l'output della console durante l'esecuzione del metodo `disegna()`.
+   - **Obiettivo:** Verificare che l'albero sia in grado di unire correttamente lo stato intrinseco (condiviso: nome, colore, texture) con lo stato estrinseco (unico: le coordinate x, y).
+   - **Risultato atteso:** La stampa a video deve contenere sia i dettagli della specie che le coordinate spaziali corrette.
+
+3. **Test d'Integrazione (Foresta)**
+   Il test `forestaCondivisioneEOutput` valida il sistema nel suo complesso.
+   - **Cosa fa:** Popola una foresta e invoca il metodo di rendering collettivo `disegna()`.
+   - **Obiettivo:** Assicurarsi che la classe **Foresta** coordini correttamente la factory e gli oggetti albero, garantendo sia l'efficienza del `pool` che la correttezza del comportamento finale (output visivo).
+   - **Risultato atteso:** Conferma finale che il `pool` resti di dimensioni ridotte e che tutti i tipi di alberi vengano effettivamente "disegnati".

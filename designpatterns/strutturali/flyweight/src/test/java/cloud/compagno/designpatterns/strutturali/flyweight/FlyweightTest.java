@@ -59,8 +59,28 @@ public class FlyweightTest {
     // ------------------------------
     // Test della classe Foresta.java
     // ------------------------------
+    @Test
+    void forestaCondivisioneEOutput() {
+        FlyweightFactory factory = new FlyweightFactory();
+        Foresta foresta = new Foresta(factory);
 
+        foresta.inserisciAlbero(0, 0, "Quercia", "Verde", "Ruvida");
+        foresta.inserisciAlbero(5, 10, "Quercia", "Verde", "Ruvida");
+        foresta.inserisciAlbero(3, 12, "Acero", "Rosso", "Liscia");
 
+        // Cattura output
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
 
+        foresta.disegna();
 
+        System.setOut(originalOut);
+
+        String printed = out.toString();
+        assertTrue(printed.contains("Disegno albero di tipo Quercia"));
+        assertTrue(printed.contains("Disegno albero di tipo Acero"));
+        // Verifica pool
+        assertEquals(2, factory.getPoolSize(), "Il pool dovrebbe contenere esattamente 2 TreeType");
+    }
 }

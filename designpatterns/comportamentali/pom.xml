@@ -12,6 +12,8 @@
     <groupId>cloud.compagno.designpatterns</groupId>
     <artifactId>comportamentali</artifactId>
     <packaging>pom</packaging>
-
+    <modules>
+        <module>chainofresponsibility</module>
+    </modules>
 
 </project>
