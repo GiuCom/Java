@@ -9,22 +9,10 @@
 ## 🚀 Introduzione
 
 Dedicato a chi vuole approcciarsi al mondo Java e visionare materiale per apprendere o cogliere spunto per eventuali lezione su questo linguaggio di programmazione.
-Argomenti trattati:
-
-- [Appunti di Java](Appunti)
-  - Storia di Java
-  - Java Runtime Environment & Java Development Kit
-  - Java Virtual Machine
-
-- [Design Patterns](designpatterns) 
-  - [Creazionali](designpatterns/creazionali)
-  - [Strutturali](designpatterns/strutturali)
-  - [Comportamentali](designpatterns/comportamentali)
-
 
 ## 👥 Authors
 
-- [**Giuseppe Compagno**](https://www.compagno.cloud)<br/>
+- **Giuseppe Compagno** - [link](https://www.compagno.cloud)<br/>
 
 
 ## 🤝 Contributi
@@ -56,9 +44,10 @@ Lista di chi ha contribuito:<br/>
 - [**ResearchGate**](https://www.researchgate.net)<br/>
 - [**Carlos Caballero**](https://www.carloscaballero.io)<br/>
 
+
 ## ⚖️ Licenza
 
-Questo progetto è coperto da [**Licenza MIT**](LICENSE)<br/>
+Questo progetto è coperto da **licenza MIT** - [link](LICENSE)<br/>
 
 
 ## 📞 Contact
@@ -66,7 +55,7 @@ Questo progetto è coperto da [**Licenza MIT**](LICENSE)<br/>
 Per un supporto o aiuto:<br/>
 - Crea un issue<br/>
 - Invia un pull request<br/>
-- Contattami [email](mailto:info@compagno.cloud)<br/>
+- Contattami via mail - [mail](mailto:info@compagno.cloud)<br/>
 
 
 ## 🔍 Version History
