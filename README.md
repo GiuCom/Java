@@ -21,6 +21,11 @@ Argomenti trattati:
   - [Strutturali](designpatterns/strutturali)
   - [Comportamentali](designpatterns/comportamentali)
 
+- Crittografia
+  - ( Work in progress )
+
+- IA - Intelligenza Artificiale
+  - ( Work in progress )
 
 ## 👥 Authors
 
