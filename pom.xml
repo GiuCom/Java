@@ -74,6 +74,8 @@
         <!-- Comportamentali -->
         <chainofresponsibility.versione>1.0.0</chainofresponsibility.versione>
         <chainofresponsibility.mainClass>cloud.compagno.designpatterns.comportamentali.chainofresponsibility.ChainOfResponsibilityMain</chainofresponsibility.mainClass>
+        <command.versione>1.0.0</command.versione>
+        <command.mainClass>cloud.compagno.designpatterns.comportamentali.command.CommandMain</command.mainClass>
         <!-- -->
 
     </properties>
