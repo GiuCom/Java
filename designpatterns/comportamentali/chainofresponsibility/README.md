@@ -169,6 +169,11 @@ Non è solo il punto di avvio, ma è l'architetto della catena:
 - **Collegamento:** Qui avviene la magia del pattern. Tramite `setSuccessivo`, gli oggetti vengono concatenati. È qui che definiamo che il **SupportoBase** punta al **SupportoAvanzato**.
 - **Iniezione:** Il Client invia la richiesta solo al primo anello (`supportoBase`). Non sa nulla dell'esistenza del supporto avanzato.
 
+Analisi del flusso di esecuzione
+- **Disaccoppiamento:** Il Telecomando non sa che sta modificando una variabile intera dentro Condizionatore. Sa solo che l'oggetto ricevuto implementa l'interfaccia Comando.
+- **Stato:** Grazie all'uso dei Record di Java 25 (ComandoTemperatura), lo stato necessario per l'annullamento (vecchiaTemp) è memorizzato in modo immutabile nel momento in cui il comando viene creato.
+- **LIFO (Last-In-First-Out):** Lo Stack interno all'invocatore assicura che l'operazione annulla() avvenga sempre in ordine inverso rispetto all'esecuzione, garantendo la coerenza del sistema.
+
 ```java
 public final class SupportoBase extends BaseGestore {
 

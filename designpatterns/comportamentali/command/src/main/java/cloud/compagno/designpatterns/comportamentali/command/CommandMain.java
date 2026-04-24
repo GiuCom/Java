@@ -4,14 +4,52 @@ package cloud.compagno.designpatterns.comportamentali.command;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class CommandMain {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+        // 1. Inizializzazione del Ricevitore (Receiver)
+        // Il condizionatore contiene la logica di business reale
+        Condizionatore ariaCondizionata = new Condizionatore();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+        // 2. Inizializzazione dell'Invocatore (Invoker)
+        // Il telecomando gestisce l'invio dei comandi e la cronologia per l'undo
+        Telecomando telecomando = new Telecomando();
+
+        System.out.println("--- Inizio Operazioni Domotiche ---");
+        System.out.println("Stato iniziale: " + ariaCondizionata.getTemperatura() + "°C");
+
+        // 3. Creazione e invio del primo comando
+        // Passiamo la temperatura corrente (22) come 'vecchiaTemp' per permettere il ripristino
+        Comando impostaEstate = new ComandoTemperatura(
+                ariaCondizionata,
+                18,
+                ariaCondizionata.getTemperatura()
+        );
+
+        System.out.println("\nEsecuzione: Impostazione modalità estate...");
+        telecomando.inviaPressione(impostaEstate);
+
+        // 4. Creazione e invio del secondo comando
+        Comando impostaNotte = new ComandoTemperatura(
+                ariaCondizionata,
+                24,
+                ariaCondizionata.getTemperatura()
+        );
+
+        System.out.println("\nEsecuzione: Impostazione modalità notte...");
+        telecomando.inviaPressione(impostaNotte);
+
+        // 5. Test della funzionalità Undo (Annulla)
+        System.out.println("\n--- Test Funzione Annulla (Undo) ---");
+
+        System.out.println("Annullamento ultimo comando (Notte -> Estate)...");
+        telecomando.premiAnnulla();
+        System.out.println("Temperatura attuale: " + ariaCondizionata.getTemperatura() + "°C");
+
+        System.out.println("\nAnnullamento comando precedente (Estate -> Iniziale)...");
+        telecomando.premiAnnulla();
+        System.out.println("Temperatura attuale: " + ariaCondizionata.getTemperatura() + "°C");
+
+        System.out.println("\nTentativo di annullamento extra...");
+        telecomando.premiAnnulla(); // Questo testerà la modifica "isEmpty" appena fatta
+
+        System.out.println("\n--- Fine Simulazione ---");
     }
 }
