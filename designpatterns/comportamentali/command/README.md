@@ -23,7 +23,7 @@ Il pattern si articola su cinque componenti principali:
 In UML, è rappresentato:
 
 <p align="center">
-  <img alt="Command schema UML" title="Command schema UML" src="../../../Appunti/img/DesignPatterns_UML_Command.png" style="width: 85%; height: 85%;"><br/>
+  <img alt="Command schema UML" title="Command schema UML" src="../../../Appunti/img/DesignPatterns_UML_Command.png" style="width: 75%; height: 75%;"><br/>
 </p>
 
 -----
