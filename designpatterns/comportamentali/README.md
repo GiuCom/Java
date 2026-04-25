@@ -26,7 +26,7 @@ Essi hanno come obbiettivo:
 | **Pattern**                                          | **Focus Principale**             | **Differenza Chiave**                                                                     |
 |:-----------------------------------------------------|:---------------------------------|:------------------------------------------------------------------------------------------|
 | **[Chain of Responsibility](chainofresponsibility)** | Disaccoppiamento                 | La richiesta scorre in una catena; chi invia non sa chi (e se) risponderà.                |
-| **Command**                                          | Richiesta come oggetto           | Trasforma un'azione in un dato che può essere memorizzato o trasferito.                   |
+| **[Command](command)**                                          | Richiesta come oggetto           | Trasforma un'azione in un dato che può essere memorizzato o trasferito.                   |
 | **Interpreter**                                      | Grammatica e linguaggi           | Definisce come interpretare e valutare espressioni di un linguaggio specifico.            |
 | **Iterator**                                         | Navigazione collezioni           | Astrae il modo in cui si scorre una lista o un albero senza esporne la struttura.         |
 | **Mediator**                                         | Centralizzazione                 | Riduce le connessioni dirette (molti-a-molti) facendole passare da un unico punto.        |
