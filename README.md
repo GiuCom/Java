@@ -34,7 +34,7 @@ Argomenti trattati:
 
 ## 🤝 Contributi
 
-Disponibile a condividere con chiunque consigli o revisioni di codice per migliore il contenuto di questo repository<br/>
+Disponibile a condividere, con chiunque, consigli o revisioni di codice per migliore il contenuto di questo repository<br/>
 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 🙏 Ringraziamenti
