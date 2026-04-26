@@ -27,4 +27,30 @@ public class InterpreterTest {
 
         assertEquals(0, v.interpreta(contesto), "Una variabile non definita deve restituire 0");
     }
+
+    @Test
+    @DisplayName("Valutazione espressione nidificata")
+    void testEspressioneNidificata() {
+        // Arrange
+        Contesto contesto = new Contesto();
+        contesto.assegna("x", 5);
+        contesto.assegna("y", 20);
+
+        // Costruiamo: (5 + 10) + (x + y)
+        // Primo blocco: 5 + 10
+        Espressione bloccoCostanti = new Somma(new Numero(5), new Numero(10));
+
+        // Secondo blocco: x + y
+        Espressione bloccoVariabili = new Somma(new Variabile("x"), new Variabile("y"));
+
+        // Radice: blocco1 + blocco2
+        Espressione alberoComplesso = new Somma(bloccoCostanti, bloccoVariabili);
+
+        // Act
+        int risultato = alberoComplesso.interpreta(contesto);
+
+        // Assert
+        // (5 + 10) + (5 + 20) = 15 + 25 = 40
+        assertEquals(40, risultato, "L'espressione nidificata (5+10)+(x+y) dovrebbe restituire 40");
+    }
 }
