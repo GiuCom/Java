@@ -78,6 +78,8 @@
         <command.mainClass>cloud.compagno.designpatterns.comportamentali.command.CommandMain</command.mainClass>
         <interpreter.versione>1.0.0</interpreter.versione>
         <interpreter.mainClass>cloud.compagno.designpatterns.comportamentali.interpreter.InterpreterMain</interpreter.mainClass>
+        <iterator.versione>1.0.0</iterator.versione>
+        <iterator.mainClass>cloud.compagno.designpatterns.comportamentali.iterator.IteratorMain</iterator.mainClass>
         <!-- -->
 
     </properties>

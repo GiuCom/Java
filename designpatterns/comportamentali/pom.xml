@@ -16,6 +16,7 @@
         <module>chainofresponsibility</module>
         <module>command</module>
         <module>interpreter</module>
+        <module>iterator</module>
     </modules>
 
 </project>
